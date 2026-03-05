@@ -1,0 +1,684 @@
+html{
+    scroll-behavior: smooth;
+}
+/* Custom animations only */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animation Classes */
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1s ease forwards;
+}
+
+.animate-slideInLeft {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slideInRight {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animation Delays */
+.animation-delay-100 {
+    animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+    animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+    animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+    animation-delay: 0.5s;
+}
+
+.animation-delay-600 {
+    animation-delay: 0.6s;
+}
+
+.animation-delay-700 {
+    animation-delay: 0.7s;
+}
+
+.animation-delay-800 {
+    animation-delay: 0.8s;
+}
+
+/* Scroll reveal animations */
+.reveal {
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease;
+}
+
+.reveal-scale.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.nav-link.active, 
+.nav-link.text-green-600 {
+    color: #16a34a !important;
+    font-weight: 600 !important;
+}
+
+.nav-link .active-indicator {
+    transform: scaleX(1) !important;
+}
+
+.mobile-nav-link.active,
+.mobile-nav-link.text-green-600 {
+    color: #16a34a !important;
+    background-color: #f0fdf4 !important;
+    border-left: 4px solid #16a34a !important;
+    font-weight: 600 !important;
+}
+
+.nav-link.active span {
+     transform: scaleX(1);
+    background: linear-gradient(90deg, #16a34a, #059669);
+}
+
+/* Hover animations */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px rgba(22, 163, 74, 0.5);
+}
+
+/* Optimize animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Sticky Background Effect */
+.bg-fixed {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* For the image inside sticky container */
+.bg-fixed img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* Enhanced scroll indicator animations */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    50% {
+        transform: translateY(10px) translateX(-50%);
+    }
+}
+
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* Pulse animation for the inner dot */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(5px);
+    }
+}
+
+.animate-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Optional: Fade in animation for scroll indicator */
+.scroll-indicator {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1s;
+}
+
+/* Remove green focus ring from scroll indicator */
+.scroll-indicator a:focus,
+a[href="#about"]:focus {
+    outline: none !important;
+    ring: none !important;
+    box-shadow: none !important;
+}
+
+/* Optional: Add a more subtle focus indicator if you want to keep accessibility */
+.scroll-indicator a:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Sticky Background Effect - Working Version */
+.form-section-sticky {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 500px;
+}
+
+/* Fallback for browsers that don't support background-attachment: fixed */
+@supports not (background-attachment: fixed) {
+    .form-section-sticky {
+        background-attachment: scroll;
+    }
+}
+
+/* Ensure content is readable */
+.form-section-sticky .relative.z-10 {
+    position: relative;
+    z-index: 10;
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .form-section-sticky {
+        background-attachment: scroll;
+    }
+}
+
+/* Remove any conflicting styles */
+#formBgImage {
+    display: none; /* Hide the image element since we're using CSS background */
+}
+
+/* Active nav link styling */
+.nav-link.active, 
+.nav-link.text-green-600 {
+    color: #16a34a !important;
+    font-weight: 600 !important;
+}
+
+.nav-link .active-indicator {
+    transform: scaleX(1) !important;
+}
+
+.mobile-nav-link.active,
+.mobile-nav-link.text-green-600 {
+    color: #16a34a !important;
+    background-color: #f0fdf4 !important;
+    border-left: 4px solid #16a34a !important;
+    font-weight: 600 !important;
+}
+
+
+/* Continuous sliding animation */
+@keyframes continuousSlide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-continuous-slide {
+    animation: continuousSlide 30s linear infinite;
+    width: fit-content;
+}
+
+/* Pause animation on hover (optional) */
+.animate-continuous-slide:hover {
+    animation-play-state: paused;
+}
+
+/* Glowing circle borders - always visible */
+.relative .absolute.inset-0.rounded-full {
+    pointer-events: none; /* Allows clicking through to the image */
+}
+
+/* Ensure images are crisp */
+.relative img {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+/* Continuous sliding animation */
+@keyframes continuousSlide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-continuous-slide {
+    animation: continuousSlide 50s linear infinite;
+    width: fit-content;
+}
+
+/* Pause animation on hover */
+.animate-continuous-slide:hover {
+    animation-play-state: paused;
+}
+
+/* Ensure images are crisp */
+.relative img {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* Video background optimization */
+#heroVideo {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    will-change: transform;
+}
+
+/* Ensure content is above video */
+#heroSection .z-20 {
+    position: relative;
+    z-index: 20;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    #heroVideo {
+        object-position: center;
+    }
+}
+
+/* Fallback background if video fails */
+#heroSection.video-fallback {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Video loading animation */
+#heroVideo.loading {
+    opacity: 0;
+}
+
+#heroVideo.loaded {
+    opacity: 1;
+}
+
+/* Optimize video performance */
+@media (prefers-reduced-motion: reduce) {
+    #heroVideo {
+        display: none;
+    }
+    #heroSection {
+        background-image: url('images/food.png');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+
+/* About Hero Video optimization */
+#aboutHeroVideo {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    will-change: transform;
+}
+
+/* Ensure content is above video */
+#aboutHeroSection .z-20 {
+    position: relative;
+    z-index: 20;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    #aboutHeroVideo {
+        object-position: center;
+    }
+}
+
+/* Fallback background if video fails */
+#aboutHeroSection.video-fallback {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Scroll indicator animation */
+@keyframes gentlePulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(3px);
+    }
+}
+
+#aboutHeroSection .animate-pulse {
+    animation: gentlePulse 2s ease-in-out infinite;
+}
+
+/* Navbar scroll effect */
+#navbar {
+    background-color: rgba(0, 0, 0, 0.3) ;
+    backdrop-filter: blur(10px) ;
+    -webkit-backdrop-filter: blur(10px) ;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#navbar.navbar-scrolled {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Search bar animations */
+#searchContainer {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#searchContainer.show {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+}
+
+
+/* Hero Slider Fade Transitions */
+.slide {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    pointer-events: none;
+}
+
+.slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.slide-content {
+    transition: opacity 1s ease-in-out;
+}
+
+.slide-content.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.slide-content:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* Recipe Slider Smooth Animation */
+.recipe-slide-content {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s ease;
+}
+
+.recipe-slide-content.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Image Animation */
+.recipe-slide-image {
+    opacity: 0;
+    transform: scale(1.05);
+    transition: all 0.7s ease;
+}
+
+.recipe-slide-image.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+        @keyframes fadeInUp {
+            0% { 
+                opacity: 0; 
+                transform: translateY(15px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            letter-spacing: 2px;
+        }
+
+        .hero-underline {
+            transform: scaleX(1);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        h1:hover .hero-underline {
+            transform: scaleX(1.1);
+        }
+
+        /* Hide mobile nav since we have auto slider */
+        .mobile-nav {
+            display: none !important;
+        }
+        
+        /* Running cards animation */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-250px * 6 - 2rem));
+            }
+        }
+        
+        .running-cards-track {
+            animation: scroll 30s linear infinite;
+            width: fit-content;
+        }
+        
+        .running-cards-track:hover {
+            animation-play-state: paused;
+        }
+        
+        .running-card {
+            width: 250px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+          
+        }
+        
+        .running-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Draggable styles */
+.slider-container {
+    cursor: default;
+}
+
+.slider-container:hover {
+    cursor: grab;
+}
+
+.slider-container.dragging {
+    cursor: grabbing;
+}
+
+.slider-container.dragging .slider-item {
+    pointer-events: none;
+}
+
+.slider-item {
+    user-select: none;
+    -webkit-user-drag: element;
+}
+
+/* Smooth transition for transform */
+#sliderTrack {
+    will-change: transform;
+}
+

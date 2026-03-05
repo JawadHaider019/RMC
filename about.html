@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> About Rishad Mateen Company</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+       <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts - Manrope & Marcellus -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Marcellus&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS (only for animations) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preload hero image for better performance -->
+    <link rel="preload" as="image" href="images/food.png">
+    
+    <style>
+        /* Font classes */
+        .font-manrope {
+            font-family: "Manrope", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        
+        .font-marcellus {
+            font-family: "Marcellus", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="bg-white font-manrope antialiased">
+
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <!-- Main navbar container - full width -->
+    <div class="flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8 transition-all duration-300" id="navContainer">
+        <!-- Logo with image - white version for transparent bg -->
+        <a href="/" class="flex items-center rounded">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full" id="logo">
+        </a>
+
+        <!-- Desktop Navigation Links with active class support -->
+        <div class="hidden md:flex items-center space-x-1 lg:space-x-4">
+            <a href="index.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="home">
+                Home
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="about.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="about">
+                About Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="products.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="products">
+                Products
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <!-- Profile Link - Downloads Document -->
+            <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"   class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="profile">
+                Profile
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="contact.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="contact">
+                Contact Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+        </div>
+
+        <!-- Right side items -->
+        <div class="flex items-center gap-2 sm:gap-4">
+            <!-- Search Icon -->
+            <button id="searchToggle" class="text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Search">
+                <i class="fas fa-search text-base sm:text-lg"></i>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuToggle" class="md:hidden text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown with active class support -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg rounded-b-2xl mx-4 mt-2 overflow-hidden border border-white/20" aria-label="Mobile navigation">
+        <div class="flex flex-col py-2">
+            <a href="index.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="home">Home</a>
+            <a href="about.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="about">About</a>
+            <a href="products.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="products">Products</a>
+            <!-- Mobile Profile Link - Downloads Document -->
+            <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"   class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="profile">Profile</a>
+            <a href="contact.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Search Bar (Below Navbar) - Centered with 80% width -->
+    <div id="searchBar" class="w-full absolute top-full left-0 right-0 z-40 pointer-events-none">
+        <div class="max-w-4xl mx-auto px-4">
+            <div id="searchContainer" class="transform -translate-y-4 opacity-0 transition-all duration-500 ease-in-out pointer-events-auto hidden">
+                <div class="relative mt-2">
+                    <input type="text" 
+                           id="searchInput"
+                           placeholder="Search for fruits, vegetables, products..." 
+                           class="w-full px-5 py-3 sm:py-4 pr-12 border-2 border-gray-200 rounded-3xl focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/90 backdrop-blur">
+                    <button id="searchSubmit" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center hover:scale-105 transition-transform duration-300 rounded-full">
+                        <i class="fas fa-search text-white text-sm sm:text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- Hero Section -->
+<section class="relative w-full h-[70vh] overflow-hidden bg-black">
+    <div class="absolute inset-0 w-full h-full">
+        <img src="images/farming.jpg" alt="Fresh Products" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+    <div class="absolute inset-0 flex items-center justify-center">
+        <h1 class="font-marcellus text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
+            ABOUT 
+            <span class="relative inline-block">
+                <span class="relative z-10 text-green-400">US</span>
+                <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full hero-underline"></span>
+            </span>
+        </h1>
+    </div>
+</section>
+<!-- CEO Message Section - Premium Version with Smaller CEO Image -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16 md:mb-20 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-quote-right text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">CEO's Message</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">Words From Our<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Founder & CEO</span></h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Main Content Grid - CEO Image on Right - BALANCED SIZING -->
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <!-- Left Column - Message Content (takes 7 columns) -->
+            <div class="lg:col-span-7 space-y-6 reveal-left">
+                <!-- Quote Icon -->
+                <div class="text-4xl text-green-300">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                
+                <!-- Message -->
+                <div class="space-y-4">
+                    <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                        <span class="font-bold text-green-600">Rishad Mateen & Company</span> origins lie in farming. This is why we understand our business so well. We believe in personal attention; it is this background that drives us to supply our customers and their families only the highest quality produce, all from carefully selected growers from almost every country in the world.
+                    </p>
+                    
+                    <p class="text-base sm:text-lg text-gray-600 italic border-l-4 border-green-500 pl-4 sm:pl-6 py-2 bg-green-50/30 rounded-r-2xl">
+                        "As our current customers have found — including some of the biggest names in retail and hospitality — we are true to our promise in word and deed."
+                    </p>
+                </div>
+                
+                <!-- Signature (visible on mobile, hidden on desktop since it's on image) -->
+                <div class="flex items-center gap-4 lg:hidden pt-2">
+                    <img src="images/member1.jpeg" alt="Rishad Mateen" class="w-14 h-14 rounded-full object-cover border-2 border-green-500">
+                    <div>
+                        <p class="font-marcellus text-lg font-bold text-gray-900">Rishad Mateen</p>
+                        <p class="text-green-600 text-sm">Founder & CEO</p>
+                        <p class="text-xs text-gray-500">Since 1985</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Smaller CEO Image (takes 5 columns) -->
+            <div class="lg:col-span-5 reveal-right">
+                <div class="relative group max-w-md mx-auto lg:mx-0">
+                    <!-- Image Container - Smaller size -->
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl">
+                        <img src="images/CEO.jpg" 
+                             alt="Rishad Mateen - CEO" 
+                             class="w-full h-auto object-cover max-h-[400px]">
+                        
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        <!-- Name & Title Overlay - Always visible but subtle -->
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-3 inline-block">
+                                <h3 class="font-marcellus text-lg font-bold text-gray-900">Rishad Mateen</h3>
+                                <p class="text-green-600 text-xs font-semibold">Founder & CEO</p>
+                                <p class="text-[10px] text-gray-500">Since 1985</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision & Mission Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mt-16">
+            <!-- Vision Card -->
+            <div class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200">
+                <div class="p-6 sm:p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-eye text-white text-xl sm:text-2xl"></i>
+                        </div>
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Our Vision</h3>
+                    </div>
+                    
+                    <p class="text-gray-600 text-md leading-relaxed">
+                        Our team brings together expertise to help customers achieve exceptional quality standards, partnering with farmers and clients to deliver premium produce, reliable services, and sustainable long-term growth.
+                    </p>
+                    
+                    <div class="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-6 group-hover:w-20 sm:group-hover:w-24 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Mission Card -->
+            <div class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
+                <div class="p-6 sm:p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-bullseye text-white text-xl sm:text-2xl"></i>
+                        </div>
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Our Mission</h3>
+                    </div>
+                    
+                    <p class="text-gray-600 text-md leading-relaxed">
+                        Our team combines expertise to support customers in achieving high quality standards, working closely with farmers and clients to deliver premium produce, dependable services, and sustainable long-term growth.
+                    </p>
+                    
+                    <div class="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-6 group-hover:w-20 sm:group-hover:w-24 transition-all duration-300"></div>
+                </div>
+            </div>
+        </div>
+
+      
+    </div>
+</section>
+
+<!-- Our Story Section - Image Below Heading, Above Text -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 
+ overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-green-200 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-emerald-200 rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-10 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-5 py-2.5 rounded-full mb-6">
+                <i class="fas fa-book-open text-green-600 text-base"></i>
+                <span class="text-green-600 font-semibold text-sm tracking-[0.3em] uppercase">Our Story</span>
+            </div>
+            <h2 class="font-marcellus text-4xl md:text-5xl font-bold text-gray-900 mb-4">From Humble Beginnings<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">to Global Success</span></h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Image Below Heading - Full Width -->
+        <div class="max-w-5xl mx-auto mb-12 reveal">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img src="images/story.jpg" 
+                     alt="Our farming history" 
+                     class="w-full h-auto object-cover">
+                
+                <!-- Gradient overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent"></div>
+                
+                <!-- Vintage badge -->
+                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-sm font-semibold text-gray-900">Est. 1985</p>
+                </div>
+                
+                <!-- Caption at bottom (optional) -->
+                <div class="absolute bottom-4 right-4 bg-green-600/90 backdrop-blur-sm px-4 py-2 rounded-lg">
+                    <p class="text-xs text-white">Karachi, Pakistan - 1985</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Below Image - Centered -->
+        <div class="max-w-4xl mx-auto text-center mb-12 reveal">
+            <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                <span class="font-bold text-green-600">Rishad Mateen & Company</span> was founded in 1985 with a vision to connect Pakistani farmers with international markets. What started as a small trading operation in Karachi has grown into a global network spanning 40+ countries.
+            </p>
+            
+            <!-- Stats Grid -->
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">40+</div>
+                    <p class="text-sm text-gray-600 mt-1">Countries</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">500+</div>
+                    <p class="text-sm text-gray-600 mt-1">Farmers</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">1985</div>
+                    <p class="text-sm text-gray-600 mt-1">Founded</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Milestone Cards -->
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+            <!-- 1985 Card -->
+            <div class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2">1985</div>
+                <p class="text-gray-600">Founded in Karachi</p>
+                <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+            
+            <!-- 1995 Card -->
+            <div class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2">1995</div>
+                <p class="text-gray-600">Expanded to Europe</p>
+                <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+            
+            <!-- Today Card -->
+            <div class="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2">Today</div>
+                <p class="text-gray-600">Global Presence</p>
+                <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Data Counter Section - 6 Cards Premium -->
+<section class="relative py-10  px-4 sm:px-6 lg:px-8 overflow-hidden ">
+  
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-5 py-2.5 rounded-full mb-8">
+                <i class="fas fa-chart-line text-green-600 text-base"></i>
+                <span class="text-green-600 font-semibold text-sm tracking-[0.3em] uppercase">Key Data</span>
+            </div>
+            <h2 class="font-marcellus text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Our Impact<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">By Numbers</span></h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- 6 Cards Grid - Matching Premium Style -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-5 md:gap-6 lg:gap-7">
+            
+            <!-- Card 1: 98,000+ acres under production -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100 border border-gray-100">
+                <div class="p-6 lg:p-7">
+                    <div class="flex flex-col items-center text-center">
+                        <!-- Icon with gradient background -->
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4">
+                            <i class="fas fa-tractor text-white text-2xl"></i>
+                        </div>
+                        
+                        <!-- Counter with suffix -->
+                        <div class="mb-2">
+                            <span class="counter-value font-marcellus text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="98">98</span>
+                            <span class="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">k+</span>
+                        </div>
+                        
+                        <h3 class="font-marcellus text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Acres Under Production</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">Sustainable farming land</p>
+                        
+                        <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: 28% land set aside for biodiversity -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200 border border-gray-100">
+                <div class="p-6 lg:p-7">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4">
+                            <i class="fas fa-leaf text-white text-2xl"></i>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <span class="counter-value font-marcellus text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="28">0</span>
+                            <span class="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">%</span>
+                        </div>
+                        
+                        <h3 class="font-marcellus text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Biodiversity Conservation</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">Of owned land preserved for wildlife</p>
+                        
+                        <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: 67,700+ farms worldwide -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300 border border-gray-100">
+                <div class="p-6 lg:p-7">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4">
+                            <i class="fas fa-store text-white text-2xl"></i>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <span class="counter-value font-marcellus text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="67.7">67.7</span>
+                            <span class="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">k+</span>
+                        </div>
+                        
+                        <h3 class="font-marcellus text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Farms Worldwide</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">Partner farms across the globe</p>
+                        
+                        <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: 40,000+ team members -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-400 border border-gray-100">
+                <div class="p-6 lg:p-7">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <span class="counter-value font-marcellus text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="40">40</span>
+                            <span class="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">k+</span>
+                        </div>
+                        
+                        <h3 class="font-marcellus text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Team Members</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">Dedicated professionals globally</p>
+                        
+                        <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: 39 countries we operate in -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-500 border border-gray-100">
+                <div class="p-6 lg:p-7">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4">
+                            <i class="fas fa-globe-asia text-white text-2xl"></i>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <span class="counter-value font-marcellus text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="39">0</span>
+                        </div>
+                        
+                        <h3 class="font-marcellus text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Countries of Operation</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">Active presence worldwide</p>
+                        
+                        <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: 80+ countries where products are available -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-600 border border-gray-100">
+                <div class="p-6 lg:p-7">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 mb-4">
+                            <i class="fas fa-shipping-fast text-white text-2xl"></i>
+                        </div>
+                        
+                        <div class="mb-2">
+                            <span class="counter-value font-marcellus text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="80">80</span>
+                            <span class="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">+</span>
+                        </div>
+                        
+                        <h3 class="font-marcellus text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Countries Served</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed">Products available globally</p>
+                        
+                        <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      
+    </div>
+</section>
+
+
+<!-- Infrastructure & Facilities Section - Premium Version -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header - Matching other sections -->
+        <div class="text-center mb-12 sm:mb-16 md:mb-20 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-industry text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Our Infrastructure</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">State-of-the-Art<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Processing Facilities</span></h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto">Our facilities meet international standards, ensuring your produce reaches global markets with uncompromised quality and freshness.</p>
+        </div>
+
+     
+
+        <!-- Main Content Grid - 2 Columns -->
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
+            <!-- Left Column - Text Content -->
+            <div class="space-y-6 sm:space-y-8 reveal-left">
+                <!-- HWT Plant Description Card -->
+                <div class="group relative bg-white  transition-all duration-500  overflow-hidden p-6 sm:p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20   duration-500">
+                            <i class="fas fa-water text-white text-xl sm:text-2xl"></i>
+                        </div>
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">HWT Plant</h3>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
+                        We have a HWT plant with the capacity to process up to <span class="font-bold text-green-600">300 tons of mangoes per day</span>. This infrastructure ensures hygienic processing, extended freshness, and export reliability.
+                    </p>
+                    
+                    <!-- Approved Countries Badges -->
+                    <div class="mt-4">
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Approved by quarantine departments:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-green-50 text-green-700 rounded-full text-xs sm:text-sm font-medium border border-green-200 hover:bg-green-100 transition-colors duration-300">🇬🇧 UK</span>
+                            <span class="px-4 py-2 bg-green-50 text-green-700 rounded-full text-xs sm:text-sm font-medium border border-green-200 hover:bg-green-100 transition-colors duration-300">🇺🇸 USA</span>
+                            <span class="px-4 py-2 bg-green-50 text-green-700 rounded-full text-xs sm:text-sm font-medium border border-green-200 hover:bg-green-100 transition-colors duration-300">🇮🇷 Iran</span>
+                            <span class="px-4 py-2 bg-green-50 text-green-700 rounded-full text-xs sm:text-sm font-medium border border-green-200 hover:bg-green-100 transition-colors duration-300">🇦🇺 Australia</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-16 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-6 group-hover:w-24 transition-all duration-300"></div>
+                </div>
+
+            
+            </div>
+
+            <!-- Right Column - HWT Plant Image -->
+            <div class="reveal-right">
+                <div class="group relative  rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                    <!-- Image Container -->
+                    <div class="relative h-[250px] sm:h-[350px] overflow-hidden  rounded-xl sm:rounded-2xl">
+                        <img src="images/HWT.jpeg" 
+                             alt="HWT Plant Facility" 
+                             class="w-full h-full object-contain ">
+                        
+                        <!-- Gradient overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        <!-- Caption Badge -->
+                        <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6">
+                            <div class="bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl px-3 sm:px-5 py-2 sm:py-3">
+                                <div class="flex items-center gap-2 sm:gap-3">
+                                    <i class="fas fa-factory text-green-600 text-sm sm:text-base"></i>
+                                    <span class="text-xs sm:text-sm font-medium text-gray-900">HWT Plant - 300 Tons/Day</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Capacity Badge -->
+                        <div class="absolute top-4 sm:top-6 right-4 sm:right-6">
+                            <div class="bg-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
+                                300 Tons/Day
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   <!-- Stats Cards - Redesigned with premium look -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 ">
+            <!-- Card 1: Last Broiler -->
+            <div class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
+                <div class="p-6 sm:p-8 text-center">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500 mb-4">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">Last Broiler</h3>
+                    <p class="text-sm text-gray-600">Safeguarded with advanced protocols</p>
+                    <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-4 group-hover:w-16 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Card 2: 15 Tons/Hour -->
+            <div class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200">
+                <div class="p-6 sm:p-8 text-center">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500 mb-4">
+                        <i class="fas fa-weight-hanging text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">15 Tons/Hour</h3>
+                    <p class="text-sm text-gray-600">Processing Capacity</p>
+                    <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-4 group-hover:w-16 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Card 3: 300 Tons/Day -->
+            <div class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
+                <div class="p-6 sm:p-8 text-center">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500 mb-4">
+                        <i class="fas fa-water text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">300 Tons/Day</h3>
+                    <p class="text-sm text-gray-600">HWT Plant Capacity</p>
+                    <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-4 group-hover:w-16 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Card 4: 4 Countries -->
+            <div class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-400">
+                <div class="p-6 sm:p-8 text-center">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500 mb-4">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">4 Countries</h3>
+                    <p class="text-sm text-gray-600">Quarantine Approved</p>
+                    <div class="w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto mt-4 group-hover:w-16 transition-all duration-300"></div>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+</section>
+
+<!-- Our Team Section - Simple Version -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-green-100 px-5 py-2.5 rounded-full mb-8">
+                <i class="fas fa-users text-green-600 text-base"></i>
+                <span class="text-green-600 font-semibold text-sm tracking-[0.3em] uppercase">Our Team</span>
+            </div>
+            <h2 class="font-marcellus text-4xl md:text-5xl font-bold text-gray-900 mb-4">Industry Experts</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Meet the dedicated professionals behind our global success.</p>
+        </div>
+
+        <!-- Team Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Member 1 -->
+            <div class="text-center">
+                <div class="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-500 shadow-xl">
+                    <img src="images/member1.jpeg" alt="Rishad Mateen" class="w-full h-full object-cover scale-125 ">
+                </div>
+                <h3 class="font-marcellus text-2xl font-bold text-gray-900">Rishad Mateen</h3>
+                <p class="text-green-600 font-semibold mb-3">Founder & CEO</p>
+                <p class="text-gray-600 text-sm px-4">35+ years in global produce trade</p>
+            </div>
+            
+            <!-- Member 2 -->
+            <div class="text-center">
+                <div class="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-500 shadow-xl">
+                    <img src="images/member2.jpeg" alt="Sarah Khan" class="w-full h-full object-cover scale-125">
+                </div>
+                <h3 class="font-marcellus text-2xl font-bold text-gray-900">Sarah Khan</h3>
+                <p class="text-green-600 font-semibold mb-3">Export Director</p>
+                <p class="text-gray-600 text-sm px-4">Expert in international logistics</p>
+            </div>
+            
+            <!-- Member 3 -->
+            <div class="text-center">
+                <div class="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-500 shadow-xl">
+                    <img src="images/member3.jpeg" alt="Ahmed Hassan" class="w-full h-full object-cover scale-125">
+                </div>
+                <h3 class="font-marcellus text-2xl font-bold text-gray-900">Ahmed Hassan</h3>
+                <p class="text-green-600 font-semibold mb-3">Quality Assurance</p>
+                <p class="text-gray-600 text-sm px-4">GlobalGAP & BRC certified</p>
+            </div>
+            
+          
+        </div>
+    </div>
+</section>
+
+<!-- Work With Us Section - Ultra Simple -->
+<section class="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <!-- Background Image with Green Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="images/farm.jpg" 
+             alt="Team working on farm" 
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-green-900/70"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+        <h2 class="font-marcellus text-4xl md:text-5xl font-bold text-white mb-4">
+            Work With Us
+        </h2>
+        
+        <p class="text-white/90 text-lg mb-8">
+            Join our global network of partners. Whether you want to join our team or sell your products, we'd love to hear from you.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#careers" class="px-8 py-3 bg-white text-green-700 rounded-full font-semibold hover:bg-green-50 transition-all duration-300">
+                Join Our Team
+            </a>
+            
+            <a href="#sell" class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-green-700 transition-all duration-300">
+                Sell Our Products
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Form Section with Sticky Background -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden form-section-sticky"
+         style="background-image: url('images/contact.jpg'); background-position: center;  ">
+    
+    <!-- Overlay to maintain readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-white/30  to-white/20"></div>
+    
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 left-0 w-64 sm:w-80 h-64 sm:h-80 bg-green-50/80 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-50/80 rounded-full filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2 z-5 pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-8 sm:mb-12 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-file-signature text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Get In Touch</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 px-4">Request Your Quote</h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Contact Info Cards -->
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <!-- Phone -->
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-100 backdrop-blur-sm bg-white/80">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-phone text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">Phone</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900"> +92-21 34322907</p>
+                </div>
+            </div>
+            
+            <!-- WhatsApp -->
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-200 backdrop-blur-sm bg-white/80">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">WhatsApp</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900"> +92-21 34322907</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100 reveal">
+                <form class="space-y-4 sm:space-y-6">
+                    <!-- Row 1: Full Name & Company -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Full Name -->
+                        <div class="reveal-left animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Full Name <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your full name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Company -->
+                        <div class="reveal-right animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Company <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your company name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Business Email & Phone/WhatsApp -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Business Email -->
+                        <div class="reveal-left animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Business Email <span class="text-green-600">*</span>
+                            </label>
+                            <input type="email" 
+                                   placeholder="purchasing@company.com"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Phone / WhatsApp -->
+                        <div class="reveal-right animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Phone / WhatsApp <span class="text-green-600">*</span>
+                            </label>
+                            <input type="tel" 
+                                   placeholder="+Country Code Phone Number"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Purchase Volume & Required Calibers -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Purchase Volume -->
+                        <div class="reveal-left animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Purchase Volume <span class="text-green-600">*</span>
+                            </label>
+                            <select class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base text-gray-500 bg-white/80 backdrop-blur-sm">
+                                <option value="" disabled selected>— Please choose an option —</option>
+                                <option value="less-1">Less than 1 ton</option>
+                                <option value="1-5">1-5 tons</option>
+                                <option value="5-10">5-10 tons</option>
+                                <option value="10-20">10-20 tons</option>
+                                <option value="20+">20+ tons</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Required Calibers -->
+                        <div class="reveal-right animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Required Calibers <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: Onion 60/80, 90/100"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Target Price & Packaging -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Target Price -->
+                        <div class="reveal-left animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Target Price (€/kg) <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 1.50 €/kg"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Packaging -->
+                        <div class="reveal-right animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Packaging <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 25kg bags, 10kg boxes"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="reveal">
+                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                            Additional Details
+                        </label>
+                        <textarea rows="4" 
+                                  placeholder="Any additional specifications or comments"
+                                  class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base resize-none bg-white/80 backdrop-blur-sm"></textarea>
+                    </div>
+
+                    <!-- Privacy Policy Checkbox -->
+                    <div class="flex items-start gap-2 sm:gap-3 reveal">
+                        <input type="checkbox" id="privacy" class="mt-1 w-3 h-3 sm:w-4 sm:h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                        <label for="privacy" class="text-2xs sm:text-xs text-gray-600">
+                            I have read and accept the 
+                            <a href="#" class="text-green-600 font-semibold hover:text-green-700 transition-colors duration-300">privacy policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-2 sm:pt-4 reveal-scale animation-delay-500">
+                        <button type="submit" class="group relative px-6 sm:px-8 md:px-12 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-105">
+                            <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center gap-2 mx-auto">
+                                Submit Request
+                                <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Trust Badge -->
+            <div class="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 text-2xs sm:text-xs text-gray-100 reveal">
+                <i class="fas fa-lock text-green-200 text-xs sm:text-sm"></i>
+                <span>Your information is secure and confidential</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer Section -->
+<footer class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-white/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-white/5 rounded-full filter blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
+            <!-- Company Info -->
+            <div class="space-y-3 sm:space-y-4 reveal-left">
+               <a href="index.html" class="flex items-center  focus:outline-none focus:ring-2 focus:ring-green-500 ">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1 ">
+              </a>
+                <h4 class="font-marcellus text-lg sm:text-xl text-green-300 mt-2">Why People Like us!</h4>
+                <p class="text-emerald-100 leading-relaxed text-xs sm:text-sm">
+                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.
+                </p>
+                <div class="flex items-center gap-3 sm:gap-4 pt-2">
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-facebook-f text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-instagram text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-x-twitter text-white text-2xs sm:text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="reveal animation-delay-100">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li>
+                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"  class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Brochure
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Products -->
+            <div class="reveal animation-delay-200">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                       <li>
+                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Mangoes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Onion
+                        </a>
+                    </li>
+                    <li>
+                        <a href="oranges.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Orange
+                        </a>
+                    </li>
+                    <li>
+                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Potato
+                        </a>
+                    </li>
+                 
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="reveal-right animation-delay-300">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Contact Us</h4>
+                <ul class="space-y-3 sm:space-y-4">
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-phone text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <div class="text-emerald-100 text-xs sm:text-sm">
+                            Phone: +92-21 34322907                       </div>
+                    </li>
+                   
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">Plot no: 1-4B Ground floor P.E.CH.S block 6 Karachi, Pakistan</span>
+                    </li>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">info@rishadmateen.com</span>
+                    </li>
+                  
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+                <!-- Copyright -->
+                <p class="text-emerald-100 text-2xs sm:text-xs text-center md:text-left">
+                   © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
+                </p>
+                
+                <!-- Footer Links -->
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    <script src="script.js"></script>
+    
+   
+</body>
+</html>

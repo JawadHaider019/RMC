@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Rishad Mateen · Premium Product Collection</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+       <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Marcellus&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <style>
+        .font-manrope { font-family: "Manrope", sans-serif; }
+        .font-marcellus { font-family: "Marcellus", serif; font-weight: 400; }
+
+        /* ===== ANIMATION KEYFRAMES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* ===== ANIMATION CLASSES ===== */
+        .animate-fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease forwards;
+        }
+        
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease forwards;
+        }
+        
+        .animate-scaleIn {
+            animation: scaleIn 0.6s ease forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        /* ===== REVEAL CLASSES FOR SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .reveal-left {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal-left.active {
+            opacity: 1;
+            animation: fadeInLeft 0.8s ease forwards;
+        }
+        
+        .reveal-right {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal-right.active {
+            opacity: 1;
+            animation: fadeInRight 0.8s ease forwards;
+        }
+        
+        .reveal-scale {
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal-scale.active {
+            opacity: 1;
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        /* ===== PRODUCT SLIDER STYLES ===== */
+        .product-slider-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .product-slider {
+            display: flex;
+            gap: 0.75rem;
+            min-height: 550px;
+        }
+
+        .product-slide {
+            flex: 0 0 8%;
+            height: 550px;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .product-slide:hover::before {
+            opacity: 1;
+        }
+
+        .product-slide.active {
+            flex: 0 0 60%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .product-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .product-slide.active::after {
+            opacity: 1;
+        }
+
+        .slide-rotate-name {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            transform: rotate(180deg);
+            writing-mode: vertical-rl;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            pointer-events: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .product-slide.active .slide-rotate-name {
+            opacity: 0;
+        }
+
+        .slide-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .product-slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .slide-category {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            margin-bottom: 0.75rem;
+            width: fit-content;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.2s;
+        }
+
+        .product-slide.active .slide-category {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-name {
+            color: white;
+            font-size: 2.25rem;
+            font-weight: 700;
+            font-family: 'Marcellus', serif;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.3s;
+        }
+
+        .product-slide.active .slide-name {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            max-width: 80%;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.4s;
+        }
+
+        .product-slide.active .slide-description {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #22c55e;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            width: fit-content;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.5s;
+        }
+
+        .product-slide.active .slide-button {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-button:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide-button:hover i {
+            transform: translateX(4px);
+        }
+
+        .slide-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .slide-compact {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .slide-compact-left {
+            color: white;
+        }
+
+        .slide-compact-category {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            display: block;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .slide-compact-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-family: 'Marcellus', serif;
+        }
+
+        .slide-compact-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Mobile styles */
+        @media (max-width: 767px) {
+            .product-slider {
+                flex-direction: column;
+                min-height: auto;
+                gap: 0.5rem;
+            }
+            
+            .product-slide {
+                flex: none !important;
+                width: 100%;
+                height: 100px;
+                transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            
+            .product-slide.active {
+                height: 500px;
+            }
+            
+            .slide-rotate-name {
+                display: none;
+            }
+            
+            .slide-name {
+                font-size: 2rem;
+            }
+            
+            .slide-description {
+                max-width: 100%;
+                font-size: 0.875rem;
+            }
+            
+            .slide-content {
+                padding: 1.5rem;
+            }
+            
+            .slide-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-slide.active {
+                height: 450px;
+            }
+            
+            .slide-name {
+                font-size: 1.75rem;
+            }
+            
+            .slide-content {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Section headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f0fdf4;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2);
+        }
+        
+        .section-badge i {
+            color: #16a34a;
+            font-size: 0.875rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-badge:hover i {
+            transform: rotate(360deg);
+        }
+        
+        .section-badge span {
+            color: #16a34a;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .section-title {
+            font-family: 'Marcellus', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title span {
+            background: linear-gradient(to right, #16a34a, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #16a34a, #059669);
+            transition: width 0.6s ease;
+        }
+        
+        .section-title span:hover::after {
+            width: 100%;
+        }
+
+        /* Recipe section styles */
+        .recipe-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .recipe-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.1);
+        }
+
+        .recipe-image.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .recipe-image.animating-out {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+
+        .recipe-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .recipe-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .recipe-content > * {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .recipe-content.active > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .technique-badge {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: 0.3s;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .technique-badge.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Hero section */
+        .hero-underline {
+            transform: scaleX(0);
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: left;
+        }
+        
+        .hero-underline.animate {
+            transform: scaleX(1);
+        }
+        
+        /* Loading shimmer effect */
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-white font-manrope antialiased overflow-x-hidden">
+
+<!-- Navigation (same as before) -->
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <div class="flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8 transition-all duration-300" id="navContainer">
+        <a href="/" class="flex items-center rounded">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full" id="logo">
+        </a>
+
+        <div class="hidden md:flex items-center space-x-1 lg:space-x-4">
+            <a href="index.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="home">
+                Home
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="about.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="about">
+                About Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="products.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="products">
+                Products
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="Rishad Mateen & Company Brochure.pdf" target="_blank" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="profile">
+                Profile
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="contact.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="contact">
+                Contact Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+            <button id="searchToggle" class="text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Search">
+                <i class="fas fa-search text-base sm:text-lg"></i>
+            </button>
+
+            <button id="menuToggle" class="md:hidden text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg rounded-b-2xl mx-4 mt-2 overflow-hidden border border-white/20" aria-label="Mobile navigation">
+        <div class="flex flex-col py-2">
+            <a href="index.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="home">Home</a>
+            <a href="about.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="about">About</a>
+            <a href="products.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="products">Products</a>
+            <a href="Rishad Mateen & Company Brochure.pdf" target="_blank" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="profile">Profile</a>
+            <a href="contact.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="contact">Contact</a>
+        </div>
+    </div>
+
+    <div id="searchBar" class="w-full absolute top-full left-0 right-0 z-40 pointer-events-none">
+        <div class="max-w-4xl mx-auto px-4">
+            <div id="searchContainer" class="transform -translate-y-4 opacity-0 transition-all duration-500 ease-in-out pointer-events-auto hidden">
+                <div class="relative mt-2">
+                    <input type="text" 
+                           id="searchInput"
+                           placeholder="Search for fruits, vegetables, products..." 
+                           class="w-full px-5 py-3 sm:py-4 pr-12 border-2 border-gray-200 rounded-3xl focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/90 backdrop-blur">
+                    <button id="searchSubmit" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center hover:scale-105 transition-transform duration-300 rounded-full">
+                        <i class="fas fa-search text-white text-sm sm:text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section with Animation -->
+<section class="relative w-full h-[70vh] overflow-hidden bg-black">
+    <div class="absolute inset-0 w-full h-full">
+        <img src="images/food.png" alt="Fresh Products" class="absolute inset-0 w-full h-full object-cover animate-scaleIn" style="animation-delay: 0.2s;">
+        <div class="absolute inset-0 bg-black/40 animate-fadeIn" style="animation-delay: 0.4s;"></div>
+    </div>
+    <div class="absolute inset-0 flex items-center justify-center">
+        <h1 class="font-marcellus text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold animate-fadeInUp" style="animation-delay: 0.6s;">
+            OUR
+            <span class="relative inline-block">
+                <span class="relative z-10 text-green-400">PRODUCTS</span>
+                <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full hero-underline animate-scaleIn" style="animation-delay: 0.8s;"></span>
+            </span>
+        </h1>
+    </div>
+</section>
+
+<!-- Fruit Slider Section -->
+<section class="product-slider-container">
+    <div class="section-header reveal-scale">
+        <div class="section-badge">
+            <i class="fas fa-apple-alt"></i>
+            <span>fruit slides</span>
+        </div>
+        <h2 class="section-title">
+            Premium Quality<br>
+            <span>Fresh Fruits</span>
+        </h2>
+    </div>
+
+    <div id="fruit-slider" class="product-slider"></div>
+</section>
+
+<!-- Recipe Section with Enhanced Animations -->
+<section class="py-10 px-0 overflow-hidden bg-gradient-to-br from-green-300 to-green-600">
+    <div class="max-w-7xl mx-auto">
+        <div id="recipe-slider" class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/20 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+            <div class="flex flex-col lg:flex-row">
+                <!-- Left side - Recipe Content -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center recipe-content" id="recipe-content">
+                    <div class="inline-flex items-center gap-2 bg-green-500 px-4 py-2 rounded-full w-fit mb-4 animate-pulse-slow">
+                        <i id="recipe-icon" class="fas fa-ice-cream text-white text-sm"></i>
+                        <span id="recipe-type" class="text-white font-semibold text-sm tracking-wide">Frozen Desserts</span>
+                    </div>
+                    
+                    <h3 id="recipe-name" class="font-marcellus text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                        Fruit Ice Cream
+                    </h3>
+                    
+                    <p id="recipe-description" class="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
+                        Creamy, all-natural ice cream made with ripe seasonal fruits.
+                    </p>
+                    
+                    <div class="bg-green-50/50 p-4 rounded-xl mb-6 border border-green-500 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <p id="fruit-usage" class="text-gray-700 text-sm italic">
+                            "We blend fresh, ripe fruits into a smooth puree, then mix with cream and natural sweeteners before churning to perfection."
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <span class="text-sm font-semibold text-gray-700 block mb-2">Perfect for these fruits:</span>
+                        <div class="flex flex-wrap gap-2" id="fruit-tags-container">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-8" id="methods-container">
+                        <!-- Populated by JS -->
+                    </div>
+                    
+                    <div class="flex gap-2 mt-8" id="recipe-indicators">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Right side - Preparation Image -->
+                <div class="w-full md:w-1/2 h-[300px] md:h-[600px] relative overflow-hidden">
+                    <div class="recipe-image-wrapper">
+                        <img id="recipe-image" class="recipe-image active" src="images/fruiticecream.jpg" alt="Making fruit ice cream">
+                        <img id="recipe-image-next" class="recipe-image" src="" alt="">
+                        
+                        <div class="absolute top-4 right-4 bg-green-600/90 backdrop-blur-sm px-3 py-1 rounded-full technique-badge animate-float" id="technique-badge-container">
+                            <span id="technique-badge" class="text-white text-xs font-semibold">Cold Preparation</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="prevRecipe()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg z-10 hover:scale-110">
+                        <i class="fa-solid fa-chevron-left text-green-600"></i>
+                    </button>
+                    <button onclick="nextRecipe()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg z-10 hover:scale-110">
+                        <i class="fa-solid fa-chevron-right text-green-600"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vegetable Slider Section -->
+<section class="product-slider-container">
+    <div class="section-header reveal-scale">
+        <div class="section-badge">
+            <i class="fas fa-leaf"></i>
+            <span>vegetable slides</span>
+        </div>
+        <h2 class="section-title">
+            Premium Quality<br>
+            <span>Fresh Vegetables</span>
+        </h2>
+    </div>
+
+    <div id="veg-slider" class="product-slider"></div>
+</section>
+
+<!-- Vegetable Recipe Section -->
+<section class="py-10 px-0 overflow-hidden bg-gradient-to-br from-green-300 to-green-600">
+    <div class="max-w-7xl mx-auto">
+        <div id="veg-recipe-slider" class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/20 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 h-[300px] md:h-[600px] relative overflow-hidden">
+                    <div class="recipe-image-wrapper">
+                        <img id="veg-recipe-image" class="recipe-image active" src="images/vegfry.jpg" alt="Vegetable preparation">
+                        <img id="veg-recipe-image-next" class="recipe-image" src="" alt="">
+                        
+                        <div class="absolute top-4 left-4 bg-green-600/90 backdrop-blur-sm px-3 py-1 rounded-full technique-badge animate-float">
+                            <span id="veg-technique-badge" class="text-white text-xs font-semibold">Slow Cooking</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="prevVegRecipe()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg z-10 hover:scale-110">
+                        <i class="fa-solid fa-chevron-left text-green-600"></i>
+                    </button>
+                    <button onclick="nextVegRecipe()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all duration-300 shadow-lg z-10 hover:scale-110">
+                        <i class="fa-solid fa-chevron-right text-green-600"></i>
+                    </button>
+                </div>
+                
+                <div class="w-full md:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center recipe-content" id="veg-content">
+                    <div class="inline-flex items-center gap-2 bg-green-600 px-4 py-2 rounded-full w-fit mb-4 animate-pulse-slow">
+                        <i id="veg-recipe-icon" class="fas fa-utensils text-white text-sm"></i>
+                        <span id="veg-recipe-type" class="text-white font-semibold text-sm tracking-wide">Hearty Soups</span>
+                    </div>
+                    
+                    <h3 id="veg-recipe-name" class="font-marcellus text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                        Vegetable Soup
+                    </h3>
+                    
+                    <p id="veg-recipe-description" class="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
+                        Nourishing, slow-cooked soup made with seasonal vegetables.
+                    </p>
+                    
+                    <div class="bg-green-50/50 p-4 rounded-xl mb-6 border border-green-500 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <p id="veg-usage" class="text-gray-700 text-sm italic">
+                            "We gently sauté aromatic vegetables, then slowly simmer with herbs and vegetable broth."
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <span class="text-sm font-semibold text-gray-700 block mb-2">Perfect for these vegetables:</span>
+                        <div class="flex flex-wrap gap-2" id="veg-tags-container"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-8" id="veg-methods-container"></div>
+                    
+                    <div class="flex gap-2 mt-8" id="veg-recipe-indicators"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form Section with Sticky Background (same as before) -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden form-section-sticky"
+         style="background-image: url('images/contact.jpg'); background-position: center;">
+    
+    <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-white/20"></div>
+    
+    <div class="absolute top-0 left-0 w-64 sm:w-80 h-64 sm:h-80 bg-green-50/80 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none animate-float"></div>
+    <div class="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-50/80 rounded-full filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2 z-5 pointer-events-none animate-float" style="animation-delay: 1s;"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-8 sm:mb-12 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-file-signature text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Get In Touch</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 px-4">Request Your Quote</h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Contact Info Cards -->
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-100 backdrop-blur-sm bg-white/80 hover:scale-105 transition-transform duration-300">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-phone text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">Phone</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900">+92-21 34322907</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-200 backdrop-blur-sm bg-white/80 hover:scale-105 transition-transform duration-300">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">WhatsApp</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900">+92-21 34322907</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100 reveal hover:shadow-3xl transition-shadow duration-300">
+                <form class="space-y-4 sm:space-y-6">
+                    <!-- Form fields (same as before) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="reveal-left animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Full Name <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your full name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                        
+                        <div class="reveal-right animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Company <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your company name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="reveal-left animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Business Email <span class="text-green-600">*</span>
+                            </label>
+                            <input type="email" 
+                                   placeholder="purchasing@company.com"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                        
+                        <div class="reveal-right animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Phone / WhatsApp <span class="text-green-600">*</span>
+                            </label>
+                            <input type="tel" 
+                                   placeholder="+Country Code Phone Number"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="reveal-left animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Purchase Volume <span class="text-green-600">*</span>
+                            </label>
+                            <select class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base text-gray-500 bg-white/80 backdrop-blur-sm hover:shadow-md">
+                                <option value="" disabled selected>— Please choose an option —</option>
+                                <option value="less-1">Less than 1 ton</option>
+                                <option value="1-5">1-5 tons</option>
+                                <option value="5-10">5-10 tons</option>
+                                <option value="10-20">10-20 tons</option>
+                                <option value="20+">20+ tons</option>
+                            </select>
+                        </div>
+                        
+                        <div class="reveal-right animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Required Calibers <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: Onion 60/80, 90/100"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="reveal-left animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Target Price (€/kg) <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 1.50 €/kg"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                        
+                        <div class="reveal-right animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Packaging <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 25kg bags, 10kg boxes"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm hover:shadow-md">
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                            Additional Details
+                        </label>
+                        <textarea rows="4" 
+                                  placeholder="Any additional specifications or comments"
+                                  class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base resize-none bg-white/80 backdrop-blur-sm hover:shadow-md"></textarea>
+                    </div>
+
+                    <div class="flex items-start gap-2 sm:gap-3 reveal">
+                        <input type="checkbox" id="privacy" class="mt-1 w-3 h-3 sm:w-4 sm:h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                        <label for="privacy" class="text-2xs sm:text-xs text-gray-600">
+                            I have read and accept the 
+                            <a href="#" class="text-green-600 font-semibold hover:text-green-700 transition-colors duration-300">privacy policy</a>
+                        </label>
+                    </div>
+
+                    <div class="text-center pt-2 sm:pt-4 reveal-scale animation-delay-500">
+                        <button type="submit" class="group relative px-6 sm:px-8 md:px-12 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-105">
+                            <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center gap-2 mx-auto">
+                                Submit Request
+                                <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 text-2xs sm:text-xs text-gray-100 reveal">
+                <i class="fas fa-lock text-green-200 text-xs sm:text-sm"></i>
+                <span>Your information is secure and confidential</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section (same as before) -->
+<footer class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-white/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2 animate-float"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-white/5 rounded-full filter blur-3xl translate-y-1/2 -translate-x-1/2 animate-float" style="animation-delay: 0.5s;"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
+            <div class="space-y-3 sm:space-y-4 reveal-left">
+                <a href="index.html" class="flex items-center focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1">
+                </a>
+                <h4 class="font-marcellus text-lg sm:text-xl text-green-300 mt-2">Serving Excellence Since 1985</h4>
+                <p class="text-emerald-100 leading-relaxed text-xs sm:text-sm">
+                    Exporter, Processor & Importer of fresh fruits and vegetables. Delivering freshness - building trust across international markets.
+                </p>
+                <div class="flex items-center gap-3 sm:gap-4 pt-2">
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300 hover:scale-110">
+                        <i class="fab fa-linkedin-in text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300 hover:scale-110">
+                        <i class="fab fa-facebook-f text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300 hover:scale-110">
+                        <i class="fab fa-instagram text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300 hover:scale-110">
+                        <i class="fab fa-x-twitter text-white text-2xs sm:text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="reveal animation-delay-100">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li><a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Home</a></li>
+                    <li><a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>About</a></li>
+                    <li><a href="Products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Products</a></li>
+                    <li><a href="Rishad Mateen & Company Brochure.pdf" target="_blank" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Brochure</a></li>
+                    <li><a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="reveal animation-delay-200">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li><a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Mangoes</a></li>
+                    <li><a href="kinnow.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Kinnow</a></li>
+                    <li><a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Red/Pink Onions</a></li>
+                    <li><a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Potatoes</a></li>
+                    <li><a href="tomatoes.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm hover:translate-x-2 transition-transform"><i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>Tomatoes</a></li>
+                </ul>
+            </div>
+
+            <div class="reveal-right animation-delay-300">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Contact Us</h4>
+                <ul class="space-y-3 sm:space-y-4">
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-phone text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <div class="text-emerald-100 text-xs sm:text-sm">Phone: +92-21 34322907</div>
+                    </li>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">Plot no: 1-4B Ground floor P.E.CH.S block 6 Karachi, Pakistan</span>
+                    </li>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">info@rishadmateen.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+                <p class="text-emerald-100 text-2xs sm:text-xs text-center md:text-left">
+                   © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
+                </p>
+                
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300 hover:scale-110">Privacy Policy</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300 hover:scale-110">Terms of Service</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300 hover:scale-110">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ===== OPTIMIZED JAVASCRIPT WITH ENHANCED ANIMATIONS =====
+
+// Cache DOM elements for better performance
+const DOM = {
+    navbar: document.getElementById('navbar'),
+    menuToggle: document.getElementById('menuToggle'),
+    mobileMenu: document.getElementById('mobileMenu'),
+    searchToggle: document.getElementById('searchToggle'),
+    searchContainer: document.getElementById('searchContainer'),
+    searchInput: document.getElementById('searchInput'),
+    searchSubmit: document.getElementById('searchSubmit'),
+    fruitSlider: document.getElementById('fruit-slider'),
+    vegSlider: document.getElementById('veg-slider')
+};
+
+// ===== ANIMATION FRAME OPTIMIZATION =====
+const raf = window.requestAnimationFrame || 
+            window.webkitRequestAnimationFrame || 
+            (cb => setTimeout(cb, 16));
+
+// ===== PRODUCT DATA =====
+const fruits = [
+    { id: 1, name: "Fresh Mangoes", category: "Premium Fruits", description: "Sweet and juicy mangoes, perfect for desserts or fresh eating.", image: "images/mango.jpg", page: "mango.html" },
+    { id: 2, name: "Fresh Oranges", category: "Citrus Fruits", description: "Juicy and seedless oranges, rich in vitamin C.", image: "images/oranges.jpg", page: "oranges.html" },
+    { id: 3, name: "Fresh Bananas", category: "Fruits", description: "Sweet ripened bananas, rich in potassium.", image: "images/banana.jpg", page: "banana.html" },
+    { id: 4, name: "Fresh Guavas", category: "Fruits", description: "Crimson sweet guavas, hydrating and delicious.", image: "images/guava.jpg", page: "guava.html" },
+    { id: 5, name: "Fresh Apples", category: "Premium Fruits", description: "Crisp, fresh apples picked at peak ripeness.", image: "images/apple.jpg", page: "apples.html" },
+    { id: 6, name: "Fresh Apricots", category: "Table Fruits", description: "Premium quality apricots, organically grown.", image: "images/apricot.jpg", page: "apricot.html" }
+];
+
+const vegetables = [
+    { id: 1, name: "Fresh Onions", category: "Root Vegetables", description: "Grade A onions, freshly harvested. Perfect for cooking.", image: "images/onion.jpg", page: "onions.html" },
+    { id: 2, name: "Fresh Potatoes", category: "Root Vegetables", description: "Freshly harvested potatoes, uniform size.", image: "images/potato.jpg", page: "potatos.html" },
+    { id: 3, name: "Fresh Tomatoes", category: "Fruiting Vegetables", description: "Vine-ripened tomatoes, rich in flavor.", image: "images/tomatar.jpg", page: "tomatoes.html" },
+    { id: 4, name: "Fresh Chillies", category: "Spices", description: "Premium hot chillies, organic.", image: "images/chilli.jpg", page: "chilli.html" },
+    { id: 5, name: "Fresh Spinach", category: "Leafy Greens", description: "Fresh spinach leaves, nutrient-rich.", image: "images/spinach.jpg", page: "spinach.html" },
+    { id: 6, name: "Fresh Carrots", category: "Root Vegetables", description: "Sweet crunchy carrots, rich in beta-carotene.", image: "images/carrots.jpg", page: "carrot.html" }
+];
+
+// ===== RECIPE DATA =====
+const recipes = [
+    {
+        type: "Frozen Desserts", typeIcon: "fa-ice-cream", name: "Fruit Ice Cream",
+        description: "Creamy, all-natural ice cream made with ripe seasonal fruits.",
+        fruitUsage: "We blend fresh, ripe fruits into a smooth puree, then mix with cream and natural sweeteners before churning to perfection.",
+        image: "images/fruiticecream.jpg", technique: "Cold Preparation",
+        suitableItems: ["Mangoes", "Strawberries", "Bananas", "Peaches", "Berries"],
+        methods: ["Blending", "Churning", "Freezing", "Pureeing"]
+    },
+    {
+        type: "Fresh Salads", typeIcon: "fa-bowl-food", name: "Fruit Salads",
+        description: "Vibrant fruit salads featuring seasonal fruits tossed in light citrus dressings.",
+        fruitUsage: "We carefully dice fresh fruits into bite-sized pieces, then gently toss with a light dressing.",
+        image: "images/fruitsalad.jpg", technique: "Fresh Cut",
+        suitableItems: ["Melons", "Berries", "Citrus", "Grapes", "Kiwi"],
+        methods: ["Dicing", "Tossing", "Drizzling", "Chilling"]
+    },
+    {
+        type: "Fresh Juices", typeIcon: "fa-glass-water", name: "Cold-Pressed Juices",
+        description: "Nutrient-rich cold-pressed juices made from fresh fruits and vegetables.",
+        fruitUsage: "We cold-press fresh fruits to extract maximum nutrients and flavor without heat.",
+        image: "images/fruitshake.jpg", technique: "Cold Press",
+        suitableItems: ["Oranges", "Apples", "Pineapple", "Carrots", "Ginger"],
+        methods: ["Pressing", "Straining", "Mixing", "Chilling"]
+    }
+];
+
+const vegRecipes = [
+    {
+        type: "Fresh Salads", typeIcon: "fa-bowl-food", name: "Garden Salad",
+        description: "Crisp, refreshing salads featuring fresh seasonal vegetables.",
+        vegUsage: "We carefully wash and cut fresh vegetables into bite-sized pieces, then toss with signature dressings.",
+        image: "images/vegsalad.jpg", technique: "Fresh Cut",
+        suitableItems: ["Lettuce", "Cucumbers", "Tomatoes", "Bell Peppers", "Radishes"],
+        methods: ["Washing", "Cutting", "Tossing", "Drizzling"]
+    },
+    {
+        type: "Roasted Vegetables", typeIcon: "fa-fire", name: "Roasted Medley",
+        description: "Caramelized roasted vegetables with herbs, bringing out natural sweetness.",
+        vegUsage: "We toss vegetables in olive oil and herbs, then roast at high heat until golden.",
+        image: "images/vegfry.jpg", technique: "High Heat Roasting",
+        suitableItems: ["Broccoli", "Cauliflower", "Carrots", "Brussels Sprouts", "Sweet Potatoes"],
+        methods: ["Tossing", "Seasoning", "Roasting", "Flipping"]
+    },
+    {
+        type: "Grilled Vegetables", typeIcon: "fa-burger", name: "Grilled Vegetables",
+        description: "Smoky, charred grilled vegetables perfect as a side dish.",
+        vegUsage: "We slice vegetables evenly, brush with olive oil and herbs, then grill until tender.",
+        image: "images/spicy.jpg", technique: "Grilling",
+        suitableItems: ["Zucchini", "Eggplant", "Bell Peppers", "Asparagus", "Corn"],
+        methods: ["Slicing", "Brushing", "Grilling", "Flipping"]
+    }
+];
+
+// ===== MOBILE MENU FUNCTIONALITY =====
+if (DOM.menuToggle && DOM.mobileMenu) {
+    const toggleMenu = (show) => {
+        const isHidden = show !== undefined ? !show : DOM.mobileMenu.classList.contains('hidden');
+        DOM.mobileMenu.classList.toggle('hidden', !isHidden);
+        DOM.menuToggle.setAttribute('aria-expanded', isHidden);
+        
+        const icon = DOM.menuToggle.querySelector('i');
+        if (icon) {
+            icon.className = isHidden ? 'fas fa-times text-xl' : 'fas fa-bars text-xl';
+        }
+        
+        if (isHidden) {
+            const menuItems = DOM.mobileMenu.querySelectorAll('a');
+            menuItems.forEach((item, index) => {
+                item.style.animation = 'none';
+                item.offsetHeight;
+                item.style.animation = `fadeInLeft 0.3s ease forwards ${index * 0.1}s`;
+            });
+        }
+    };
+
+    DOM.menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!DOM.mobileMenu.contains(e.target) && !DOM.menuToggle.contains(e.target)) {
+            if (!DOM.mobileMenu.classList.contains('hidden')) {
+                toggleMenu(false);
+            }
+        }
+    });
+
+    DOM.mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            toggleMenu(false);
+        }
+    });
+}
+
+// ===== NAVBAR SCROLL EFFECT =====
+let lastScrollY = window.scrollY;
+let ticking = false;
+
+const updateNavbar = () => {
+    const currentScrollY = window.scrollY;
+    
+    if (DOM.navbar) {
+        if (currentScrollY > 50) {
+            DOM.navbar.classList.add('scrolled', 'bg-white/95', 'backdrop-blur-md', 'shadow-lg');
+            DOM.navbar.classList.remove('bg-transparent');
+        } else {
+            DOM.navbar.classList.remove('scrolled', 'bg-white/95', 'backdrop-blur-md', 'shadow-lg');
+            DOM.navbar.classList.add('bg-transparent');
+        }
+    }
+    
+    ticking = false;
+};
+
+window.addEventListener('scroll', () => {
+    lastScrollY = window.scrollY;
+    if (!ticking) {
+        raf(updateNavbar);
+        ticking = true;
+    }
+}, { passive: true });
+
+// ===== SEARCH BAR FUNCTIONALITY =====
+if (DOM.searchToggle && DOM.searchContainer) {
+    let isSearchOpen = false;
+
+    const toggleSearch = (show) => {
+        isSearchOpen = show !== undefined ? show : !isSearchOpen;
+        
+        if (isSearchOpen) {
+            DOM.searchContainer.classList.remove('hidden');
+            void DOM.searchContainer.offsetWidth;
+            DOM.searchContainer.classList.add('show');
+            setTimeout(() => DOM.searchInput?.focus(), 300);
+        } else {
+            DOM.searchContainer.classList.remove('show');
+            setTimeout(() => DOM.searchContainer.classList.add('hidden'), 500);
+        }
+    };
+
+    const performSearch = (query) => {
+        if (!query.trim()) return;
+        console.log('Searching for:', query);
+        alert(`Searching for: ${query}`);
+        toggleSearch(false);
+    };
+
+    DOM.searchToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleSearch();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (isSearchOpen && !DOM.searchContainer.contains(e.target) && !DOM.searchToggle.contains(e.target)) {
+            toggleSearch(false);
+        }
+    });
+
+    if (DOM.searchSubmit) {
+        DOM.searchSubmit.addEventListener('click', () => {
+            performSearch(DOM.searchInput?.value || '');
+        });
+    }
+
+    if (DOM.searchInput) {
+        DOM.searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch(DOM.searchInput.value);
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isSearchOpen) toggleSearch(false);
+    });
+}
+
+// ===== PRODUCT SLIDER WITH ENHANCED ANIMATIONS =====
+function createProductSlider(containerId, items) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    let activeIndex = 0;
+    let autoSlideInterval;
+    let isHovering = false;
+
+    function render() {
+        let slidesHtml = '';
+        
+        items.forEach((item, index) => {
+            slidesHtml += `
+                <div class="product-slide ${index === 0 ? 'active' : ''}" data-index="${index}" data-page="${item.page}" style="background-image: url('${item.image}');">
+                    <div class="slide-rotate-name">${item.name}</div>
+                    <div class="slide-compact">
+                        <div class="slide-compact-left">
+                            <span class="slide-compact-category">${item.category}</span>
+                            <span class="slide-compact-name">${item.name}</span>
+                        </div>
+                        <span class="slide-compact-number">${String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div class="slide-content">
+                        <span class="slide-category">${item.category}</span>
+                        <h3 class="slide-name">${item.name}</h3>
+                        <p class="slide-description">${item.description}</p>
+                        <button class="slide-button" data-page="${item.page}">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = slidesHtml;
+        
+        document.querySelectorAll(`#${containerId} .product-slide`).forEach(slide => {
+            slide.addEventListener('click', handleSlideClick);
+        });
+        
+        document.querySelectorAll(`#${containerId} .slide-button`).forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const page = e.currentTarget.dataset.page;
+                if (page) window.location.href = page;
+            });
+        });
+        
+        document.querySelectorAll(`#${containerId} .product-slide`).forEach(slide => {
+            slide.addEventListener('mouseenter', () => {
+                isHovering = true;
+                stopAutoSlide();
+            });
+            slide.addEventListener('mouseleave', () => {
+                isHovering = false;
+                startAutoSlide();
+            });
+        });
+        
+        updateVisibility();
+    }
+    
+    function handleSlideClick(e) {
+        const slide = e.currentTarget;
+        const index = parseInt(slide.dataset.index);
+        const page = slide.dataset.page;
+        
+        if (index === activeIndex) {
+            if (page) window.location.href = page;
+        } else {
+            activeIndex = index;
+            
+            document.querySelectorAll(`#${containerId} .product-slide`).forEach((s, i) => {
+                if (i === activeIndex) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+            
+            updateVisibility();
+            
+            stopAutoSlide();
+            if (!isHovering) {
+                startAutoSlide();
+            }
+        }
+    }
+    
+    function updateVisibility() {
+        const isMobile = window.innerWidth < 768;
+        const slides = document.querySelectorAll(`#${containerId} .product-slide`);
+        
+        slides.forEach((slide, index) => {
+            const rotateName = slide.querySelector('.slide-rotate-name');
+            const compact = slide.querySelector('.slide-compact');
+            const content = slide.querySelector('.slide-content');
+            
+            if (isMobile) {
+                rotateName.style.display = 'none';
+                if (index === activeIndex) {
+                    compact.style.display = 'none';
+                    content.style.display = 'flex';
+                } else {
+                    compact.style.display = 'flex';
+                    content.style.display = 'none';
+                }
+            } else {
+                if (index === activeIndex) {
+                    rotateName.style.display = 'none';
+                    compact.style.display = 'none';
+                    content.style.display = 'flex';
+                } else {
+                    rotateName.style.display = 'flex';
+                    compact.style.display = 'none';
+                    content.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    function startAutoSlide() {
+        if (autoSlideInterval) stopAutoSlide();
+        if (isHovering) return;
+        
+        autoSlideInterval = setInterval(() => {
+            activeIndex = (activeIndex + 1) % items.length;
+            
+            document.querySelectorAll(`#${containerId} .product-slide`).forEach((s, i) => {
+                if (i === activeIndex) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+            
+            updateVisibility();
+        }, 3000);
+    }
+
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    }
+
+    window.addEventListener('resize', () => {
+        updateVisibility();
+    });
+
+    render();
+    startAutoSlide();
+
+    container.addEventListener('mouseenter', stopAutoSlide);
+    container.addEventListener('mouseleave', () => {
+        if (!isHovering) startAutoSlide();
+    });
+}
+
+// Initialize product sliders
+createProductSlider('fruit-slider', fruits);
+createProductSlider('veg-slider', vegetables);
+
+// ===== RECIPE SLIDER WITH ENHANCED ANIMATIONS =====
+function createRecipeSlider(config) {
+    let currentIndex = 0;
+    let autoSlideInterval;
+    let isTransitioning = false;
+
+    const elements = {
+        typeIcon: document.getElementById(config.typeIconId),
+        recipeType: document.getElementById(config.recipeTypeId),
+        recipeName: document.getElementById(config.recipeNameId),
+        recipeDesc: document.getElementById(config.recipeDescId),
+        usage: document.getElementById(config.usageId),
+        image: document.getElementById(config.imageId),
+        nextImage: document.getElementById(config.imageNextId),
+        techniqueBadge: document.getElementById(config.techniqueBadgeId),
+        techniqueContainer: document.getElementById(config.techniqueContainerId),
+        tagsContainer: document.getElementById(config.tagsContainerId),
+        methodsContainer: document.getElementById(config.methodsContainerId),
+        indicatorsContainer: document.getElementById(config.indicatorsContainerId),
+        contentContainer: document.getElementById(config.contentId)
+    };
+
+    function updateContent(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        const recipe = config.data[index];
+        const currentImage = elements.image;
+        const nextImage = elements.nextImage;
+
+        nextImage.src = recipe.image;
+
+        currentImage.classList.remove('active');
+        currentImage.classList.add('animating-out');
+        nextImage.classList.add('active');
+
+        if (elements.contentContainer) {
+            elements.contentContainer.classList.remove('active');
+        }
+        
+        if (elements.techniqueContainer) {
+            elements.techniqueContainer.classList.remove('active');
+        }
+
+        setTimeout(() => {
+            if (elements.typeIcon) {
+                elements.typeIcon.className = `fas ${recipe.typeIcon} text-white text-sm`;
+            }
+
+            if (elements.recipeType) elements.recipeType.textContent = recipe.type;
+            if (elements.recipeName) elements.recipeName.textContent = recipe.name;
+            if (elements.recipeDesc) elements.recipeDesc.textContent = recipe.description;
+            
+            const usageText = recipe.fruitUsage || recipe.vegUsage;
+            if (elements.usage && usageText) {
+                elements.usage.textContent = `"${usageText}"`;
+            }
+
+            if (elements.techniqueBadge) {
+                elements.techniqueBadge.textContent = recipe.technique;
+            }
+
+            if (elements.tagsContainer) {
+                elements.tagsContainer.innerHTML = recipe.suitableItems.map(item => 
+                    `<span class="px-3 py-1 ${config.tagBgClass} text-white text-xs rounded-full transition-all duration-300 hover:scale-110">${item}</span>`
+                ).join('');
+            }
+
+            if (elements.methodsContainer) {
+                elements.methodsContainer.innerHTML = recipe.methods.map(method => `
+                    <div class="flex items-center gap-2 transition-all duration-300 hover:translate-x-2">
+                        <div class="w-6 h-6 ${config.methodBgClass} rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <span class="text-gray-700 text-sm">${method}</span>
+                    </div>
+                `).join('');
+            }
+
+            if (elements.indicatorsContainer) {
+                elements.indicatorsContainer.innerHTML = config.data.map((_, i) => 
+                    `<div class="${i === index ? config.indicatorActiveClass : 'w-4 bg-gray-300'} h-1 rounded-full transition-all duration-300 cursor-pointer hover:scale-110" onclick="${config.goToFunction}(${i})"></div>`
+                ).join('');
+            }
+
+            setTimeout(() => {
+                const tempSrc = currentImage.src;
+                currentImage.src = nextImage.src;
+                nextImage.src = tempSrc;
+
+                currentImage.classList.remove('animating-out');
+                currentImage.classList.add('active');
+                nextImage.classList.remove('active');
+
+                if (elements.contentContainer) {
+                    elements.contentContainer.classList.add('active');
+                }
+                
+                if (elements.techniqueContainer) {
+                    elements.techniqueContainer.classList.add('active');
+                }
+
+                isTransitioning = false;
+            }, 100);
+
+        }, 400);
+    }
+
+    function startAutoSlide() {
+        if (autoSlideInterval) clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => {
+            if (!isTransitioning) {
+                currentIndex = (currentIndex + 1) % config.data.length;
+                updateContent(currentIndex);
+            }
+        }, 3000);
+    }
+
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    }
+
+    window[config.nextFunction] = () => { 
+        if (!isTransitioning) {
+            stopAutoSlide();
+            currentIndex = (currentIndex + 1) % config.data.length; 
+            updateContent(currentIndex);
+            startAutoSlide();
+        }
+    };
+    
+    window[config.prevFunction] = () => { 
+        if (!isTransitioning) {
+            stopAutoSlide();
+            currentIndex = (currentIndex - 1 + config.data.length) % config.data.length; 
+            updateContent(currentIndex);
+            startAutoSlide();
+        }
+    };
+    
+    window[config.goToFunction] = (index) => { 
+        if (!isTransitioning && index !== currentIndex) {
+            stopAutoSlide();
+            currentIndex = index; 
+            updateContent(currentIndex);
+            startAutoSlide();
+        }
+    };
+
+    setTimeout(() => {
+        if (elements.contentContainer) {
+            elements.contentContainer.classList.add('active');
+        }
+        if (elements.techniqueContainer) {
+            elements.techniqueContainer.classList.add('active');
+        }
+    }, 100);
+
+    startAutoSlide();
+    
+    const slider = document.getElementById(config.sliderId);
+    if (slider) {
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+    }
+}
+
+// Initialize recipe sliders
+createRecipeSlider({
+    sliderId: 'recipe-slider',
+    data: recipes,
+    typeIconId: 'recipe-icon',
+    recipeTypeId: 'recipe-type',
+    recipeNameId: 'recipe-name',
+    recipeDescId: 'recipe-description',
+    usageId: 'fruit-usage',
+    imageId: 'recipe-image',
+    imageNextId: 'recipe-image-next',
+    techniqueBadgeId: 'technique-badge',
+    techniqueContainerId: 'technique-badge-container',
+    tagsContainerId: 'fruit-tags-container',
+    methodsContainerId: 'methods-container',
+    indicatorsContainerId: 'recipe-indicators',
+    contentId: 'recipe-content',
+    tagBgClass: 'bg-green-500',
+    methodBgClass: 'bg-green-500',
+    indicatorActiveClass: 'w-8 bg-green-500',
+    nextFunction: 'nextRecipe',
+    prevFunction: 'prevRecipe',
+    goToFunction: 'goToRecipe'
+});
+
+createRecipeSlider({
+    sliderId: 'veg-recipe-slider',
+    data: vegRecipes,
+    typeIconId: 'veg-recipe-icon',
+    recipeTypeId: 'veg-recipe-type',
+    recipeNameId: 'veg-recipe-name',
+    recipeDescId: 'veg-recipe-description',
+    usageId: 'veg-usage',
+    imageId: 'veg-recipe-image',
+    imageNextId: 'veg-recipe-image-next',
+    techniqueBadgeId: 'veg-technique-badge',
+    techniqueContainerId: 'veg-technique-badge-container',
+    tagsContainerId: 'veg-tags-container',
+    methodsContainerId: 'veg-methods-container',
+    indicatorsContainerId: 'veg-recipe-indicators',
+    contentId: 'veg-content',
+    tagBgClass: 'bg-green-600',
+    methodBgClass: 'bg-green-600',
+    indicatorActiveClass: 'w-8 bg-green-600',
+    nextFunction: 'nextVegRecipe',
+    prevFunction: 'prevVegRecipe',
+    goToFunction: 'goToVegRecipe'
+});
+
+// ===== SCROLL REVEAL ANIMATIONS =====
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            
+            // Add counter animation if present
+            if (entry.target.querySelector('.counter-value')) {
+                animateCounters(entry.target);
+            }
+        }
+    });
+}, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCounters(container) {
+    const counters = container.querySelectorAll('.counter-value');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target')) || 0;
+        let current = 0;
+        const step = target / 30; // 30 steps
+        
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                counter.innerText = Math.ceil(current);
+                raf(updateCounter);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        
+        updateCounter();
+    });
+}
+
+// ===== GSAP ANIMATIONS (if available) =====
+if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Hero section animation
+    gsap.from('.hero-underline', {
+        scaleX: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: 0.5
+    });
+    
+    // Section headers animation
+    gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+            scrollTrigger: {
+                trigger: header,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: 'power2.out'
+        });
+    });
+    
+    // Floating animation for decorative elements
+    gsap.utils.toArray('.fa-leaf, .fa-apple-alt, .fa-utensils').forEach(icon => {
+        gsap.to(icon, {
+            y: -5,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'power1.inOut'
+        });
+    });
+}
+
+// ===== FORM VALIDATION AND SUBMISSION =====
+const form = document.querySelector('form');
+if (form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Simple validation
+        const inputs = form.querySelectorAll('input[required], select[required]');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.classList.add('border-red-500');
+                isValid = false;
+                
+                // Remove error after 3 seconds
+                setTimeout(() => {
+                    input.classList.remove('border-red-500');
+                }, 3000);
+            } else {
+                input.classList.remove('border-red-500');
+            }
+        });
+        
+        if (isValid) {
+            // Show success message
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="flex items-center gap-2"><i class="fas fa-check"></i> Sent!</span>';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                form.reset();
+                alert('Thank you for your inquiry! We will contact you soon.');
+            }, 1500);
+        } else {
+            alert('Please fill in all required fields.');
+        }
+    });
+}
+
+// ===== IMAGE LOADING ANIMATIONS =====
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('load', function() {
+        this.style.opacity = '1';
+    });
+    
+    if (img.complete) {
+        img.style.opacity = '1';
+    } else {
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.5s ease';
+    }
+});
+
+// ===== CLEAN UP ON PAGE UNLOAD =====
+window.addEventListener('beforeunload', () => {
+    if (DOM.mobileMenu && !DOM.mobileMenu.classList.contains('hidden')) {
+        DOM.mobileMenu.classList.add('hidden');
+    }
+});
+</script>
+
+</body>
+</html>

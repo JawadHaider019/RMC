@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Rishad Mateen Company</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+     <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts - Manrope & Marcellus -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Marcellus&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS (only for animations) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preload hero image for better performance -->
+    <link rel="preload" as="image" href="images/food.png">
+    
+    <style>
+        /* Font classes */
+        .font-manrope {
+            font-family: "Manrope", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        
+        .font-marcellus {
+            font-family: "Marcellus", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        @keyframes zoomIn {
+    from {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleX {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Animation Classes */
+.animate-zoomIn {
+    animation: zoomIn 8s ease-out forwards;
+}
+
+.animate-slideInUp {
+    animation: slideInUp 1s ease forwards;
+}
+
+.animate-slideInDown {
+    animation: slideInDown 1s ease forwards;
+}
+
+.animate-slideInLeft {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.animate-slideInRight {
+    animation: slideInRight 1s ease forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.8s ease forwards;
+}
+
+.animate-scaleX {
+    animation: scaleX 0.6s ease forwards;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.animate-pulse {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.animate-rotate {
+    animation: rotate 20s linear infinite;
+}
+
+/* Staggered animations for child elements */
+.stagger-children > * {
+    opacity: 0;
+    animation: slideInUp 0.6s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Slide transitions */
+.slide {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    transform: scale(1.1);
+    transition: transform 8s ease;
+}
+
+.slide.active img {
+    transform: scale(1);
+}
+
+/* Slide content transitions */
+.slide-content {
+    transition: all 0.5s ease;
+}
+
+.slide-content.hidden {
+    display: none;
+}
+
+.slide-content > * {
+    opacity: 0;
+}
+
+.slide-content.active > * {
+    opacity: 1;
+}
+
+/* Progress bar animation */
+.progress-bar {
+    transition: width 0.1s linear;
+}
+
+/* Slider dots */
+.slider-dot {
+    transition: all 0.3s ease;
+}
+
+.slider-dot:hover {
+    transform: scale(1.5);
+    background-color: white !important;
+}
+
+.slider-dot.active {
+    width: 20px;
+    background-color: #22c55e !important;
+}
+    </style>
+</head>
+<body class="bg-white font-manrope antialiased">
+
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <!-- Main navbar container - full width -->
+    <div class="flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8 transition-all duration-300" id="navContainer">
+        <!-- Logo with image - white version for transparent bg -->
+        <a href="/" class="flex items-center rounded">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full" id="logo">
+        </a>
+
+        <!-- Desktop Navigation Links with active class support -->
+        <div class="hidden md:flex items-center space-x-1 lg:space-x-4">
+            <a href="index.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="home">
+                Home
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="about.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="about">
+                About Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="products.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="products">
+                Products
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <!-- Profile Link - Downloads Document -->
+            <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"   class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="profile">
+                Profile
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="contact.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="contact">
+                Contact Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+        </div>
+
+        <!-- Right side items -->
+        <div class="flex items-center gap-2 sm:gap-4">
+            <!-- Search Icon -->
+            <button id="searchToggle" class="text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Search">
+                <i class="fas fa-search text-base sm:text-lg"></i>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuToggle" class="md:hidden text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown with active class support -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg rounded-b-2xl mx-4 mt-2 overflow-hidden border border-white/20" aria-label="Mobile navigation">
+        <div class="flex flex-col py-2">
+            <a href="index.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="home">Home</a>
+            <a href="about.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="about">About</a>
+            <a href="products.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="products">Products</a>
+            <!-- Mobile Profile Link - Downloads Document -->
+            <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"   class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="profile">Profile</a>
+            <a href="contact.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Search Bar (Below Navbar) - Centered with 80% width -->
+    <div id="searchBar" class="w-full absolute top-full left-0 right-0 z-40 pointer-events-none">
+        <div class="max-w-4xl mx-auto px-4">
+            <div id="searchContainer" class="transform -translate-y-4 opacity-0 transition-all duration-500 ease-in-out pointer-events-auto hidden">
+                <div class="relative mt-2">
+                    <input type="text" 
+                           id="searchInput"
+                           placeholder="Search for fruits, vegetables, products..." 
+                           class="w-full px-5 py-3 sm:py-4 pr-12 border-2 border-gray-200 rounded-3xl focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/90 backdrop-blur">
+                    <button id="searchSubmit" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center hover:scale-105 transition-transform duration-300 rounded-full">
+                        <i class="fas fa-search text-white text-sm sm:text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Hero Section with Image Slider - Enhanced Animations -->
+<section class="relative h-screen w-full overflow-hidden bg-black" id="heroSection">
+    <!-- Slider Images Container -->
+    <div class="absolute inset-0 w-full h-full">
+        <!-- Slide 1 -->
+        <div class="absolute inset-0 w-full h-full slide active" data-slide="1">
+            <img src="images/mangos.jpg" alt="Fresh mangoes" class="w-full h-full object-cover animate-zoomIn">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="absolute inset-0 w-full h-full slide" data-slide="2">
+            <img src="images/oranges.jpg" alt="Fresh oranges" class="w-full h-full object-cover animate-zoomIn">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="absolute inset-0 w-full h-full slide" data-slide="3">
+            <img src="images/onion.jpg" alt="Fresh onions" class="w-full h-full object-cover animate-zoomIn">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <!-- Slide 4 -->
+        <div class="absolute inset-0 w-full h-full slide" data-slide="4">
+            <img src="images/potato.jpg" alt="Fresh potatoes" class="w-full h-full object-cover animate-zoomIn">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="absolute inset-0 w-full h-full slide" data-slide="5">
+            <img src="images/chilli.jpg" alt="Fresh chillies" class="w-full h-full object-cover animate-zoomIn">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <!-- Slide 6 -->
+        <div class="absolute inset-0 w-full h-full slide" data-slide="6">
+            <img src="images/apple.jpg" alt="Fresh apples" class="w-full h-full object-cover animate-zoomIn">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+    </div>
+
+    <!-- Hero Content (changes with slides) -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <!-- Slide 1 Content (Mangoes) -->
+            <div class="slide-content active" data-content="1">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 sm:mb-8 border border-white/20 animate-slideInDown" style="animation-delay: 0.2s;">
+                    <i class="fas fa-crown text-yellow-400 text-sm"></i>
+                    <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-black font-medium">Since 1985</span>
+                </div>
+
+                <h1 class="font-marcellus text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-slideInUp" style="animation-delay: 0.4s;">
+                    Premium
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-green-400">Mangoes</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full animate-scaleX" style="animation-delay: 0.8s;"></span>
+                    </span>
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-4 animate-slideInUp" style="animation-delay: 0.6s;">
+                    Alphonso and Kesar varieties, known for their sweetness and rich flavor. Premium quality mangoes from trusted farms.
+                </p>
+            </div>
+
+            <!-- Slide 2 Content (Oranges) -->
+            <div class="slide-content hidden" data-content="2">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 sm:mb-8 border border-white/20 animate-slideInDown" style="animation-delay: 0.2s;">
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-black font-medium">Premium Quality</span>
+                </div>
+
+                <h1 class="font-marcellus text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-slideInUp" style="animation-delay: 0.4s;">
+                    Fresh
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-green-400">Oranges</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full animate-scaleX" style="animation-delay: 0.8s;"></span>
+                    </span>
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-4 animate-slideInUp" style="animation-delay: 0.6s;">
+                    Hand-picked Valencia oranges, known for their sweetness and vibrant color. Perfect for fresh consumption and juicing.
+                </p>
+            </div>
+
+            <!-- Slide 3 Content (Onions) -->
+            <div class="slide-content hidden" data-content="3">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 sm:mb-8 border border-white/20 animate-slideInDown" style="animation-delay: 0.2s;">
+                    <i class="fas fa-leaf text-green-400 text-sm"></i>
+                    <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-black font-medium">Farm Fresh</span>
+                </div>
+
+                <h1 class="font-marcellus text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-slideInUp" style="animation-delay: 0.4s;">
+                    Premium
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-green-400">Onions</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full animate-scaleX" style="animation-delay: 0.8s;"></span>
+                    </span>
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-4 animate-slideInUp" style="animation-delay: 0.6s;">
+                    High-quality red and white onions with excellent storage life. Sourced from trusted farms.
+                </p>
+            </div>
+
+            <!-- Slide 4 Content (Potatoes) -->
+            <div class="slide-content hidden" data-content="4">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 sm:mb-8 border border-white/20 animate-slideInDown" style="animation-delay: 0.2s;">
+                    <i class="fas fa-seedling text-green-400 text-sm"></i>
+                    <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-black font-medium">Premium Grade</span>
+                </div>
+
+                <h1 class="font-marcellus text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-slideInUp" style="animation-delay: 0.4s;">
+                    Fresh
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-green-400">Potatoes</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full animate-scaleX" style="animation-delay: 0.8s;"></span>
+                    </span>
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-4 animate-slideInUp" style="animation-delay: 0.6s;">
+                    Premium grade potatoes, ideal for processing and fresh markets. Consistent quality year-round.
+                </p>
+            </div>
+
+            <!-- Slide 5 Content (Chillies) -->
+            <div class="slide-content hidden" data-content="5">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 sm:mb-8 border border-white/20 animate-slideInDown" style="animation-delay: 0.2s;">
+                    <i class="fas fa-pepper-hot text-green-400 text-sm"></i>
+                    <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-black font-medium">Vibrant & Fresh</span>
+                </div>
+
+                <h1 class="font-marcellus text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-slideInUp" style="animation-delay: 0.4s;">
+                    Fresh
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-green-400">Chillies</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full animate-scaleX" style="animation-delay: 0.8s;"></span>
+                    </span>
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-4 animate-slideInUp" style="animation-delay: 0.6s;">
+                    Vibrant red and green chillies with intense heat and color. Perfect for culinary applications.
+                </p>
+            </div>
+
+            <!-- Slide 6 Content (Apples) -->
+            <div class="slide-content hidden" data-content="6">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-6 sm:mb-8 border border-white/20 animate-slideInDown" style="animation-delay: 0.2s;">
+                    <i class="fas fa-apple-alt text-green-400 text-sm"></i>
+                    <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-black font-medium">Crisp & Juicy</span>
+                </div>
+
+                <h1 class="font-marcellus text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-slideInUp" style="animation-delay: 0.4s;">
+                    Fresh
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-green-400">Apples</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-green-500 rounded-full animate-scaleX" style="animation-delay: 0.8s;"></span>
+                    </span>
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-4 animate-slideInUp" style="animation-delay: 0.6s;">
+                    Crisp and juicy apples from the finest orchards, perfect for healthy snacking and culinary creations.
+                </p>
+            </div>
+
+            <!-- CTA Button (same for all slides) -->
+            <button class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black animate-fadeIn" style="animation-delay: 1s;">
+              <a href="Products.html">
+                  <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span class="relative flex items-center gap-2">
+                    Discover More
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                </span>
+              </a>
+            </button>
+        </div>
+    </div>
+
+    <!-- Slider Navigation Dots -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+        <div class="slider-dot w-2 h-2 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-all duration-300 active" data-slide="1"></div>
+        <div class="slider-dot w-2 h-2 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-all duration-300" data-slide="2"></div>
+        <div class="slider-dot w-2 h-2 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-all duration-300" data-slide="3"></div>
+        <div class="slider-dot w-2 h-2 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-all duration-300" data-slide="4"></div>
+        <div class="slider-dot w-2 h-2 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-all duration-300" data-slide="5"></div>
+        <div class="slider-dot w-2 h-2 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-all duration-300" data-slide="6"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
+        <div class="progress-bar h-full bg-gradient-to-r from-green-400 to-emerald-400" style="width: 0%;"></div>
+    </div>
+</section>
+
+<section class="relative py-8 sm:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden" id="circle-slide">
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Header - Top on Mobile, Left on Desktop -->
+        <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6 mb-4 lg:mb-0">
+            <!-- Section Header - Left aligned -->
+            <div class="lg:w-1/5 xl:w-1/6 text-left reveal">
+                <h2 class="font-marcellus text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 leading-tight">
+                    Farm Fresh<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Fruits & Vegetables</span>
+                </h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+            </div>
+
+            <!-- Slider Container - Takes remaining width -->
+            <div class="lg:w-4/5 xl:w-5/6 relative overflow-hidden" id="sliderContainer">
+                <!-- Slider Wrapper -->
+                <div class="overflow-hidden pt-5" id="sliderWrapper">
+                    <div class="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6" id="sliderTrack" style="transform: translateX(0);">
+                        <!-- First Set of Items -->
+                        
+                        <!-- Slide 1: Mangoes -->
+                        <a href="mango.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-yellow-400/50">
+                                        <img src="images/mango.jpg" alt="Mangoes" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Mangoes</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Alphonso</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 2: Oranges -->
+                        <a href="oranges.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-red-500 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-red-600 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-orange-400/50">
+                                        <img src="images/oranges.jpg" alt="Oranges" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Oranges</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Valencia</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 3: Onions -->
+                        <a href="onions.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-purple-400/50">
+                                        <img src="images/onion.jpg" alt="Onions" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Onions</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Red</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 4: Potatoes -->
+                        <a href="potatos.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-600 to-yellow-700 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-700 to-yellow-800 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-amber-600/50">
+                                        <img src="images/potato.jpg" alt="Potatoes" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Potatoes</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Premium</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 5: Chillies -->
+                        <a href="chilli.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-red-700 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-800 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-red-500/50">
+                                        <img src="images/chilli.jpg" alt="Chillies" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Chillies</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Green</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 6: Apples -->
+                        <a href="apples.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-400 to-red-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-red-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-red-400/50">
+                                        <img src="images/apple.jpg" alt="Apples" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Apples</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Crisp</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 7: Bananas -->
+                        <a href="banana.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-yellow-400/50">
+                                        <img src="images/banana.jpg" alt="Bananas" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Bananas</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Sweet</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 8: Guava -->
+                        <a href="guava.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-green-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-500 to-green-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-green-400/50">
+                                        <img src="images/guava.jpg" alt="Guavas" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Guavas</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Fresh</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 9: Tomatoes -->
+                        <a href="tomatoes.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-400 to-red-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-red-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-red-400/50">
+                                        <img src="images/tomatar.jpg" alt="Tomatoes" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Tomatoes</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Fresh</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 10: Spinach -->
+                        <a href="spinach.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-500 to-green-700 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-600 to-green-800 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-green-500/50">
+                                        <img src="images/spinach.jpg" alt="Spinach" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Spinach</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Saag</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 11: Apricots -->
+                        <a href="apricots.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-orange-400/50">
+                                        <img src="images/apricot.jpg" alt="Apricots" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Apricots</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Reddish</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 12: Carrots -->
+                        <a href="carrots.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-orange-400/50">
+                                        <img src="images/carrots.jpg" alt="Carrots" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Carrots</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Fresh</p>
+                            </div>
+                        </a>
+
+                        <!-- Duplicate first few items for seamless loop -->
+                        <a href="mango.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-yellow-400/50">
+                                        <img src="images/mango.jpg" alt="Mangoes" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Mangoes</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Alphonso</p>
+                            </div>
+                        </a>
+                        
+                        <a href="oranges.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-red-500 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-red-600 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-orange-400/50">
+                                        <img src="images/oranges.jpg" alt="Oranges" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Oranges</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Valencia</p>
+                            </div>
+                        </a>
+                        
+                        <a href="onions.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-purple-400/50">
+                                        <img src="images/onion.jpg" alt="Onions" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Onions</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Red</p>
+                            </div>
+                        </a>
+                        
+                        <a href="potatos.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-600 to-yellow-700 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-700 to-yellow-800 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-amber-600/50">
+                                        <img src="images/potato.jpg" alt="Potatoes" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Potatoes</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Premium</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium About Section -->
+    <section class="relative py-10  px-4 sm:px-6 lg:px-8 bg-white overflow-hidden" id="about">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header with Marcellus -->
+            <div class="text-center mb-12 sm:mb-16 md:mb-20 reveal">
+                <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                    <i class="fas fa-seedling text-green-600 text-xs sm:text-sm"></i>
+                    <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Our Legacy</span>
+                </div>
+                <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">Crafting Excellence<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Since 1985</span></h2>
+                <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Premium Content Grid -->
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-start">
+                <!-- Left Column - Premium Values -->
+                <div class="space-y-8 sm:space-y-10">
+                    <!-- Section Intro -->
+                    <div class="space-y-3 sm:space-y-4 reveal-left">
+                        <h3 class="font-marcellus text-2xl sm:text-3xl font-bold text-gray-900">Quality Without Compromise</h3>
+                        <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+                            With over three decades of experience, RMC has established itself as a premier supplier of fresh produce to markets worldwide. Our commitment to quality and sustainability sets us apart.
+                        </p>
+                    </div>
+                    
+
+<!-- Premium Values List - Simple & Elegant -->
+<div class="space-y-6 sm:space-y-8">
+    <!-- Value 1: Export experience -->
+    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-5 reveal-left animation-delay-100">
+        <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-calendar-alt text-green-600 text-lg sm:text-xl"></i>
+        </div>
+        <div>
+            <h4 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-1">Export experience since 1985</h4>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Three decades of excellence in global trade and distribution, building lasting partnerships across continents.</p>
+        </div>
+    </div>
+    
+    <!-- Value 2: Multi-product supplier -->
+    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-5 reveal-left animation-delay-200">
+        <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-boxes text-green-600 text-lg sm:text-xl"></i>
+        </div>
+        <div>
+            <h4 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-1">Multi-product fresh produce supplier</h4>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Wide variety of premium fruits and vegetables sourced from trusted farms practicing sustainable agriculture.</p>
+        </div>
+    </div>
+    
+    <!-- Value 3: Certified quality -->
+    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-5 reveal-left animation-delay-300">
+        <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-certificate text-green-600 text-lg sm:text-xl"></i>
+        </div>
+        <div>
+            <h4 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-1">Certified quality & food safety systems</h4>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Internationally recognized certifications including GlobalGAP, Organic, and BRC ensuring the highest standards.</p>
+        </div>
+    </div>
+    
+    <!-- Value 4: Diverse global markets -->
+    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-5 reveal-left animation-delay-400">
+        <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-globe-asia text-green-600 text-lg sm:text-xl"></i>
+        </div>
+        <div>
+            <h4 class="font-marcellus text-lg sm:text-xl font-bold text-gray-900 mb-1">Diverse global markets</h4>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Exporting to over 40+ countries across five continents with deep understanding of local requirements.</p>
+        </div>
+    </div>
+</div>
+                </div>
+
+                <!-- Right Column - Premium Image Gallery -->
+                <div class="flex flex-col items-center justify-between gap-6 sm:gap-8 lg:gap-10 pt-0 lg:pt-5">
+                    <!-- Main Image with Premium Frame -->
+                    <div class="relative group w-full py-10 reveal-right animation-delay-200">
+                       
+                        <!-- Image Container -->
+                        <div class="relative rounded-xl sm:rounded-2xl overflow-hidden">
+                            <img src="images/about.jpg" alt="Our farm and fresh produce" class="w-full h-[450px] sm:h-[350px] md:h-[550px] object-cover ">
+                            
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            
+                            <!-- Caption Badge -->
+                            <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
+                                <div class="bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl px-3 sm:px-5 py-2 sm:py-3 inline-block">
+                                    <div class="flex items-center gap-2 sm:gap-3">
+                                        <i class="fas fa-leaf text-green-600 text-sm sm:text-base"></i>
+                                        <span class="text-xs sm:text-sm font-medium text-gray-900">Sustainable Farming Practices</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Premium Products Section -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16 md:mb-20 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-boxes text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Premium Selection</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">Farm Fresh<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Premium Produce</span></h2>
+            <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
+                Exporting the finest fresh fruits and vegetables to global markets. Certified organic, premium grade produce for international buyers.
+            </p>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 ">
+            <!-- Product 1: Mangoes -->
+            <a href="mango.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
+                <!-- Image Container with hover effect -->
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/mangos.jpg" 
+                         alt="Premium fresh mangoes - Sweet and juicy export quality fruit" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    
+                    <!-- Gradient overlay on image -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Mangoes</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(600+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium export-quality mangoes, known for exceptional sweetness, rich aroma, and golden color. Hand-picked at perfect ripeness and carefully packed for international shipping. Available seasonally.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
+
+            <!-- Product 2: Oranges -->
+            <a href="oranges.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200">
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/oranges.jpg" 
+                         alt="Fresh oranges - Premium citrus fruit for export" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Oranges</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star-half-alt text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(350+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium export oranges, rich in vitamin C, juicy with perfect sweet-tart balance. Fumigated, graded, and sorted for international markets. Ideal for fresh consumption and juicing.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
+
+            <!-- Product 3: Onions -->
+            <a href="onions.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/onion.jpg" 
+                         alt="Premium red onions - Fresh onions for international export" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Red Onions</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(400+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium red onions, known for their pungent flavor and long storage life. Size graded, machine sorted, and fumigated. Available year-round for consistent supply to international markets.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
+
+            <!-- Product 4: Potatoes -->
+            <a href="potatos.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/potato.jpg" 
+                         alt="Export quality potatoes - Fresh potatoes for global markets" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Potatoes</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star-half-alt text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(450+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">High-quality export potatoes, ideal for processing and table use. Size graded, washed, and sorted. Available throughout the year with cold storage facilities ensuring freshness.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
+
+            <!-- Product 5: Chillies -->
+            <a href="chilli.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200">
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/chilli.jpg" 
+                         alt="Fresh green chillies - Premium chillies for export" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Green Chillies</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(280+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Fresh green chillies, known for their intense heat and vibrant color. Hand-picked and sorted, packed in ventilated boxes for freshness. Regular supplies to international markets.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
+
+            <!-- Product 6: Apples -->
+            <a href="apples.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/apple.jpg" 
+                         alt="Fresh apples - Premium export quality apples" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Apples</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star-half-alt text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(190+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium export apples with crisp texture, perfect sweetness, and excellent shelf life. Multiple varieties available, size graded and carefully packed for international shipping.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
+
+           
+        </div>
+        
+        <!-- View All Products Button -->
+        <div class="text-center mt-10 sm:mt-12 md:mt-16">
+            <a href="products.html" class="group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span class="relative flex items-center gap-2">
+                    Explore All Products
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <!-- Decorative background elements (optional) -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center  reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-5 py-2.5 rounded-full mb-8">
+                <i class="fas fa-certificate text-green-600 text-base"></i>
+                <span class="text-green-600 font-semibold text-sm tracking-[0.3em] uppercase">Our Certifications</span>
+            </div>
+            <h2 class="font-marcellus text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Global Quality<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Certifications</span></h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Certification Logos - Bigger, No Grayscale, More Spacing -->
+        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 lg:gap-24 xl:gap-32 reveal animation-delay-400">
+            <!-- Partner 1 - GlobalGAP -->
+            <div class="group flex flex-col items-center">
+                <img src="images/partner1.png" 
+                         alt="GlobalGAP Certification" 
+                         class="h-28 md:h-36 lg:h-40 w-auto object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500">
+                 </div>
+
+            <!-- Partner 2 - Organic -->
+            <div class="group flex flex-col items-center">
+           
+                    <img src="images/partner2.png" 
+                         alt="Organic Certification" >
+                       </div>
+
+            <!-- Partner 3 - BRC -->
+            <div class="group flex flex-col items-center">
+                <img src="images/partner3.png" 
+                         alt="BRC Certification" 
+                         class="h-28 md:h-36 lg:h-40 w-auto object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500">
+                    </div>
+        </div>
+
+        <!-- Trust Badge with More Spacing -->
+        <div class="text-center reveal">
+            <div class="inline-flex items-center gap-3 bg-green-50/80 px-6 py-3 rounded-full">
+                <i class="fas fa-check-circle text-green-600 text-lg"></i>
+                <span class="text-sm md:text-base text-gray-700 font-medium">Trusted by partners worldwide</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium Values Section -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8  overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 left-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-emerald-50 rounded-full filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-10 sm:mb-12 md:mb-16 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-4 sm:mb-5">
+                <i class="fas fa-gem text-green-600 text-sm sm:text-base"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Our Values</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 px-4">What Drives Us Forward</h2>
+            <div class="w-16 sm:w-20 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Values Grid - Fixed for tablet -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-7 lg:gap-8">
+            <!-- Value 1: Export experience -->
+            <div class="group relative bg-white p-6 sm:p-7 md:p-8 rounded-2xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full flex flex-col reveal-scale animation-delay-100">
+                <div class="flex flex-col items-start gap-4 sm:gap-5">
+                    <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl sm:rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-calendar-alt text-xl sm:text-2xl md:text-3xl text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-marcellus text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors duration-300">Export experience since 1985</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">Three decades of excellence in global trade and distribution, building lasting partnerships across continents.</p>
+                    </div>
+                </div>
+                <!-- Decorative corner line -->
+                <div class="absolute bottom-4 sm:bottom-5 right-4 sm:right-5 w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+
+            <!-- Value 2: Multi-product supplier -->
+            <div class="group relative bg-white p-6 sm:p-7 md:p-8 rounded-2xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full flex flex-col reveal-scale animation-delay-200">
+                <div class="flex flex-col items-start gap-4 sm:gap-5">
+                    <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl sm:rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-boxes text-xl sm:text-2xl md:text-3xl text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-marcellus text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors duration-300">Multi-product fresh produce supplier</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">Wide variety of premium fruits and vegetables sourced from trusted farms practicing sustainable agriculture.</p>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 sm:bottom-5 right-4 sm:right-5 w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+
+            <!-- Value 3: Certified quality -->
+            <div class="group relative bg-white p-6 sm:p-7 md:p-8 rounded-2xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full flex flex-col reveal-scale animation-delay-300">
+                <div class="flex flex-col items-start gap-4 sm:gap-5">
+                    <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl sm:rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-certificate text-xl sm:text-2xl md:text-3xl text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-marcellus text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors duration-300">Certified quality & food safety systems</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">Internationally recognized certifications including GlobalGAP, Organic, and BRC ensuring the highest standards.</p>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 sm:bottom-5 right-4 sm:right-5 w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+
+            <!-- Value 4: Diverse global markets -->
+            <div class="group relative bg-white p-6 sm:p-7 md:p-8 rounded-2xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full flex flex-col reveal-scale animation-delay-400">
+                <div class="flex flex-col items-start gap-4 sm:gap-5">
+                    <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl sm:rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-globe-asia text-xl sm:text-2xl md:text-3xl text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-marcellus text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors duration-300">Diverse global markets</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">Exporting to over 35 countries across five continents with deep understanding of local requirements.</p>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 sm:bottom-5 right-4 sm:right-5 w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section with Background at Bottom - WITH COUNTING NUMBERS -->
+<section class="relative pt-16 pb-[300px] px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <!-- Full Background Image - Positioned at bottom -->
+    <div class="absolute inset-x-0 bottom-0 z-0 h-[50%]">
+        <img src="images/farm.jpg" 
+             alt="Farm landscape" 
+             class="w-full h-full object-cover object-bottom">
+        
+        <!-- Dark overlay for better readability -->
+        <div class="absolute inset-0 bg-white/20"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-5 py-2.5 rounded-full mb-8">
+                <i class="fas fa-chart-line text-green-600 text-base"></i>
+                <span class="text-green-600 font-semibold text-sm tracking-[0.3em] uppercase">Our Impact</span>
+            </div>
+            <h2 class="font-marcellus text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Driving Sustainable<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Global Change</span></h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Stats Cards Grid - WITH COUNTING NUMBERS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            <!-- Card 1: 86% Sustainable Farming -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100 border border-gray-100">
+                <div class="p-8 lg:p-10">
+                    <div class="flex items-center gap-5 mb-6">
+                        <!-- Font Awesome Icon -->
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-leaf text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <span class="counter-value font-marcellus text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="86">0</span>
+                            <span class="counter-suffix font-marcellus text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">%</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-marcellus text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Sustainable Farming</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        of our global products are grown on farms that have been certified as sustainably grown by SCS Global Services
+                    </p>
+                    
+                    <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-6 group-hover:w-24 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Card 2: 100% OHS Coverage -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200 border border-gray-100">
+                <div class="p-8 lg:p-10">
+                    <div class="flex items-center gap-5 mb-6">
+                        <!-- Font Awesome Icon -->
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-hard-hat text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <span class="counter-value font-marcellus text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="100">0</span>
+                            <span class="counter-suffix font-marcellus text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">%</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-marcellus text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Worker Safety</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        of team members covered by Occupational Health & Safety (OHS) management system
+                    </p>
+                    
+                    <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-6 group-hover:w-24 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Card 3: 300+ Programs -->
+            <div class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300 border border-gray-100">
+                <div class="p-8 lg:p-10">
+                    <div class="flex items-center gap-5 mb-6">
+                        <!-- Font Awesome Icon -->
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <i class="fas fa-hand-holding-heart text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <span class="counter-value font-marcellus text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-target="300">0</span>
+                            <span class="counter-suffix font-marcellus text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">+</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-marcellus text-2xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">Community Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        local sustainability programs that focus on healthcare, education, infrastructure, and disaster relief supported around the world
+                    </p>
+                    
+                    <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-6 group-hover:w-24 transition-all duration-300"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- Tabbed Map Section -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-globe text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Global Presence</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 px-4">Rishad Mateen & Company</h2>
+            <p class="text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto px-4">We trade fruits and vegetables in more than 40+ countries</p>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex justify-center mb-8 sm:mb-12">
+            <div class="bg-gray-100 p-1 rounded-full inline-flex">
+                <button id="tradeTab" 
+                    class="tab-btn px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 bg-white text-gray-900 shadow-md"
+                    data-tab="trade">
+                    Where We Trade
+                </button>
+                <button id="produceTab" 
+                    class="tab-btn px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 text-gray-500 hover:text-gray-900"
+                    data-tab="produce">
+                    Where We Produce
+                </button>
+            </div>
+        </div>
+
+        <!-- Region Lists -->
+        <div class="text-center mb-6 sm:mb-8">
+            <div id="tradeList" class="block">
+                <p class="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg px-4">USA · Europe · Middle East · Asia · Latin America · Africa · Australia</p>
+            </div>
+            <div id="produceList" class="hidden">
+                <p class="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg px-4">Spain · India · Egypt · China · Ecuador · Peru · Chile · Argentina</p>
+            </div>
+        </div>
+
+        <!-- World Map with Location Icons -->
+        <div class="relative group mt-6 sm:mt-8">
+            <!-- Map Container -->
+            <div class="relative">
+                <!-- Gray Scale Map Image -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" 
+                     alt="World Map showing global presence" 
+                     class="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[450px] object-cover opacity-50 scale-110 overflow-hidden">
+                
+                <!-- TRADE LOCATIONS (Blue Bubbles for desktop, icons for mobile) -->
+                <div id="tradeLocations" class="block">
+                    <!-- USA -->
+                    <div class="absolute top-[25%] left-[20%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <!-- Desktop: Premium Bubble -->
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">USA</span>
+                            </div>
+                            <!-- Pulsing effect -->
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20"></div>
+                        </div>
+                        <!-- Mobile: Icon Only -->
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float"></i>
+                            <!-- Glow effect -->
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Europe -->
+                    <div class="absolute top-[20%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Europe</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20 animation-delay-200"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-200"></i>
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Middle East -->
+                    <div class="absolute top-[20%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Middle East</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20 animation-delay-100"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-100"></i>
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Asia -->
+                    <div class="absolute top-[30%] left-[75%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Asia</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20 animation-delay-300"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-300"></i>
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Latin America -->
+                    <div class="absolute top-[55%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Latin America</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20 animation-delay-200"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-200"></i>
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Africa -->
+                    <div class="absolute top-[55%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Africa</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20 animation-delay-100"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-100"></i>
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Australia -->
+                    <div class="absolute top-[75%] left-[85%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-600 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Australia</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-blue-400 rounded-full animate-ping opacity-20 animation-delay-300"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-300"></i>
+                            <div class="absolute inset-0 bg-blue-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCE LOCATIONS (Green Bubbles for desktop, icons for mobile) -->
+                <div id="produceLocations" class="hidden">
+                    <!-- Spain -->
+                    <div class="absolute top-[10%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Spain</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- India -->
+                    <div class="absolute top-[25%] left-[75%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">India</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-200"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-200"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Egypt -->
+                    <div class="absolute top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Egypt</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-100"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-100"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- China -->
+                    <div class="absolute top-[35%] left-[75%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">China</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-300"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-300"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ecuador -->
+                    <div class="absolute top-[25%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Ecuador</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-100"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-100"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Peru -->
+                    <div class="absolute top-[55%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Peru</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-200"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-200"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chile -->
+                    <div class="absolute top-[65%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Chile</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-300"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-300"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Argentina -->
+                    <div class="absolute top-[80%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 group/location">
+                        <div class="hidden sm:block relative cursor-pointer">
+                            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-50 group-hover/location:opacity-80 transition-all duration-300 scale-150"></div>
+                            <div class="relative flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 rounded-full shadow-lg border-2 border-white hover:scale-110 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/50">
+                                <i class="fas fa-map-pin text-white text-sm"></i>
+                                <span class="text-white text-sm font-semibold">Argentina</span>
+                            </div>
+                            <div class="absolute -inset-2 bg-green-400 rounded-full animate-ping opacity-20 animation-delay-400"></div>
+                        </div>
+                        <div class="sm:hidden relative cursor-pointer">
+                            <i class="fas fa-map-pin text-2xl text-green-600 drop-shadow-lg hover:text-green-700 hover:scale-125 transition-all duration-300 animate-float animation-delay-400"></i>
+                            <div class="absolute inset-0 bg-green-400 rounded-full blur-md opacity-0 group-hover/location:opacity-50 transition-opacity duration-300 -z-10 scale-150"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+     
+        </div>
+    </div>
+</section>
+   
+<!-- Form Section with Sticky Background -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden form-section-sticky"
+         style="background-image: url('images/contact.jpg'); background-position: center;  ">
+    
+    <!-- Overlay to maintain readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-white/30  to-white/20"></div>
+    
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 left-0 w-64 sm:w-80 h-64 sm:h-80 bg-green-50/80 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-50/80 rounded-full filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2 z-5 pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-8 sm:mb-12 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-file-signature text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Get In Touch</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 px-4">Request Your Quote</h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Contact Info Cards -->
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <!-- Phone -->
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-100 backdrop-blur-sm bg-white/80">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-phone text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">Phone</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900"> +92-21 34322907</p>
+                </div>
+            </div>
+            
+            <!-- WhatsApp -->
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-200 backdrop-blur-sm bg-white/80">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">WhatsApp</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900"> +92-21 34322907</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100 reveal">
+                <form class="space-y-4 sm:space-y-6">
+                    <!-- Row 1: Full Name & Company -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Full Name -->
+                        <div class="reveal-left animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Full Name <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your full name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Company -->
+                        <div class="reveal-right animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Company <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your company name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Business Email & Phone/WhatsApp -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Business Email -->
+                        <div class="reveal-left animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Business Email <span class="text-green-600">*</span>
+                            </label>
+                            <input type="email" 
+                                   placeholder="purchasing@company.com"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Phone / WhatsApp -->
+                        <div class="reveal-right animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Phone / WhatsApp <span class="text-green-600">*</span>
+                            </label>
+                            <input type="tel" 
+                                   placeholder="+Country Code Phone Number"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Purchase Volume & Required Calibers -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Purchase Volume -->
+                        <div class="reveal-left animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Purchase Volume <span class="text-green-600">*</span>
+                            </label>
+                            <select class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base text-gray-500 bg-white/80 backdrop-blur-sm">
+                                <option value="" disabled selected>— Please choose an option —</option>
+                                <option value="less-1">Less than 1 ton</option>
+                                <option value="1-5">1-5 tons</option>
+                                <option value="5-10">5-10 tons</option>
+                                <option value="10-20">10-20 tons</option>
+                                <option value="20+">20+ tons</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Required Calibers -->
+                        <div class="reveal-right animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Required Calibers <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: Onion 60/80, 90/100"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Target Price & Packaging -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Target Price -->
+                        <div class="reveal-left animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Target Price (€/kg) <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 1.50 €/kg"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Packaging -->
+                        <div class="reveal-right animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Packaging <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 25kg bags, 10kg boxes"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="reveal">
+                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                            Additional Details
+                        </label>
+                        <textarea rows="4" 
+                                  placeholder="Any additional specifications or comments"
+                                  class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base resize-none bg-white/80 backdrop-blur-sm"></textarea>
+                    </div>
+
+                    <!-- Privacy Policy Checkbox -->
+                    <div class="flex items-start gap-2 sm:gap-3 reveal">
+                        <input type="checkbox" id="privacy" class="mt-1 w-3 h-3 sm:w-4 sm:h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                        <label for="privacy" class="text-2xs sm:text-xs text-gray-600">
+                            I have read and accept the 
+                            <a href="#" class="text-green-600 font-semibold hover:text-green-700 transition-colors duration-300">privacy policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-2 sm:pt-4 reveal-scale animation-delay-500">
+                        <button type="submit" class="group relative px-6 sm:px-8 md:px-12 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-105">
+                            <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center gap-2 mx-auto">
+                                Submit Request
+                                <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Trust Badge -->
+            <div class="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 text-2xs sm:text-xs text-gray-100 reveal">
+                <i class="fas fa-lock text-green-200 text-xs sm:text-sm"></i>
+                <span>Your information is secure and confidential</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-white/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-white/5 rounded-full filter blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
+            <!-- Company Info -->
+            <div class="space-y-3 sm:space-y-4 reveal-left">
+               <a href="index.html" class="flex items-center  focus:outline-none focus:ring-2 focus:ring-green-500 ">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1 ">
+              </a>
+                <h4 class="font-marcellus text-lg sm:text-xl text-green-300 mt-2">Why People Like us!</h4>
+                <p class="text-emerald-100 leading-relaxed text-xs sm:text-sm">
+                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.
+                </p>
+                <div class="flex items-center gap-3 sm:gap-4 pt-2">
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-facebook-f text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-instagram text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-x-twitter text-white text-2xs sm:text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="reveal animation-delay-100">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li>
+                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"  class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Brochure
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Products -->
+            <div class="reveal animation-delay-200">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                       <li>
+                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Mangoes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Onion
+                        </a>
+                    </li>
+                    <li>
+                        <a href="oranges.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Orange
+                        </a>
+                    </li>
+                    <li>
+                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Potato
+                        </a>
+                    </li>
+                 
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="reveal-right animation-delay-300">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Contact Us</h4>
+                <ul class="space-y-3 sm:space-y-4">
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-phone text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <div class="text-emerald-100 text-xs sm:text-sm">
+                            Phone: +92-21 34322907                       </div>
+                    </li>
+                   
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">Plot no: 1-4B Ground floor P.E.CH.S block 6 Karachi, Pakistan</span>
+                    </li>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">info@rishadmateen.com</span>
+                    </li>
+                  
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+                <!-- Copyright -->
+                <p class="text-emerald-100 text-2xs sm:text-xs text-center md:text-left">
+                   © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
+                </p>
+                
+                <!-- Footer Links -->
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+    
+   
+</body>
+</html>

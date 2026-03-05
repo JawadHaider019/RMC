@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishad Mateen Company · Fresh Red Onions</title>
+       <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts - Manrope & Marcellus -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Marcellus&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-manrope { font-family: "Manrope", sans-serif; }
+        .font-marcellus { font-family: "Marcellus", serif; font-weight: 400; }
+    </style>
+</head>
+<body class="bg-white font-manrope antialiased">
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <!-- Main navbar container - full width -->
+    <div class="flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8 transition-all duration-300" id="navContainer">
+        <!-- Logo with image - white version for transparent bg -->
+        <a href="/" class="flex items-center rounded">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full" id="logo">
+        </a>
+
+        <!-- Desktop Navigation Links with active class support -->
+        <div class="hidden md:flex items-center space-x-1 lg:space-x-4">
+            <a href="index.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="home">
+                Home
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="about.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="about">
+                About Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="products.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="products">
+                Products
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <!-- Profile Link - Downloads Document -->
+            <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"   class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="profile">
+                Profile
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+            <a href="contact.html" class="nav-link uppercase relative px-3 py-2 text-sm lg:text-base font-medium text-white hover:text-green-400 transition-colors duration-300 group focus:outline-none focus:ring-0" data-page="contact">
+                Contact Us
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
+        </div>
+
+        <!-- Right side items -->
+        <div class="flex items-center gap-2 sm:gap-4">
+            <!-- Search Icon -->
+            <button id="searchToggle" class="text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Search">
+                <i class="fas fa-search text-base sm:text-lg"></i>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuToggle" class="md:hidden text-white hover:text-green-400 transition-colors duration-300 p-2 focus:outline-none focus:ring-0" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown with active class support -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-lg rounded-b-2xl mx-4 mt-2 overflow-hidden border border-white/20" aria-label="Mobile navigation">
+        <div class="flex flex-col py-2">
+            <a href="index.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="home">Home</a>
+            <a href="about.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="about">About</a>
+            <a href="products.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="products">Products</a>
+            <!-- Mobile Profile Link - Downloads Document -->
+            <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"   class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="profile">Profile</a>
+            <a href="contact.html" class="mobile-nav-link px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors duration-300 font-medium focus:outline-none focus:ring-0" data-page="contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Search Bar (Below Navbar) - Centered with 80% width -->
+    <div id="searchBar" class="w-full absolute top-full left-0 right-0 z-40 pointer-events-none">
+        <div class="max-w-4xl mx-auto px-4">
+            <div id="searchContainer" class="transform -translate-y-4 opacity-0 transition-all duration-500 ease-in-out pointer-events-auto hidden">
+                <div class="relative mt-2">
+                    <input type="text" 
+                           id="searchInput"
+                           placeholder="Search for fruits, vegetables, products..." 
+                           class="w-full px-5 py-3 sm:py-4 pr-12 border-2 border-gray-200 rounded-3xl focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/90 backdrop-blur">
+                    <button id="searchSubmit" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center hover:scale-105 transition-transform duration-300 rounded-full">
+                        <i class="fas fa-search text-white text-sm sm:text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="relative w-full h-[60vh] overflow-hidden flex items-center justify-center bg-gradient-to-br from-stone-900 via-red-950 to-stone-900">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <!-- Soft glowing orbs -->
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-red-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        
+        <!-- Subtle pattern overlay -->
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, rgba(245, 158, 11, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+        
+        <!-- Elegant gradient line -->
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/30 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/30 to-transparent"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <!-- Decorative Top Accent -->
+        <div class="flex justify-center mb-6">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-[1px] bg-gradient-to-r from-transparent via-red-400/50 to-transparent"></div>
+                <i class="fas fa-circle text-[4px] text-red-400/60 animate-pulse"></i>
+                <div class="w-12 h-[1px] bg-gradient-to-r from-transparent via-red-400/50 to-transparent"></div>
+            </div>
+        </div>
+
+        <!-- Main Title with Premium Styling -->
+        <h1 class="font-marcellus text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white drop-shadow-2xl">
+            <span class="relative inline-block">
+                <span class="relative z-10">Shop</span>
+                <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-red-400/0 via-red-400 to-red-400/0 rounded-full"></span>
+            </span>
+        </h1>
+
+        <!-- Premium Breadcrumb -->
+        <div class="inline-flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-md rounded-2xl border border-red-500/10 shadow-2xl">
+            <!-- Home Link -->
+            <a href="index.html" class="group flex items-center gap-2 text-red-100/70 hover:text-red-400 transition-all duration-300">
+                <i class="fas fa-home text-xs group-hover:scale-110 transition-transform"></i>
+                <span class="text-sm font-medium">Home</span>
+            </a>
+            
+            <!-- Chevron -->
+            <i class="fas fa-chevron-right text-red-100/20 text-xs"></i>
+            
+            <!-- Products Link -->
+            <a href="Products.html" class="group flex items-center gap-2 text-red-100/70 hover:text-red-400 transition-all duration-300">
+                <i class="fas fa-box text-xs group-hover:scale-110 transition-transform"></i>
+                <span class="text-sm font-medium">Products</span>
+            </a>
+            
+            <!-- Chevron -->
+            <i class="fas fa-chevron-right text-red-100/20 text-xs"></i>
+            
+            <!-- Current Page -->
+            <span class="flex items-center gap-2 text-red-400">
+                <i class="fas fa-leaf text-xs"></i>
+                <span class="text-sm font-semibold">Fresh Onions</span>
+            </span>
+          
+        </div>
+
+           </div>
+
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 -z-10">
+        <img src="images/mango-bg.jpg" alt="" class="w-full h-full object-cover opacity-20 mix-blend-overlay">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/80 to-transparent"></div>
+    </div>
+</section>
+
+<!-- Onion Product Detail Page - Updated with Company Info -->
+<section class="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-red-50 via-white to-red-50">
+    <div class="max-w-7xl mx-auto relative z-10">
+       
+
+        <!-- Product Hero Section -->
+        <div class="grid lg:grid-cols-2 gap-12 mb-16 bg-gradient-to-br from-red-200 to-red-100 rounded-3xl">
+            <!-- Left Column - Product Image -->
+            <div class="reveal-left h-full">
+                <div class="relative overflow-hidden p-6 h-full flex flex-col">
+                   
+                    <!-- Main Image -->
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl flex-grow">
+                        <img id="mainProductImage" src="images/onion.jpg" 
+                             alt="Fresh Pakistani Red Onions" 
+                             class="w-full h-full object-cover min-h-[400px]">
+                        
+                        <!-- Premium Badge -->
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                                <i class="fas fa-crown"></i> Premium Quality
+                            </span>
+                        </div>
+                        
+                        <!-- Origin Badge -->
+                        <div class="absolute bottom-4 right-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-red-800 text-sm font-semibold px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-red-600"></i> Sindh & Balochistan, Pakistan
+                            </span>
+                        </div>
+                        
+                        <!-- Availability Badge -->
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-red-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                                <i class="fas fa-calendar-alt"></i> Year-round Supply
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnail Gallery -->
+                    <div class="grid grid-cols-4 gap-3 mt-4">
+                        <div class="rounded-xl overflow-hidden hover:border-red-600 transition-all cursor-pointer" onclick="document.getElementById('mainProductImage').src='images/onion.jpg'">
+                            <img src="images/onion.jpg" alt="Red Onion" class="w-full h-16 object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden hover:border-red-600 transition-all cursor-pointer" onclick="document.getElementById('mainProductImage').src='images/onions.jpg'">
+                            <img src="images/onions.jpg" alt="Red Onion" class="w-full h-16 object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden hover:border-red-600 transition-all cursor-pointer" onclick="document.getElementById('mainProductImage').src='images/onion.jpg'">
+                            <img src="images/onion.jpg" alt="Red Onion" class="w-full h-16 object-cover">
+                        </div>
+                        <div class="rounded-xl overflow-hidden hover:border-red-600 transition-all cursor-pointer" onclick="document.getElementById('mainProductImage').src='images/onions.jpg'">
+                            <img src="images/onions.jpg" alt="Red Onion" class="w-full h-16 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Product Info -->
+            <div class="reveal-right h-full">
+                <div class="relative overflow-hidden p-8 h-full flex flex-col">
+                   
+                    <div class="relative z-10 flex flex-col h-full">
+                        <!-- Product Type -->
+                        <div class="flex items-center gap-2 bg-white text-red-800 text-xs font-semibold px-3 py-1.5 rounded-full w-fit mb-4">
+                            <i class="fas fa-seedling"></i>
+                            <span>Fresh · Red / Pink Variety · GLOBALG.A.P. Certified</span>
+                        </div>
+                        
+                        <h1 class="font-marcellus text-4xl md:text-5xl font-bold text-gray-900 mb-3">Fresh Red / Pink <span class="text-red-600">Onions</span></h1>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt text-red-600"></i>
+                                <span class="text-gray-800">Origin: <span class="font-semibold">Sindh & Balochistan, Pakistan</span></span>
+                            </div>
+                            <div class="w-px h-4 bg-red-300"></div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-calendar-alt text-red-600"></i>
+                                <span class="text-gray-800">Supply: <span class="font-semibold">Year-round</span></span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Our onions are sourced directly from major producing regions, including Sindh and Balochistan. These premium red/pink onions are known for their pungent flavor, firm texture, and excellent shelf life. Rishad Mateen & Company has been serving excellence since 1985, delivering freshness across international markets.
+                        </p>
+                        
+                        <!-- Key Characteristics -->
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-circle-check text-red-500"></i>
+                                <span class="text-sm text-gray-700">Sourced from Sindh & Balochistan</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-circle-check text-red-500"></i>
+                                <span class="text-sm text-gray-700">Red & Pink skin</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-circle-check text-red-500"></i>
+                                <span class="text-sm text-gray-700">Round / Globe shape</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-circle-check text-red-500"></i>
+                                <span class="text-sm text-gray-700">Excellent shelf life</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Key Highlights -->
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-white rounded-xl p-3 text-center border border-red-200">
+                                <i class="fas fa-temperature-high text-red-600 text-lg mb-1"></i>
+                                <p class="text-xs text-gray-600">Storage Temp</p>
+                                <p class="font-semibold text-gray-800">0°C – 2°C</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 text-center border border-red-200">
+                                <i class="fas fa-clock text-red-600 text-lg mb-1"></i>
+                                <p class="text-xs text-gray-600">Shelf Life</p>
+                                <p class="font-semibold text-gray-800">Up to 2 months</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Get a Quote Button -->
+                        <a href="contact.html"  class="w-full bg-gradient-to-r from-red-500 to-red-400 text-white font-semibold py-4 rounded-xl hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 mt-auto">
+                            <i class="fas fa-file-invoice"></i>
+                            Get a Quote
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quality Standards Section (Based on PDF) -->
+        <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 mb-8 reveal">
+           
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                        <i class="fas fa-certificate text-red-600 text-xl"></i>
+                    </div>
+                    <h2 class="font-marcellus text-2xl font-bold text-gray-900">Quality & Food Safety</h2>
+                </div>
+                
+                <p class="text-gray-700 mb-4">Quality control is embedded at every stage of our supply chain. RMC operates in accordance with internationally recognized standards. Our systems are aligned with the expectations of European Union, Far East, Middle East, South Asia, Russia, Central Asia, North America, Switzerland and UK.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-red-300">
+                        <h3 class="font-semibold text-gray-900 mb-2">Cold Storage Facility</h3>
+                        <p class="text-gray-700">State-of-the-art cold storage for optimal onion preservation and extended shelf life.</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-red-300">
+                        <h3 class="font-semibold text-gray-900 mb-2">International Standards</h3>
+                        <p class="text-gray-700">GLOBALG.A.P. - The Global Partnership for Good Agricultural Practice</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Varieties Section (Updated with PDF info) -->
+        <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 mb-8 reveal">
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                        <i class="fas fa-list-ul text-red-600 text-xl"></i>
+                    </div>
+                    <h2 class="font-marcellus text-2xl font-bold text-gray-900">Varieties Available</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-red-300 hover:shadow-lg transition-all">
+                        <span class="font-marcellus text-lg font-bold text-red-800">Pulkara</span>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-red-300 hover:shadow-lg transition-all">
+                        <span class="font-marcellus text-lg font-bold text-red-800">Desi Red</span>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-red-300 hover:shadow-lg transition-all">
+                        <span class="font-marcellus text-lg font-bold text-red-800">Pink Onion</span>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-red-300 hover:shadow-lg transition-all">
+                        <span class="font-marcellus text-lg font-bold text-red-800">Sariba Red</span>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-red-300 hover:shadow-lg transition-all">
+                        <span class="font-marcellus text-lg font-bold text-red-800">Chiltan</span>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-red-300 hover:shadow-lg transition-all">
+                        <span class="font-marcellus text-lg font-bold text-red-800">Swat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Specifications & Grading -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- Technical Specs Card -->
+            <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 reveal-left h-full flex flex-col">
+                
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                            <i class="fas fa-clipboard-list text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="font-marcellus text-2xl font-bold text-gray-900">Technical Specification</h2>
+                    </div>
+                    
+                    <div class="space-y-4 flex-grow">
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Moisture Content</span>
+                            <span class="font-semibold text-gray-900">85–90%</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Dry Matter</span>
+                            <span class="font-semibold text-gray-900">10–15%</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Color</span>
+                            <span class="font-semibold text-gray-900">Red & Pink Skin</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Shape</span>
+                            <span class="font-semibold text-gray-900">Round / Globe</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Varieties</span>
+                            <span class="font-semibold text-gray-900">Pulkara, Desi Red, Pink, Sariba, Chiltan, Swat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grading & Size Card -->
+            <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 reveal-right h-full flex flex-col">
+               
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                            <i class="fas fa-weight-hanging text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="font-marcellus text-2xl font-bold text-gray-900">Grading & Size</h2>
+                    </div>
+                    
+                    <div class="space-y-4 flex-grow">
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Small</span>
+                            <span class="font-semibold text-gray-900">25mm – 38mm</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Medium</span>
+                            <span class="font-semibold text-gray-900">45mm – 55mm</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Large</span>
+                            <span class="font-semibold text-gray-900">55mm – 65mm</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-red-300 pb-2">
+                            <span class="text-gray-700">Jumbo</span>
+                            <span class="font-semibold text-gray-900">65mm – 80mm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shelf Life & Storage -->
+        <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 mb-8 reveal">
+           
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                        <i class="fas fa-temperature-low text-red-600 text-xl"></i>
+                    </div>
+                    <h2 class="font-marcellus text-2xl font-bold text-gray-900">Shelf Life & Storage</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-red-300">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i class="fas fa-clock text-red-600"></i>
+                            <h3 class="font-semibold text-gray-900">Ambient Conditions</h3>
+                        </div>
+                        <p class="text-gray-700">Up to 3 weeks at room temperature</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-red-300">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i class="fas fa-snowflake text-red-600"></i>
+                            <h3 class="font-semibold text-gray-900">Cold Storage</h3>
+                        </div>
+                        <p class="text-gray-700">Up to 2 months under controlled conditions</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-red-300">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-thermometer-half text-red-600"></i>
+                        <h3 class="font-semibold text-gray-900">Optimal Storage Conditions</h3>
+                    </div>
+                    <p class="text-gray-700">Temperature: 0°C – 2°C | Relative Humidity: 65–70%</p>
+                    <p class="text-gray-600 text-sm mt-2">Proper ventilation is maintained to preserve firmness and reduce sprouting.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packaging Options -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- Packaging Types -->
+            <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 reveal-left h-full flex flex-col">
+               
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                            <i class="fas fa-box text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="font-marcellus text-2xl font-bold text-gray-900">Packaging Options</h2>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3 flex-grow content-start">
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">Jute Bags</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">Mesh Bags</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">PP Bags</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300 border-dashed">Customized Packaging</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300 border-dashed">Private Labeling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packing Sizes -->
+            <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 reveal-right h-full flex flex-col">
+            
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                            <i class="fas fa-ruler text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="font-marcellus text-2xl font-bold text-gray-900">Standard Packing Sizes</h2>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3 flex-grow content-start">
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">5 kg</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">10 kg</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">15 kg</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">20 kg</span>
+                        <span class="bg-white/80 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-medium border border-red-300">25 kg</span>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Export Markets Section (Based on PDF) -->
+        <div class="relative bg-gradient-to-br from-red-200 to-red-100 rounded-3xl overflow-hidden p-8 mb-8 reveal">
+           
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-red-300">
+                        <i class="fas fa-globe text-red-600 text-xl"></i>
+                    </div>
+                    <h2 class="font-marcellus text-2xl font-bold text-gray-900">Export Markets</h2>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">European Union</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">Far East</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">Middle East</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">South Asia</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">Russia</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">Central Asia</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">North America</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">Switzerland</span>
+                    <span class="bg-white/90 backdrop-blur-sm text-red-800 px-4 py-2 rounded-full text-sm font-semibold border border-red-300 shadow-sm">UK</span>
+                </div>
+            </div>
+        </div>
+
+    
+
+        <!-- Bottom CTA -->
+        <div class="bg-gradient-to-r from-red-500 to-red-400 rounded-3xl p-8 text-center reveal">
+            <h3 class="font-marcellus text-3xl font-bold text-white mb-3">Ready to Order Premium Onions?</h3>
+            <p class="text-white/90 mb-6 max-w-2xl mx-auto">Contact us for competitive pricing, bulk orders, and customized packaging options. Serving excellence since 1985.</p>
+            <a href="contact.html" class="bg-white text-red-700 font-semibold px-8 py-4 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center gap-2">
+                <i class="fas fa-envelope"></i>
+                Get a Quote
+                <i class="fas fa-arrow-right"></i>
+            </a>
+         </div>
+    </div>
+</section>
+
+<!-- Form Section with Sticky Background -->
+<section class="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden form-section-sticky"
+         style="background-image: url('images/contact.jpg'); background-position: center;  ">
+    
+    <!-- Overlay to maintain readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-white/30  to-white/20"></div>
+    
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 left-0 w-64 sm:w-80 h-64 sm:h-80 bg-green-50/80 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-50/80 rounded-full filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2 z-5 pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-8 sm:mb-12 reveal">
+            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
+                <i class="fas fa-file-signature text-green-600 text-xs sm:text-sm"></i>
+                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Get In Touch</span>
+            </div>
+            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 px-4">Request Your Quote</h2>
+            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+        </div>
+
+        <!-- Contact Info Cards -->
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <!-- Phone -->
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-100 backdrop-blur-sm bg-white/80">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-phone text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">Phone</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900"> +92-21 34322907</p>
+                </div>
+            </div>
+            
+            <!-- WhatsApp -->
+            <div class="bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg flex items-center gap-3 sm:gap-4 reveal-scale animation-delay-200 backdrop-blur-sm bg-white/80">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-green-600 text-sm sm:text-base md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-2xs sm:text-xs text-gray-500 uppercase tracking-wider">WhatsApp</p>
+                    <p class="text-sm sm:text-base md:text-lg font-semibold text-gray-900"> +92-21 34322907</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100 reveal">
+                <form class="space-y-4 sm:space-y-6">
+                    <!-- Row 1: Full Name & Company -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Full Name -->
+                        <div class="reveal-left animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Full Name <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your full name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Company -->
+                        <div class="reveal-right animation-delay-100">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Company <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Your company name"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Business Email & Phone/WhatsApp -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Business Email -->
+                        <div class="reveal-left animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Business Email <span class="text-green-600">*</span>
+                            </label>
+                            <input type="email" 
+                                   placeholder="purchasing@company.com"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Phone / WhatsApp -->
+                        <div class="reveal-right animation-delay-200">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Phone / WhatsApp <span class="text-green-600">*</span>
+                            </label>
+                            <input type="tel" 
+                                   placeholder="+Country Code Phone Number"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Purchase Volume & Required Calibers -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Purchase Volume -->
+                        <div class="reveal-left animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Purchase Volume <span class="text-green-600">*</span>
+                            </label>
+                            <select class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base text-gray-500 bg-white/80 backdrop-blur-sm">
+                                <option value="" disabled selected>— Please choose an option —</option>
+                                <option value="less-1">Less than 1 ton</option>
+                                <option value="1-5">1-5 tons</option>
+                                <option value="5-10">5-10 tons</option>
+                                <option value="10-20">10-20 tons</option>
+                                <option value="20+">20+ tons</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Required Calibers -->
+                        <div class="reveal-right animation-delay-300">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Required Calibers <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: Onion 60/80, 90/100"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Target Price & Packaging -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <!-- Target Price -->
+                        <div class="reveal-left animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Target Price (€/kg) <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 1.50 €/kg"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                        
+                        <!-- Packaging -->
+                        <div class="reveal-right animation-delay-400">
+                            <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                                Packaging <span class="text-green-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   placeholder="Ex: 25kg bags, 10kg boxes"
+                                   class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm">
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="reveal">
+                        <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+                            Additional Details
+                        </label>
+                        <textarea rows="4" 
+                                  placeholder="Any additional specifications or comments"
+                                  class="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all duration-300 text-sm sm:text-base resize-none bg-white/80 backdrop-blur-sm"></textarea>
+                    </div>
+
+                    <!-- Privacy Policy Checkbox -->
+                    <div class="flex items-start gap-2 sm:gap-3 reveal">
+                        <input type="checkbox" id="privacy" class="mt-1 w-3 h-3 sm:w-4 sm:h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                        <label for="privacy" class="text-2xs sm:text-xs text-gray-600">
+                            I have read and accept the 
+                            <a href="#" class="text-green-600 font-semibold hover:text-green-700 transition-colors duration-300">privacy policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-2 sm:pt-4 reveal-scale animation-delay-500">
+                        <button type="submit" class="group relative px-6 sm:px-8 md:px-12 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-105">
+                            <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center gap-2 mx-auto">
+                                Submit Request
+                                <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Trust Badge -->
+            <div class="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 text-2xs sm:text-xs text-gray-100 reveal">
+                <i class="fas fa-lock text-green-200 text-xs sm:text-sm"></i>
+                <span>Your information is secure and confidential</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Footer Section -->
+<footer class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-white/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-white/5 rounded-full filter blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
+            <!-- Company Info -->
+            <div class="space-y-3 sm:space-y-4 reveal-left">
+               <a href="index.html" class="flex items-center  focus:outline-none focus:ring-2 focus:ring-green-500 ">
+            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1 ">
+              </a>
+                <h4 class="font-marcellus text-lg sm:text-xl text-green-300 mt-2">Serving Excellence Since 1985</h4>
+                <p class="text-emerald-100 leading-relaxed text-xs sm:text-sm">
+                    Exporter, Processor & Importer of fresh fruits and vegetables. Delivering freshness - building trust across international markets.
+                </p>
+                <div class="flex items-center gap-3 sm:gap-4 pt-2">
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-linkedin-in text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-facebook-f text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-instagram text-white text-2xs sm:text-sm"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
+                        <i class="fab fa-x-twitter text-white text-2xs sm:text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="reveal animation-delay-100">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                    <li>
+                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"  class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Brochure
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Products -->
+            <div class="reveal animation-delay-200">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
+                <ul class="space-y-2 sm:space-y-3">
+                       <li>
+                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Mangoes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Red/Pink Onions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kinnow.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Kinnow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
+                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                            Potato
+                        </a>
+                    </li>
+                 
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="reveal-right animation-delay-300">
+                <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Contact Us</h4>
+                <ul class="space-y-3 sm:space-y-4">
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-phone text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <div class="text-emerald-100 text-xs sm:text-sm">
+                            Phone: +92-21 34322907                       </div>
+                    </li>
+                   
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">Plot no: 1-4B Ground floor P.E.CH.S block 6 Karachi, Pakistan</span>
+                    </li>
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-green-300 mt-1 text-xs sm:text-sm"></i>
+                        <span class="text-emerald-100 text-xs sm:text-sm">info@rishadmateen.com</span>
+                    </li>
+                  
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+                <!-- Copyright -->
+                <p class="text-emerald-100 text-2xs sm:text-xs text-center md:text-left">
+                   © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
+                </p>
+                
+                <!-- Footer Links -->
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
