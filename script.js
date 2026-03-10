@@ -499,8 +499,6 @@ const initHeroSlider = () => {
 initHeroSlider();
 // ===== DRAGGABLE SLIDER WITH CLICKABLE LINKS =====
 
-
-
 const initInfiniteSlider = () => {
     if (!DOM.sliderContainer || !DOM.sliderWrapper || !DOM.sliderTrack) return;
 
@@ -553,6 +551,9 @@ const initInfiniteSlider = () => {
     const setTransformX = (x, animate = false) => {
         const maxTransform = getMaxTransform();
         
+        // Constrain x between -maxTransform and 0
+        x = Math.min(0, Math.max(x, -maxTransform));
+        
         // Infinite loop logic - smooth reset when reaching the end
         if (x <= -maxTransform) {
             // Seamless jump back to start
@@ -595,22 +596,19 @@ const initInfiniteSlider = () => {
         }
     };
 
-    // Create navigation buttons
+    // Create navigation buttons - ALWAYS VISIBLE
     const createNavButtons = () => {
         // Left button
         const leftBtn = document.createElement('button');
-        leftBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl opacity-0 group-hover:opacity-100 focus:outline-none';
+        leftBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl focus:outline-none';
         leftBtn.setAttribute('aria-label', 'Previous slide');
         leftBtn.innerHTML = '<i class="fas fa-chevron-left text-lg"></i>';
         
         // Right button
         const rightBtn = document.createElement('button');
-        rightBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl opacity-0 group-hover:opacity-100 focus:outline-none';
+        rightBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl focus:outline-none';
         rightBtn.setAttribute('aria-label', 'Next slide');
         rightBtn.innerHTML = '<i class="fas fa-chevron-right text-lg"></i>';
-        
-        // Add group class to container for hover effects
-        DOM.sliderContainer.classList.add('group');
         
         // Add buttons to container
         DOM.sliderContainer.appendChild(leftBtn);
@@ -624,12 +622,12 @@ const initInfiniteSlider = () => {
             // Stop auto slide temporarily
             stopAutoSlide();
             
-            // Calculate step (move by 4 items or container width)
+            // Calculate step
             const itemWidth = originalItems[0]?.offsetWidth || 150;
             const gap = parseInt(window.getComputedStyle(sliderTrack).gap) || 16;
             const step = (itemWidth + gap) * 3; // Move by 3 items
             
-            // Move right (positive because transform is negative)
+            // Move right
             const newTransform = Math.min(0, currentTransform + step);
             setTransformX(newTransform, true);
             
@@ -740,22 +738,16 @@ const initInfiniteSlider = () => {
         }
     });
 
-    // Hover events - pause auto slide on hover and show buttons
+    // Hover events - pause auto slide on hover but KEEP BUTTONS VISIBLE
     DOM.sliderContainer.addEventListener('mouseenter', () => {
         DOM.sliderContainer.style.cursor = 'grab';
         stopAutoSlide(); // Pause when hovering
         
-        // Show buttons with animation
-        leftBtn.style.opacity = '1';
-        rightBtn.style.opacity = '1';
+        // Buttons remain visible - no opacity change
     });
 
     DOM.sliderContainer.addEventListener('mouseleave', () => {
         DOM.sliderContainer.style.cursor = 'default';
-        
-        // Hide buttons
-        leftBtn.style.opacity = '1';
-        rightBtn.style.opacity = '1';
         
         if (!isDragging) {
             startAutoSlide(); // Resume when not hovering
@@ -828,7 +820,7 @@ const initInfiniteSlider = () => {
         if (autoSlideInterval) clearInterval(autoSlideInterval);
     });
 
-    console.log('Infinite slider initialized with auto slide and navigation buttons');
+    console.log('Infinite slider initialized with always-visible navigation buttons');
 };
     // ===== GSAP ANIMATIONS (if available) =====
     const initGSAP = () => {

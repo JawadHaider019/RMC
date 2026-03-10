@@ -157,7 +157,7 @@
         </div>
 
         <!-- Main Content Grid - CEO Image on Right - BALANCED SIZING -->
-        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div class="grid lg:grid-cols-1 gap-8 lg:gap-12 items-center">
             <!-- Left Column - Message Content (takes 7 columns) -->
             <div class="lg:col-span-7 space-y-6 reveal-left">
                 <!-- Quote Icon -->
@@ -177,8 +177,8 @@
                 </div>
                 
                 <!-- Signature (visible on mobile, hidden on desktop since it's on image) -->
-                <div class="flex items-center gap-4 lg:hidden pt-2">
-                    <img src="images/member1.jpeg" alt="Rishad Mateen" class="w-14 h-14 rounded-full object-cover border-2 border-green-500">
+                <div class="flex items-center gap-4  pt-2">
+                   
                     <div>
                         <p class="font-marcellus text-lg font-bold text-gray-900">Rishad Mateen</p>
                         <p class="text-green-600 text-sm">Founder & CEO</p>
@@ -187,29 +187,7 @@
                 </div>
             </div>
 
-            <!-- Right Column - Smaller CEO Image (takes 5 columns) -->
-            <div class="lg:col-span-5 reveal-right">
-                <div class="relative group max-w-md mx-auto lg:mx-0">
-                    <!-- Image Container - Smaller size -->
-                    <div class="relative rounded-2xl overflow-hidden shadow-xl">
-                        <img src="images/CEO.jpg" 
-                             alt="Rishad Mateen - CEO" 
-                             class="w-full h-auto object-cover max-h-[400px]">
-                        
-                        <!-- Gradient Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        
-                        <!-- Name & Title Overlay - Always visible but subtle -->
-                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-3 inline-block">
-                                <h3 class="font-marcellus text-lg font-bold text-gray-900">Rishad Mateen</h3>
-                                <p class="text-green-600 text-xs font-semibold">Founder & CEO</p>
-                                <p class="text-[10px] text-gray-500">Since 1985</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
         </div>
 
         <!-- Vision & Mission Cards Grid -->
@@ -550,7 +528,7 @@
             </div>
 
             <!-- Right Column - HWT Plant Image -->
-            <div class="reveal-right">
+            <div class="reveal-left">
                 <div class="group relative  rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500  overflow-hidden">
                     <!-- Image Container -->
                     <div class="relative h-[250px] sm:h-[350px] overflow-hidden  rounded-xl sm:rounded-2xl">
@@ -635,55 +613,6 @@
     </div>
 </section>
 
-<!-- Our Team Section - Simple Version -->
-<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-gray-50">
-    <div class="max-w-7xl mx-auto">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center gap-2 bg-green-100 px-5 py-2.5 rounded-full mb-8">
-                <i class="fas fa-users text-green-600 text-base"></i>
-                <span class="text-green-600 font-semibold text-sm tracking-[0.3em] uppercase">Our Team</span>
-            </div>
-            <h2 class="font-marcellus text-4xl md:text-5xl font-bold text-gray-900 mb-4">Industry Experts</h2>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Meet the dedicated professionals behind our global success.</p>
-        </div>
-
-        <!-- Team Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Member 1 -->
-            <div class="text-center">
-                <div class="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-500 shadow-xl">
-                    <img src="images/member1.jpeg" alt="Rishad Mateen" class="w-full h-full object-cover scale-125 ">
-                </div>
-                <h3 class="font-marcellus text-2xl font-bold text-gray-900">Rishad Mateen</h3>
-                <p class="text-green-600 font-semibold mb-3">Founder & CEO</p>
-                <p class="text-gray-600 text-sm px-4">35+ years in global produce trade</p>
-            </div>
-            
-            <!-- Member 2 -->
-            <div class="text-center">
-                <div class="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-500 shadow-xl">
-                    <img src="images/member2.jpeg" alt="Sarah Khan" class="w-full h-full object-cover scale-125">
-                </div>
-                <h3 class="font-marcellus text-2xl font-bold text-gray-900">Sarah Khan</h3>
-                <p class="text-green-600 font-semibold mb-3">Export Director</p>
-                <p class="text-gray-600 text-sm px-4">Expert in international logistics</p>
-            </div>
-            
-            <!-- Member 3 -->
-            <div class="text-center">
-                <div class="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-4 border-green-500 shadow-xl">
-                    <img src="images/member3.jpeg" alt="Ahmed Hassan" class="w-full h-full object-cover scale-125">
-                </div>
-                <h3 class="font-marcellus text-2xl font-bold text-gray-900">Ahmed Hassan</h3>
-                <p class="text-green-600 font-semibold mb-3">Quality Assurance</p>
-                <p class="text-gray-600 text-sm px-4">GlobalGAP & BRC certified</p>
-            </div>
-            
-          
-        </div>
-    </div>
-</section>
 
 <!-- Work With Us Section - Ultra Simple -->
 <section class="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -780,7 +709,7 @@
                         </div>
                         
                         <!-- Company -->
-                        <div class="reveal-right animation-delay-100">
+                        <div class="reveal-left animation-delay-100">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Company <span class="text-green-600">*</span>
                             </label>
@@ -803,7 +732,7 @@
                         </div>
                         
                         <!-- Phone / WhatsApp -->
-                        <div class="reveal-right animation-delay-200">
+                        <div class="reveal-left animation-delay-200">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Phone / WhatsApp <span class="text-green-600">*</span>
                             </label>
@@ -831,7 +760,7 @@
                         </div>
                         
                         <!-- Required Calibers -->
-                        <div class="reveal-right animation-delay-300">
+                        <div class="reveal-left animation-delay-300">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Required Calibers <span class="text-green-600">*</span>
                             </label>
@@ -854,7 +783,7 @@
                         </div>
                         
                         <!-- Packaging -->
-                        <div class="reveal-right animation-delay-400">
+                        <div class="reveal-left animation-delay-400">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Packaging <span class="text-green-600">*</span>
                             </label>
@@ -906,7 +835,6 @@
 </section>
 
 
-<!-- Footer Section -->
 <footer class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
     <!-- Decorative Background Elements -->
     <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-white/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -916,61 +844,61 @@
         <!-- Main Footer Content -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
             <!-- Company Info -->
-            <div class="space-y-3 sm:space-y-4 reveal-left">
-               <a href="index.html" class="flex items-center  focus:outline-none focus:ring-2 focus:ring-green-500 ">
-            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1 ">
-              </a>
-                <h4 class="font-marcellus text-lg sm:text-xl text-green-300 mt-2">Why People Like us!</h4>
-                <p class="text-emerald-100 leading-relaxed text-xs sm:text-sm">
+            <div class="space-y-3 sm:space-y-4 text-left">
+                <a href="index.html" class="inline-flex items-center focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1">
+                </a>
+                <h4 class="font-marcellus text-lg sm:text-xl text-green-300">Why People Like us!</h4>
+                <p class="text-emerald-100 leading-relaxed text-sm max-w-xs">
                     typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.
                 </p>
                 <div class="flex items-center gap-3 sm:gap-4 pt-2">
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-linkedin-in text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-linkedin-in text-white text-xs sm:text-sm"></i>
                     </a>
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-facebook-f text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-facebook-f text-white text-xs sm:text-sm"></i>
                     </a>
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-instagram text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-instagram text-white text-xs sm:text-sm"></i>
                     </a>
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-x-twitter text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-x-twitter text-white text-xs sm:text-sm"></i>
                     </a>
                 </div>
             </div>
 
             <!-- Quick Links -->
-            <div class="reveal animation-delay-100">
+            <div class="text-left">
                 <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
                 <ul class="space-y-2 sm:space-y-3">
                     <li>
-                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             About
                         </a>
                     </li>
                     <li>
-                        <a href="products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Products
                         </a>
                     </li>
                     <li>
-                        <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"  class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="Rishad Mateen & Company Brochure.pdf" target="_blank" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Brochure
                         </a>
                     </li>
                     <li>
-                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Contact
                         </a>
                     </li>
@@ -978,79 +906,74 @@
             </div>
 
             <!-- Products -->
-            <div class="reveal animation-delay-200">
+            <div class="text-left">
                 <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
                 <ul class="space-y-2 sm:space-y-3">
-                       <li>
-                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                    <li>
+                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Mangoes
                         </a>
                     </li>
                     <li>
-                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Onion
                         </a>
                     </li>
                     <li>
-                        <a href="oranges.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="oranges.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Orange
                         </a>
                     </li>
                     <li>
-                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Potato
                         </a>
                     </li>
-                 
                 </ul>
             </div>
 
             <!-- Contact Info -->
-            <div class="reveal-right animation-delay-300">
+            <div class="text-left">
                 <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Contact Us</h4>
                 <ul class="space-y-3 sm:space-y-4">
                     <li class="flex items-start gap-2 sm:gap-3">
-                        <i class="fas fa-phone text-green-300 mt-1 text-xs sm:text-sm"></i>
-                        <div class="text-emerald-100 text-xs sm:text-sm">
-                            Phone: +92-21 34322907                       </div>
-                    </li>
-                   
-                    <li class="flex items-start gap-2 sm:gap-3">
-                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-xs sm:text-sm"></i>
-                        <span class="text-emerald-100 text-xs sm:text-sm">Plot no: 1-4B Ground floor P.E.CH.S block 6 Karachi, Pakistan</span>
+                        <i class="fas fa-phone text-green-300 mt-1 text-sm flex-shrink-0"></i>
+                        <span class="text-emerald-100 text-sm">Phone: +92-21 34322907</span>
                     </li>
                     <li class="flex items-start gap-2 sm:gap-3">
-                        <i class="fas fa-envelope text-green-300 mt-1 text-xs sm:text-sm"></i>
-                        <span class="text-emerald-100 text-xs sm:text-sm">info@rishadmateen.com</span>
+                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-sm flex-shrink-0"></i>
+                        <span class="text-emerald-100 text-sm">Plot no: 1-4B Ground floor P.E.C.H.S block 6 Karachi, Pakistan</span>
                     </li>
-                  
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-green-300 mt-1 text-sm flex-shrink-0"></i>
+                        <span class="text-emerald-100 text-sm break-all">info@rishadmateen.com</span>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <!-- Bottom Bar -->
-        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8 reveal">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <!-- Copyright -->
-                <p class="text-emerald-100 text-2xs sm:text-xs text-center md:text-left">
-                   © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
+                <p class="text-emerald-100 text-sm text-left">
+                    © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
                 </p>
                 
                 <!-- Footer Links -->
-                <div class="flex items-center gap-4 sm:gap-6">
-                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Privacy Policy</a>
-                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Terms of Service</a>
-                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Cookie Policy</a>
+                <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+                    <a href="#" class="text-emerald-100 hover:text-white text-xs transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-xs transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-xs transition-colors duration-300">Cookie Policy</a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-
 
 
     <script src="script.js"></script>

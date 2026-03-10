@@ -24,6 +24,119 @@
     <style>
         .font-manrope { font-family: "Manrope", sans-serif; }
         .font-marcellus { font-family: "Marcellus", serif; font-weight: 400; }
+
+        /* Mobile responsive fixes - only for very small screens */
+        @media (max-width: 480px) {
+            /* Fix horizontal overflow */
+            body { overflow-x: hidden; width: 100%; }
+            
+            /* Make all grids stack properly */
+            .grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 1rem !important;
+            }
+            
+            /* Fix specific grid classes */
+            .grid-cols-2, .grid-cols-4 { 
+                grid-template-columns: 1fr 1fr !important; 
+            }
+            
+            /* Prevent text overflow */
+            .flex.items-center.gap-4 { 
+                flex-wrap: wrap; 
+                gap: 0.5rem !important;
+            }
+            
+            /* Reduce padding on small screens */
+            .p-8 { padding: 1.2rem !important; }
+            .px-4 { padding-left: 0.8rem !important; padding-right: 0.8rem !important; }
+            .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            
+            /* Make images responsive */
+            img { max-width: 100%; height: auto; }
+            
+            /* Fix contact cards */
+            .flex.flex-wrap.justify-center.gap-4 .flex.items-center { 
+                width: 100%; 
+                justify-content: center;
+            }
+            
+            /* Ensure buttons are full width on mobile */
+            .inline-flex.items-center.gap-2:not(.group) { 
+                width: 100%; 
+                justify-content: center; 
+            }
+            
+            /* Fix breadcrumb overflow */
+            .inline-flex.items-center.gap-3 { 
+                flex-wrap: wrap; 
+                justify-content: center;
+                padding: 0.8rem 1rem !important;
+            }
+            
+            /* Fix product image min-height */
+            .min-h-\[400px\] { min-height: 250px !important; }
+            
+            /* Fix font sizes */
+            h1.text-4xl { font-size: 2rem !important; }
+            h2.text-2xl { font-size: 1.5rem !important; }
+            
+            /* Make feature cards stack better */
+            .grid.md\:grid-cols-2 { gap: 0.8rem !important; }
+            
+            /* Fix badge positioning on small screens */
+            .absolute.top-4.left-4, .absolute.top-4.right-4, .absolute.bottom-4.right-4 {
+                font-size: 0.7rem !important;
+                padding: 0.3rem 0.8rem !important;
+            }
+            
+            /* Adjust thumbnail gallery */
+            .grid.grid-cols-4.gap-3 { gap: 0.5rem !important; }
+            
+            /* Make CTA section compact */
+            .rounded-3xl.p-8 { padding: 1.5rem !important; }
+            
+            /* Fix form inputs on mobile */
+            input, select, textarea { font-size: 16px !important; } /* Prevents zoom on iOS */
+            
+            /* Fix badge positioning */
+            .absolute.top-4.right-4 { top: 0.5rem; right: 0.5rem; }
+            .absolute.top-4.left-4 { top: 0.5rem; left: 0.5rem; }
+            .absolute.bottom-4.right-4 { bottom: 0.5rem; right: 0.5rem; }
+        }
+
+        @media (max-width: 360px) {
+            h1.font-marcellus.text-4xl { font-size: 1.8rem !important; }
+            .text-sm { font-size: 0.7rem !important; }
+            .gap-4 { gap: 0.5rem !important; }
+            .px-3 { padding-left: 0.6rem !important; padding-right: 0.6rem !important; }
+            
+            /* Further reduce padding */
+            .p-6 { padding: 1rem !important; }
+            
+            /* Make 2-col grids stack on very tiny screens if needed */
+            .grid-cols-2:not(.grid-cols-2\ gap-3) { grid-template-columns: 1fr !important; }
+            
+            /* Adjust key characteristics grid */
+            .grid.grid-cols-2.gap-3.mb-6 { gap: 0.5rem; }
+        }
+
+        /* guarantee that desktop stays exactly as before (tailwind already does that) */
+        .form-section-sticky {
+            background-size: cover;
+            background-attachment: fixed; /* keeps sticky feel on desktop, safe for mobile */
+        }
+        @media (max-width: 640px) {
+            .form-section-sticky {
+                background-attachment: scroll; /* better performance on mobile */
+            }
+        }
+        /* animation delays used in original */
+        .animation-delay-100 { animation-delay: 0.1s; }
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-300 { animation-delay: 0.3s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-500 { animation-delay: 0.5s; }
     </style>
 </head>
 <body class="bg-white font-manrope antialiased">
@@ -234,7 +347,7 @@
             </div>
 
             <!-- Right Column - Product Info -->
-            <div class="reveal-right h-full">
+            <div class="reveal-left h-full">
                 <div class="relative overflow-hidden p-8 h-full flex flex-col">
                    
                     <div class="relative z-10 flex flex-col h-full">
@@ -359,7 +472,7 @@
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-orange-300">
                         <h3 class="font-semibold text-gray-900 mb-2">International Standards</h3>
-                        <p class="text-gray-700">GLOBALG.A.P. - The Global Partnership for Good Agricultural Practice</p>
+                        <p class="text-gray-700">GLOBALG.A.P. - The Global Premisership for Good Agricultural Practice</p>
                     </div>
                 </div>
             </div>
@@ -404,7 +517,7 @@
             </div>
 
             <!-- Grading & Size Card -->
-            <div class="relative bg-gradient-to-br from-orange-200 to-orange-100 rounded-3xl overflow-hidden p-8 reveal-right h-full flex flex-col">
+            <div class="relative bg-gradient-to-br from-orange-200 to-orange-100 rounded-3xl overflow-hidden p-8 reveal-left h-full flex flex-col">
                
                 <div class="relative z-10 flex flex-col h-full">
                     <div class="flex items-center gap-3 mb-6">
@@ -495,7 +608,7 @@
             </div>
 
             <!-- Packing Sizes -->
-            <div class="relative bg-gradient-to-br from-orange-200 to-orange-100 rounded-3xl overflow-hidden p-8 reveal-right h-full flex flex-col">
+            <div class="relative bg-gradient-to-br from-orange-200 to-orange-100 rounded-3xl overflow-hidden p-8 reveal-left h-full flex flex-col">
             
                 <div class="relative z-10 flex flex-col h-full">
                     <div class="flex items-center gap-3 mb-6">
@@ -618,7 +731,7 @@
                         </div>
                         
                         <!-- Company -->
-                        <div class="reveal-right animation-delay-100">
+                        <div class="reveal-left animation-delay-100">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Company <span class="text-green-600">*</span>
                             </label>
@@ -641,7 +754,7 @@
                         </div>
                         
                         <!-- Phone / WhatsApp -->
-                        <div class="reveal-right animation-delay-200">
+                        <div class="reveal-left animation-delay-200">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Phone / WhatsApp <span class="text-green-600">*</span>
                             </label>
@@ -669,7 +782,7 @@
                         </div>
                         
                         <!-- Required Calibers -->
-                        <div class="reveal-right animation-delay-300">
+                        <div class="reveal-left animation-delay-300">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Required Calibers <span class="text-green-600">*</span>
                             </label>
@@ -692,7 +805,7 @@
                         </div>
                         
                         <!-- Packaging -->
-                        <div class="reveal-right animation-delay-400">
+                        <div class="reveal-left animation-delay-400">
                             <label class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                                 Packaging <span class="text-green-600">*</span>
                             </label>
@@ -744,7 +857,6 @@
 </section>
 
 
-<!-- Footer Section -->
 <footer class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
     <!-- Decorative Background Elements -->
     <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-white/5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -754,61 +866,61 @@
         <!-- Main Footer Content -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
             <!-- Company Info -->
-            <div class="space-y-3 sm:space-y-4 reveal-left">
-               <a href="index.html" class="flex items-center  focus:outline-none focus:ring-2 focus:ring-green-500 ">
-            <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1 ">
-              </a>
-                <h4 class="font-marcellus text-lg sm:text-xl text-green-300 mt-2">Serving Excellence Since 1985</h4>
-                <p class="text-emerald-100 leading-relaxed text-xs sm:text-sm">
-                    Exporter, Processor & Importer of fresh fruits and vegetables. Delivering freshness - building trust across international markets.
+            <div class="space-y-3 sm:space-y-4 text-left">
+                <a href="index.html" class="inline-flex items-center focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <img src="images/logo.png" alt="RMC Logo" class="h-16 md:h-16 w-auto bg-white rounded-full p-1">
+                </a>
+                <h4 class="font-marcellus text-lg sm:text-xl text-green-300">Why People Like us!</h4>
+                <p class="text-emerald-100 leading-relaxed text-sm max-w-xs">
+                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.
                 </p>
                 <div class="flex items-center gap-3 sm:gap-4 pt-2">
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-linkedin-in text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-linkedin-in text-white text-xs sm:text-sm"></i>
                     </a>
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-facebook-f text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-facebook-f text-white text-xs sm:text-sm"></i>
                     </a>
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-instagram text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-instagram text-white text-xs sm:text-sm"></i>
                     </a>
                     <a href="#" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-300">
-                        <i class="fab fa-x-twitter text-white text-2xs sm:text-sm"></i>
+                        <i class="fab fa-x-twitter text-white text-xs sm:text-sm"></i>
                     </a>
                 </div>
             </div>
 
             <!-- Quick Links -->
-            <div class="reveal animation-delay-100">
+            <div class="text-left">
                 <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
                 <ul class="space-y-2 sm:space-y-3">
                     <li>
-                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="index.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="about.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             About
                         </a>
                     </li>
                     <li>
-                        <a href="products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="products.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Products
                         </a>
                     </li>
                     <li>
-                        <a href="Rishad Mateen & Company Brochure.pdf"   target="_blank"  class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="Rishad Mateen & Company Brochure.pdf" target="_blank" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Brochure
                         </a>
                     </li>
                     <li>
-                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="contact.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Contact
                         </a>
                     </li>
@@ -816,73 +928,69 @@
             </div>
 
             <!-- Products -->
-            <div class="reveal animation-delay-200">
+            <div class="text-left">
                 <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
                 <ul class="space-y-2 sm:space-y-3">
-                       <li>
-                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                    <li>
+                        <a href="mango.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Mangoes
                         </a>
                     </li>
                     <li>
-                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="onions.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Onion
                         </a>
                     </li>
                     <li>
-                        <a href="oranges.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="oranges.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Orange
                         </a>
                     </li>
                     <li>
-                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-xs sm:text-sm">
-                            <i class="fas fa-chevron-right text-2xs sm:text-xs text-green-300"></i>
+                        <a href="potatos.html" class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                            <i class="fas fa-chevron-right text-xs text-green-300"></i>
                             Potato
                         </a>
                     </li>
-                 
                 </ul>
             </div>
 
             <!-- Contact Info -->
-            <div class="reveal-right animation-delay-300">
+            <div class="text-left">
                 <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Contact Us</h4>
                 <ul class="space-y-3 sm:space-y-4">
                     <li class="flex items-start gap-2 sm:gap-3">
-                        <i class="fas fa-phone text-green-300 mt-1 text-xs sm:text-sm"></i>
-                        <div class="text-emerald-100 text-xs sm:text-sm">
-                            Phone: +92-21 34322907                       </div>
-                    </li>
-                   
-                    <li class="flex items-start gap-2 sm:gap-3">
-                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-xs sm:text-sm"></i>
-                        <span class="text-emerald-100 text-xs sm:text-sm">Plot no: 1-4B Ground floor P.E.CH.S block 6 Karachi, Pakistan</span>
+                        <i class="fas fa-phone text-green-300 mt-1 text-sm flex-shrink-0"></i>
+                        <span class="text-emerald-100 text-sm">Phone: +92-21 34322907</span>
                     </li>
                     <li class="flex items-start gap-2 sm:gap-3">
-                        <i class="fas fa-envelope text-green-300 mt-1 text-xs sm:text-sm"></i>
-                        <span class="text-emerald-100 text-xs sm:text-sm">info@rishadmateen.com</span>
+                        <i class="fas fa-map-marker-alt text-green-300 mt-1 text-sm flex-shrink-0"></i>
+                        <span class="text-emerald-100 text-sm">Plot no: 1-4B Ground floor P.E.C.H.S block 6 Karachi, Pakistan</span>
                     </li>
-                  
+                    <li class="flex items-start gap-2 sm:gap-3">
+                        <i class="fas fa-envelope text-green-300 mt-1 text-sm flex-shrink-0"></i>
+                        <span class="text-emerald-100 text-sm break-all">info@rishadmateen.com</span>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <!-- Bottom Bar -->
-        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8 reveal">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+        <div class="border-t border-white/20 pt-6 sm:pt-8 mt-6 sm:mt-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <!-- Copyright -->
-                <p class="text-emerald-100 text-2xs sm:text-xs text-center md:text-left">
-                   © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
+                <p class="text-emerald-100 text-sm text-left">
+                    © 1985 - 2026 Rishad Mateen & Company. All rights reserved.
                 </p>
                 
                 <!-- Footer Links -->
-                <div class="flex items-center gap-4 sm:gap-6">
-                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Privacy Policy</a>
-                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Terms of Service</a>
-                    <a href="#" class="text-emerald-100 hover:text-white text-2xs sm:text-xs transition-colors duration-300">Cookie Policy</a>
+                <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+                    <a href="#" class="text-emerald-100 hover:text-white text-xs transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-xs transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-emerald-100 hover:text-white text-xs transition-colors duration-300">Cookie Policy</a>
                 </div>
             </div>
         </div>
