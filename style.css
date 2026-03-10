@@ -682,3 +682,80 @@ a[href="#about"]:focus {
     will-change: transform;
 }
 
+/* Add to your CSS */
+#sliderTrack {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    will-change: transform;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+#sliderContainer {
+    overflow: hidden !important;
+    cursor: default;
+    position: relative;
+}
+
+#sliderContainer:hover {
+    cursor: grab;
+}
+
+#sliderContainer.dragging {
+    cursor: grabbing !important;
+}
+
+#sliderContainer.dragging #sliderTrack {
+    transition: none !important;
+}
+
+.slider-item {
+    flex-shrink: 0;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-drag: element;
+}
+
+/* Navigation button styles */
+#sliderContainer {
+    position: relative;
+}
+
+#sliderContainer button {
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#sliderContainer button:hover {
+    background: white !important;
+    transform: translateY(-50%) scale(1.1);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+#sliderContainer button i {
+    transition: transform 0.2s ease;
+}
+
+#sliderContainer button:hover i {
+    transform: scale(1.1);
+}
+
+/* Hide buttons on mobile by default, show on hover/touch */
+@media (max-width: 768px) {
+    #sliderContainer button {
+        opacity: 0.7 !important;
+        width: 36px;
+        height: 36px;
+    }
+    
+    #sliderContainer button i {
+        font-size: 14px;
+    }
+}
+
+/* Button positioning */
+#sliderContainer .group\/button:hover button {
+    opacity: 1;
+}

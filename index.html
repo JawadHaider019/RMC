@@ -529,7 +529,9 @@
     </div>
 </section>
 
+
 <section class="relative py-8 sm:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden" id="circle-slide">
+    
     <div class="max-w-7xl mx-auto relative z-10">
         <!-- Header - Top on Mobile, Left on Desktop -->
         <div class="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6 mb-4 lg:mb-0">
@@ -544,13 +546,13 @@
 
             <!-- Slider Container - Takes remaining width -->
             <div class="lg:w-4/5 xl:w-5/6 relative overflow-hidden" id="sliderContainer">
-                <!-- Slider Wrapper -->
-                <div class="overflow-hidden pt-5" id="sliderWrapper">
+                <!-- Slider Wrapper - REMOVED overflow-hidden class -->
+                <div class="pt-5" id="sliderWrapper">
                     <div class="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6" id="sliderTrack" style="transform: translateX(0);">
                         <!-- First Set of Items -->
                         
                         <!-- Slide 1: Mangoes -->
-                        <a href="mango.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="mango.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 blur-md opacity-70"></div>
@@ -565,7 +567,7 @@
                         </a>
 
                         <!-- Slide 2: Oranges -->
-                        <a href="oranges.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="oranges.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-red-500 blur-md opacity-70"></div>
@@ -579,53 +581,8 @@
                             </div>
                         </a>
 
-                        <!-- Slide 3: Onions -->
-                        <a href="onions.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
-                            <div class="relative flex flex-col items-center">
-                                <div class="relative mb-2">
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 blur-md opacity-70"></div>
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 blur-sm opacity-50"></div>
-                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-purple-400/50">
-                                        <img src="images/onion.jpg" alt="Onions" class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Onions</h3>
-                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Red</p>
-                            </div>
-                        </a>
-
-                        <!-- Slide 4: Potatoes -->
-                        <a href="potatos.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
-                            <div class="relative flex flex-col items-center">
-                                <div class="relative mb-2">
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-600 to-yellow-700 blur-md opacity-70"></div>
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-700 to-yellow-800 blur-sm opacity-50"></div>
-                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-amber-600/50">
-                                        <img src="images/potato.jpg" alt="Potatoes" class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Potatoes</h3>
-                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Premium</p>
-                            </div>
-                        </a>
-
-                        <!-- Slide 5: Chillies -->
-                        <a href="chilli.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
-                            <div class="relative flex flex-col items-center">
-                                <div class="relative mb-2">
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-red-700 blur-md opacity-70"></div>
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-800 blur-sm opacity-50"></div>
-                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-red-500/50">
-                                        <img src="images/chilli.jpg" alt="Chillies" class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Chillies</h3>
-                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Green</p>
-                            </div>
-                        </a>
-
                         <!-- Slide 6: Apples -->
-                        <a href="apples.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="apples.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-400 to-red-600 blur-md opacity-70"></div>
@@ -640,7 +597,7 @@
                         </a>
 
                         <!-- Slide 7: Bananas -->
-                        <a href="banana.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="banana.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 blur-md opacity-70"></div>
@@ -654,8 +611,23 @@
                             </div>
                         </a>
 
+                        <!-- Slide 11: Apricots -->
+                        <a href="apricots.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-orange-400/50">
+                                        <img src="images/apricot.jpg" alt="Apricots" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Apricots</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Reddish</p>
+                            </div>
+                        </a>
+
                         <!-- Slide 8: Guava -->
-                        <a href="guava.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="guava.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-green-600 blur-md opacity-70"></div>
@@ -669,8 +641,53 @@
                             </div>
                         </a>
 
+                        <!-- Slide 3: Onions -->
+                        <a href="onions.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-purple-400/50">
+                                        <img src="images/onion.jpg" alt="Onions" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Onions</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Red</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 4: Potatoes -->
+                        <a href="potatos.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-600 to-yellow-700 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-700 to-yellow-800 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-amber-600/50">
+                                        <img src="images/potato.jpg" alt="Potatoes" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Potatoes</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Premium</p>
+                            </div>
+                        </a>
+
+                        <!-- Slide 5: Chillies -->
+                        <a href="chilli.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
+                            <div class="relative flex flex-col items-center">
+                                <div class="relative mb-2">
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-red-700 blur-md opacity-70"></div>
+                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-800 blur-sm opacity-50"></div>
+                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-red-500/50">
+                                        <img src="images/chilli.jpg" alt="Chillies" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Chillies</h3>
+                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Green</p>
+                            </div>
+                        </a>
+
                         <!-- Slide 9: Tomatoes -->
-                        <a href="tomatoes.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="tomatoes.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-400 to-red-600 blur-md opacity-70"></div>
@@ -685,7 +702,7 @@
                         </a>
 
                         <!-- Slide 10: Spinach -->
-                        <a href="spinach.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="spinach.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-green-500 to-green-700 blur-md opacity-70"></div>
@@ -699,23 +716,8 @@
                             </div>
                         </a>
 
-                        <!-- Slide 11: Apricots -->
-                        <a href="apricots.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
-                            <div class="relative flex flex-col items-center">
-                                <div class="relative mb-2">
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 blur-md opacity-70"></div>
-                                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 blur-sm opacity-50"></div>
-                                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden ring-2 ring-orange-400/50">
-                                        <img src="images/apricot.jpg" alt="Apricots" class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                                <h3 class="font-marcellus text-xs sm:text-sm md:text-base font-bold text-gray-900">Apricots</h3>
-                                <p class="text-[10px] sm:text-xs md:text-sm text-gray-500">Reddish</p>
-                            </div>
-                        </a>
-
                         <!-- Slide 12: Carrots -->
-                        <a href="carrots.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="carrots.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 blur-md opacity-70"></div>
@@ -730,7 +732,7 @@
                         </a>
 
                         <!-- Duplicate first few items for seamless loop -->
-                        <a href="mango.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="mango.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 blur-md opacity-70"></div>
@@ -744,7 +746,7 @@
                             </div>
                         </a>
                         
-                        <a href="oranges.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="oranges.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 to-red-500 blur-md opacity-70"></div>
@@ -758,7 +760,7 @@
                             </div>
                         </a>
                         
-                        <a href="onions.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="onions.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 blur-md opacity-70"></div>
@@ -772,7 +774,7 @@
                             </div>
                         </a>
                         
-                        <a href="potatos.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item" draggable="false">
+                        <a href="potatos.html" class="flex-none sm:w-[150px] w-[100px] no-underline slider-item">
                             <div class="relative flex flex-col items-center">
                                 <div class="relative mb-2">
                                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-amber-600 to-yellow-700 blur-md opacity-70"></div>
@@ -791,6 +793,8 @@
         </div>
     </div>
 </section>
+
+
 
 <!-- Premium About Section -->
     <section class="relative py-10  px-4 sm:px-6 lg:px-8 bg-white overflow-hidden" id="about">
@@ -987,6 +991,36 @@
                     <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
                 </div>
             </a>
+       <!-- Product 6: Apples -->
+            <a href="apples.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
+                    <img src="images/apple.jpg" 
+                         alt="Fresh apples - Premium export quality apples" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                </div>
+
+                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+                    <div class="flex items-center justify-between mb-1 sm:mb-2">
+                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Apples</h3>
+                    </div>
+                    <!-- Rating with stars -->
+                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star text-2xs sm:text-xs"></i>
+                            <i class="fas fa-star-half-alt text-2xs sm:text-xs"></i>
+                        </div>
+                        <span class="text-2xs sm:text-xs text-gray-500">(190+ export shipments)</span>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium export apples with crisp texture, perfect sweetness, and excellent shelf life. Multiple varieties available, size graded and carefully packed for international shipping.</p>
+                    
+                    <!-- Decorative line -->
+                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
+                </div>
+            </a>
 
             <!-- Product 3: Onions -->
             <a href="onions.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
@@ -1081,36 +1115,6 @@
                 </div>
             </a>
 
-            <!-- Product 6: Apples -->
-            <a href="apples.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/apple.jpg" 
-                         alt="Fresh apples - Premium export quality apples" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Apples</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-2xs sm:text-xs"></i>
-                            <i class="fas fa-star text-2xs sm:text-xs"></i>
-                            <i class="fas fa-star text-2xs sm:text-xs"></i>
-                            <i class="fas fa-star text-2xs sm:text-xs"></i>
-                            <i class="fas fa-star-half-alt text-2xs sm:text-xs"></i>
-                        </div>
-                        <span class="text-2xs sm:text-xs text-gray-500">(190+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium export apples with crisp texture, perfect sweetness, and excellent shelf life. Multiple varieties available, size graded and carefully packed for international shipping.</p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
 
            
         </div>
@@ -1127,6 +1131,8 @@
         </div>
     </div>
 </section>
+
+
 <section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
     <!-- Decorative background elements (optional) -->
     <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>

@@ -497,174 +497,339 @@ const initHeroSlider = () => {
 
 // Initialize hero slider
 initHeroSlider();
-    // ===== INFINITE SLIDER WITH OPTIMIZED PERFORMANCE =====
-    const initInfiniteSlider = () => {
-        if (!DOM.sliderContainer || !DOM.sliderWrapper || !DOM.sliderTrack) return;
+// ===== DRAGGABLE SLIDER WITH CLICKABLE LINKS =====
 
-        let isDragging = false;
-        let isHovering = false;
-        let startX = 0;
-        let startTransform = 0;
-        let currentTransform = 0;
-        let dragVelocity = 0;
-        let lastX = 0;
-        let lastTime = 0;
-        let animationFrame = null;
 
-        const trackWidth = DOM.sliderTrack.scrollWidth / 2;
 
-        const getTransformX = () => {
-            const style = window.getComputedStyle(DOM.sliderTrack);
-            const matrix = new DOMMatrix(style.transform);
-            return matrix.m41;
-        };
+const initInfiniteSlider = () => {
+    if (!DOM.sliderContainer || !DOM.sliderWrapper || !DOM.sliderTrack) return;
 
-        const setTransformX = (x) => {
-            // Wrap around for infinite effect
-            if (x < -trackWidth) {
-                x += trackWidth;
-            } else if (x > 0) {
-                x -= trackWidth;
-            }
-            
-            DOM.sliderTrack.style.transform = `translateX(${x}px)`;
-            currentTransform = x;
-        };
+    let isDragging = false;
+    let startX = 0;
+    let startTransform = 0;
+    let currentTransform = 0;
+    let dragDistance = 0;
+    let clickedLink = null;
+    let animationFrame = null;
+    let autoSlideInterval = null;
+    
+    // Clone items for infinite loop
+    const sliderTrack = DOM.sliderTrack;
+    const originalItems = Array.from(document.querySelectorAll('.slider-item'));
+    
+    // Double the items for seamless loop
+    originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        sliderTrack.appendChild(clone);
+    });
 
-        // Auto-slide animation
-        const startAutoSlide = () => {
-            let lastTimestamp = 0;
-            const speed = 0.03;
-
-            const slide = (timestamp) => {
-                if (!isHovering && !isDragging) {
-                    if (lastTimestamp) {
-                        const deltaTime = timestamp - lastTimestamp;
-                        currentTransform -= speed * deltaTime;
-                        
-                        if (currentTransform <= -trackWidth) {
-                            currentTransform += trackWidth;
-                        }
-                        
-                        DOM.sliderTrack.style.transform = `translateX(${currentTransform}px)`;
-                    }
-                    lastTimestamp = timestamp;
-                } else {
-                    lastTimestamp = 0;
-                }
-                
-                animationFrame = raf(slide);
-            };
-
-            animationFrame = raf(slide);
-        };
-
-        // Event listeners
-        DOM.sliderContainer.addEventListener('mouseenter', () => {
-            isHovering = true;
-            DOM.sliderContainer.style.cursor = 'grab';
-        });
-
-        DOM.sliderContainer.addEventListener('mouseleave', () => {
-            isHovering = false;
-            DOM.sliderContainer.style.cursor = 'default';
-        });
-
-        // Mouse events
-        DOM.sliderWrapper.addEventListener('mousedown', (e) => {
-            if (!isHovering) return;
-            
-            isDragging = true;
-            startX = e.pageX;
-            startTransform = getTransformX();
-            lastX = e.pageX;
-            lastTime = Date.now();
-            
-            DOM.sliderContainer.classList.add('dragging');
-            DOM.sliderContainer.style.cursor = 'grabbing';
-            e.preventDefault();
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            
-            e.preventDefault();
-            
-            const currentX = e.pageX;
-            const deltaX = currentX - startX;
-            const currentTime = Date.now();
-            const timeDelta = currentTime - lastTime;
-            
-            if (timeDelta > 0) {
-                dragVelocity = (currentX - lastX) / timeDelta;
-            }
-            
-            lastX = currentX;
-            lastTime = currentTime;
-            
-            setTransformX(startTransform + deltaX);
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                DOM.sliderContainer.classList.remove('dragging');
-                DOM.sliderContainer.style.cursor = isHovering ? 'grab' : 'default';
-                dragVelocity = 0;
-            }
-        });
-
-        // Touch events
-        DOM.sliderContainer.addEventListener('touchstart', (e) => {
-            isHovering = true;
-            isDragging = true;
-            startX = e.touches[0].pageX;
-            startTransform = getTransformX();
-            lastX = e.touches[0].pageX;
-            lastTime = Date.now();
-            
-            DOM.sliderContainer.classList.add('dragging');
-        }, { passive: false });
-
-        DOM.sliderContainer.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            const currentX = e.touches[0].pageX;
-            const deltaX = currentX - startX;
-            const currentTime = Date.now();
-            const timeDelta = currentTime - lastTime;
-            
-            if (timeDelta > 0) {
-                dragVelocity = (currentX - lastX) / timeDelta;
-            }
-            
-            lastX = currentX;
-            lastTime = currentTime;
-            
-            setTransformX(startTransform + deltaX);
-        }, { passive: false });
-
-        DOM.sliderContainer.addEventListener('touchend', () => {
-            isDragging = false;
-            isHovering = false;
-            DOM.sliderContainer.classList.remove('dragging');
-            dragVelocity = 0;
-        });
-
-        // Prevent drag on images
-        document.querySelectorAll('.slider-item').forEach(item => {
-            item.addEventListener('dragstart', (e) => e.preventDefault());
-        });
-
-        startAutoSlide();
-
-        // Cleanup
-        window.addEventListener('beforeunload', () => {
-            if (animationFrame) caf(animationFrame);
-        });
+    // Calculate dimensions
+    const getTrackWidth = () => {
+        return sliderTrack.scrollWidth / 2; // Half because we doubled
     };
 
+    const getContainerWidth = () => {
+        return DOM.sliderContainer.offsetWidth;
+    };
+
+    const getMaxTransform = () => {
+        return Math.max(0, getTrackWidth() - getContainerWidth());
+    };
+
+    const getTransformX = () => {
+        const style = window.getComputedStyle(sliderTrack);
+        const transform = style.transform;
+        if (transform === 'none') return 0;
+        
+        const matrix = transform.match(/matrix.*\((.+)\)/);
+        if (matrix) {
+            const values = matrix[1].split(', ');
+            return parseFloat(values[4]) || 0;
+        }
+        return 0;
+    };
+
+    const setTransformX = (x, animate = false) => {
+        const maxTransform = getMaxTransform();
+        
+        // Infinite loop logic - smooth reset when reaching the end
+        if (x <= -maxTransform) {
+            // Seamless jump back to start
+            x = 0;
+            sliderTrack.style.transition = 'none';
+            sliderTrack.style.transform = `translateX(${x}px)`;
+            currentTransform = x;
+            // Force reflow
+            sliderTrack.offsetHeight;
+        } else {
+            sliderTrack.style.transform = `translateX(${x}px)`;
+            currentTransform = x;
+        }
+        
+        if (!animate) {
+            sliderTrack.style.transition = 'none';
+        } else {
+            sliderTrack.style.transition = 'transform 0.3s ease';
+        }
+    };
+
+    // Auto slide function
+    const startAutoSlide = () => {
+        if (autoSlideInterval) clearInterval(autoSlideInterval);
+        
+        autoSlideInterval = setInterval(() => {
+            if (!isDragging && !DOM.sliderContainer.matches(':hover')) {
+                const step = 1; // Pixels per interval
+                const newTransform = currentTransform - step;
+                setTransformX(newTransform);
+            }
+        }, 20); // Smooth 50fps animation
+    };
+
+    // Stop auto slide
+    const stopAutoSlide = () => {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    };
+
+    // Create navigation buttons
+    const createNavButtons = () => {
+        // Left button
+        const leftBtn = document.createElement('button');
+        leftBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl opacity-0 group-hover:opacity-100 focus:outline-none';
+        leftBtn.setAttribute('aria-label', 'Previous slide');
+        leftBtn.innerHTML = '<i class="fas fa-chevron-left text-lg"></i>';
+        
+        // Right button
+        const rightBtn = document.createElement('button');
+        rightBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl opacity-0 group-hover:opacity-100 focus:outline-none';
+        rightBtn.setAttribute('aria-label', 'Next slide');
+        rightBtn.innerHTML = '<i class="fas fa-chevron-right text-lg"></i>';
+        
+        // Add group class to container for hover effects
+        DOM.sliderContainer.classList.add('group');
+        
+        // Add buttons to container
+        DOM.sliderContainer.appendChild(leftBtn);
+        DOM.sliderContainer.appendChild(rightBtn);
+        
+        // Button click handlers
+        leftBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Stop auto slide temporarily
+            stopAutoSlide();
+            
+            // Calculate step (move by 4 items or container width)
+            const itemWidth = originalItems[0]?.offsetWidth || 150;
+            const gap = parseInt(window.getComputedStyle(sliderTrack).gap) || 16;
+            const step = (itemWidth + gap) * 3; // Move by 3 items
+            
+            // Move right (positive because transform is negative)
+            const newTransform = Math.min(0, currentTransform + step);
+            setTransformX(newTransform, true);
+            
+            // Resume auto slide after 3 seconds
+            setTimeout(() => {
+                if (!isDragging && !DOM.sliderContainer.matches(':hover')) {
+                    startAutoSlide();
+                }
+            }, 3000);
+        });
+        
+        rightBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Stop auto slide temporarily
+            stopAutoSlide();
+            
+            // Calculate step
+            const itemWidth = originalItems[0]?.offsetWidth || 150;
+            const gap = parseInt(window.getComputedStyle(sliderTrack).gap) || 16;
+            const step = (itemWidth + gap) * 3; // Move by 3 items
+            
+            // Move left
+            const newTransform = currentTransform - step;
+            setTransformX(newTransform, true);
+            
+            // Resume auto slide after 3 seconds
+            setTimeout(() => {
+                if (!isDragging && !DOM.sliderContainer.matches(':hover')) {
+                    startAutoSlide();
+                }
+            }, 3000);
+        });
+        
+        return { leftBtn, rightBtn };
+    };
+
+    // Create buttons
+    const { leftBtn, rightBtn } = createNavButtons();
+
+    // Mouse down - start dragging
+    DOM.sliderWrapper.addEventListener('mousedown', (e) => {
+        // Only left click and not on buttons
+        if (e.button !== 0 || e.target.closest('button')) return;
+        
+        console.log('Drag started');
+        
+        isDragging = true;
+        startX = e.pageX;
+        startTransform = getTransformX();
+        dragDistance = 0;
+        clickedLink = e.target.closest('a');
+        
+        // Pause auto slide while dragging
+        stopAutoSlide();
+        
+        DOM.sliderContainer.classList.add('dragging');
+        DOM.sliderContainer.style.cursor = 'grabbing';
+        sliderTrack.style.transition = 'none';
+        
+        e.preventDefault();
+    });
+
+    // Mouse move - handle dragging
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        
+        const currentX = e.pageX;
+        const deltaX = currentX - startX;
+        dragDistance = Math.abs(deltaX);
+        
+        setTransformX(startTransform + deltaX);
+    });
+
+    // Mouse up - handle end of drag
+    window.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        
+        console.log('Drag ended', dragDistance);
+        
+        isDragging = false;
+        DOM.sliderContainer.classList.remove('dragging');
+        DOM.sliderContainer.style.cursor = 'grab';
+        
+        // If this was a click (not a drag) and we have a clicked link
+        if (dragDistance < 5 && clickedLink && clickedLink.href) {
+            console.log('Navigating to:', clickedLink.href);
+            window.location.href = clickedLink.href;
+        }
+        
+        // Resume auto slide
+        startAutoSlide();
+        
+        clickedLink = null;
+    });
+
+    // Mouse leave - cancel drag
+    DOM.sliderWrapper.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            DOM.sliderContainer.classList.remove('dragging');
+            DOM.sliderContainer.style.cursor = 'grab';
+            startAutoSlide(); // Resume auto slide
+            clickedLink = null;
+        }
+    });
+
+    // Hover events - pause auto slide on hover and show buttons
+    DOM.sliderContainer.addEventListener('mouseenter', () => {
+        DOM.sliderContainer.style.cursor = 'grab';
+        stopAutoSlide(); // Pause when hovering
+        
+        // Show buttons with animation
+        leftBtn.style.opacity = '1';
+        rightBtn.style.opacity = '1';
+    });
+
+    DOM.sliderContainer.addEventListener('mouseleave', () => {
+        DOM.sliderContainer.style.cursor = 'default';
+        
+        // Hide buttons
+        leftBtn.style.opacity = '1';
+        rightBtn.style.opacity = '1';
+        
+        if (!isDragging) {
+            startAutoSlide(); // Resume when not hovering
+        }
+    });
+
+    // Touch events for mobile
+    DOM.sliderWrapper.addEventListener('touchstart', (e) => {
+        // Don't start drag if touching buttons
+        if (e.target.closest('button')) return;
+        
+        isDragging = true;
+        startX = e.touches[0].pageX;
+        startTransform = getTransformX();
+        dragDistance = 0;
+        
+        // Pause auto slide
+        stopAutoSlide();
+        
+        // Check what was touched
+        const touch = e.touches[0];
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+        clickedLink = element?.closest('a');
+        
+        DOM.sliderContainer.classList.add('dragging');
+        sliderTrack.style.transition = 'none';
+        
+        e.preventDefault();
+    }, { passive: false });
+
+    DOM.sliderWrapper.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        
+        const currentX = e.touches[0].pageX;
+        const deltaX = currentX - startX;
+        dragDistance = Math.abs(deltaX);
+        
+        setTransformX(startTransform + deltaX);
+    }, { passive: false });
+
+    DOM.sliderWrapper.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        DOM.sliderContainer.classList.remove('dragging');
+        
+        // If this was a tap (not a drag) and we have a clicked link
+        if (dragDistance < 5 && clickedLink) {
+            e.preventDefault();
+            window.location.href = clickedLink.href;
+        }
+        
+        // Resume auto slide
+        startAutoSlide();
+        
+        clickedLink = null;
+    });
+
+    // Prevent default drag on images
+    document.querySelectorAll('.slider-item img').forEach(img => {
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+
+    // Start auto slide
+    startAutoSlide();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (autoSlideInterval) clearInterval(autoSlideInterval);
+    });
+
+    console.log('Infinite slider initialized with auto slide and navigation buttons');
+};
     // ===== GSAP ANIMATIONS (if available) =====
     const initGSAP = () => {
         if (typeof gsap === 'undefined') return;
@@ -890,3 +1055,58 @@ window.changeImage = (src) => {
         setTimeout(() => mainImage.style.opacity = '1', 100);
     }
 };
+
+// ===== TABBED MAP FUNCTIONALITY =====
+const initMapTabs = () => {
+    const tradeTab = document.getElementById('tradeTab');
+    const produceTab = document.getElementById('produceTab');
+    const tradeList = document.getElementById('tradeList');
+    const produceList = document.getElementById('produceList');
+    const tradeLocations = document.getElementById('tradeLocations');
+    const produceLocations = document.getElementById('produceLocations');
+    
+    if (!tradeTab || !produceTab) return;
+    
+    // Function to switch tabs
+    const switchTab = (activeTab) => {
+        // Remove active classes from all tabs
+        tradeTab.classList.remove('bg-white', 'text-gray-900', 'shadow-md');
+        produceTab.classList.remove('bg-white', 'text-gray-900', 'shadow-md');
+        
+        // Add default classes
+        tradeTab.classList.add('text-gray-500', 'hover:text-gray-900');
+        produceTab.classList.add('text-gray-500', 'hover:text-gray-900');
+        
+        if (activeTab === 'trade') {
+            // Activate trade tab
+            tradeTab.classList.remove('text-gray-500', 'hover:text-gray-900');
+            tradeTab.classList.add('bg-white', 'text-gray-900', 'shadow-md');
+            
+            // Show trade content
+            tradeList.classList.remove('hidden');
+            produceList.classList.add('hidden');
+            tradeLocations.classList.remove('hidden');
+            produceLocations.classList.add('hidden');
+        } else {
+            // Activate produce tab
+            produceTab.classList.remove('text-gray-500', 'hover:text-gray-900');
+            produceTab.classList.add('bg-white', 'text-gray-900', 'shadow-md');
+            
+            // Show produce content
+            tradeList.classList.add('hidden');
+            produceList.classList.remove('hidden');
+            tradeLocations.classList.add('hidden');
+            produceLocations.classList.remove('hidden');
+        }
+    };
+    
+    // Add click handlers
+    tradeTab.addEventListener('click', () => switchTab('trade'));
+    produceTab.addEventListener('click', () => switchTab('produce'));
+    
+    // Initialize with trade tab active
+    switchTab('trade');
+};
+
+// Add this line in your init() function:
+initMapTabs();
