@@ -529,7 +529,9 @@ a[href="#about"]:focus {
 #searchContainer {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
+#searchToggle{
+    display: none;
+}
 #searchContainer.show {
     transform: translateY(0) !important;
     opacity: 1 !important;
