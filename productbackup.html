@@ -210,22 +210,15 @@
         /* ===== PRODUCT SLIDER STYLES ===== */
         .product-slider-container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            padding: 2rem 1rem;
         }
 
         .product-slider {
             display: flex;
             gap: 0.75rem;
             min-height: 550px;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
         }
 
         .product-slide {
@@ -451,12 +444,6 @@
         }
 
         /* Mobile styles */
-        @media (max-width: 1024px) {
-            .product-slider-container {
-                padding: 2rem 1rem;
-            }
-        }
-
         @media (max-width: 767px) {
             .product-slider {
                 flex-direction: column;
@@ -473,7 +460,6 @@
 
             .product-slide.active {
                 height: 500px;
-                flex: none !important;
             }
 
             .slide-rotate-name {
@@ -517,7 +503,6 @@
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
-            width: 100%;
         }
 
         .section-badge {
@@ -671,7 +656,7 @@
 
 <body class="bg-white font-manrope antialiased overflow-x-hidden">
 
-     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
         <!-- Main navbar container - full width -->
         <div class="flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8 transition-all duration-300"
             id="navContainer">
@@ -779,7 +764,8 @@
             </div>
         </div>
     </nav>
-       <!-- Hero Section with Animation -->
+
+    <!-- Hero Section with Animation -->
     <section class="relative w-full h-[70vh] overflow-hidden bg-black">
         <div class="absolute inset-0 w-full h-full">
             <img src="images/food.png" alt="Fresh Products"
@@ -799,17 +785,17 @@
             </h1>
         </div>
     </section>
-    
+
     <!-- Fruit Slider Section -->
     <section class="product-slider-container">
         <div class="section-header reveal-scale">
             <div class="section-badge">
                 <i class="fas fa-apple-alt"></i>
-                <span>Premium products</span>
+                <span>fruit slides</span>
             </div>
             <h2 class="section-title">
-               Best Selling<br>
-                <span>Fresh Products</span>
+                Premium Quality<br>
+                <span>Fresh Fruits</span>
             </h2>
         </div>
 
@@ -817,13 +803,13 @@
     </section>
 
     <!-- Recipe Section with Enhanced Animations -->
-    <section class="py-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-green-300 to-green-600">
+    <section class="py-10 px-0 overflow-hidden bg-gradient-to-br from-green-300 to-green-600">
         <div class="max-w-7xl mx-auto">
             <div id="recipe-slider"
                 class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/20 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 <div class="flex flex-col lg:flex-row">
                     <!-- Left side - Recipe Content -->
-                    <div class="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center recipe-content"
+                    <div class="w-full md:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center recipe-content"
                         id="recipe-content">
                         <div
                             class="inline-flex items-center gap-2 bg-green-500 px-4 py-2 rounded-full w-fit mb-4 animate-pulse-slow">
@@ -867,7 +853,7 @@
                     </div>
 
                     <!-- Right side - Preparation Image -->
-                    <div class="w-full lg:w-1/2 h-[300px] lg:h-[600px] relative overflow-hidden">
+                    <div class="w-full md:w-1/2 h-[300px] md:h-[600px] relative overflow-hidden">
                         <div class="recipe-image-wrapper">
                             <img id="recipe-image" class="recipe-image active" src="images/fruiticecream.jpg"
                                 alt="Making fruit ice cream">
@@ -894,297 +880,24 @@
         </div>
     </section>
 
-   <!-- Premium Products Section -->
-<section class="relative py-10 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
-    <!-- Decorative Background Elements -->
-    <div class="absolute top-0 right-0 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-green-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
-    <div class="absolute bottom-0 left-0 w-56 sm:w-72 md:w-80 h-56 sm:h-72 md:h-80 bg-emerald-50 rounded-full filter blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2"></div>
-    
-    <div class="max-w-7xl mx-auto relative z-10">
-        <!-- Section Header -->
-        <div class="text-center mb-12 sm:mb-16 md:mb-20 reveal">
-            <div class="inline-flex items-center gap-2 bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-6">
-                <i class="fas fa-boxes text-green-600 text-xs sm:text-sm"></i>
-                <span class="text-green-600 font-semibold text-xs sm:text-sm tracking-[0.3em] uppercase">Premium Selection</span>
+    <!-- Vegetable Slider Section -->
+    <section class="product-slider-container">
+        <div class="section-header reveal-scale">
+            <div class="section-badge">
+                <i class="fas fa-leaf"></i>
+                <span>vegetable slides</span>
             </div>
-            <h2 class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">Farm Fresh<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Premium Produce</span></h2>
-            <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
-                Exporting the finest fresh fruits and vegetables to global markets. Certified organic, premium grade produce for international buyers.
-            </p>
-            <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8"></div>
+            <h2 class="section-title">
+                Premium Quality<br>
+                <span>Fresh Vegetables</span>
+            </h2>
         </div>
 
-        <!-- Products Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <a href="banana.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
-                <!-- Image Container with hover effect -->
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/bananas.jpg" 
-                         alt="Premium fresh Bananas - Sweet and juicy export quality fruit" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    
-                    <!-- Gradient overlay on image -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <!-- Content -->
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Bananas</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(600+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Sweet ripened bananas, rich in potassium. </p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-
-       
-            <a href="guava.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/guava.jpg" 
-                         alt="Fresh guavas - Premium guavas fruit for export" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Guavas</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star-half-alt text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(350+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Crimson sweet guavas, hydrating and delicious.</p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-     
- 
-            <a href="apples.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/apple.jpg" 
-                         alt="Premium red Apples - Fresh apples for international export" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Apples</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(400+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Crisp, fresh apples picked at peak ripeness</p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-
-            
-            <a href="apricot.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/apricot.jpg" 
-                         alt="Export quality apricots - Fresh apricots for global markets" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Apricots</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star-half-alt text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(450+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium quality apricots, organically grown.</p>
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-
-                <a href="tomatoes.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/tomato.jpg" 
-                         alt="Export quality tomatoes - Fresh tomatoes for global markets" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Tomatoes</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star-half-alt text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(450+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Vine-ripened tomatoes, rich in flavor.</p>
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-
-          <a href="chilli.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-100">
-                <!-- Image Container with hover effect -->
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/chilli.jpg" 
-                         alt="Premium fresh Chillies - Sweet and juicy export quality fruit" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    
-                    <!-- Gradient overlay on image -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <!-- Content -->
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Chillies</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(600+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Premium hot chillies, organic</p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-
-       
-            <a href="spinach.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-200">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/spinach.jpg" 
-                         alt="Fresh Spinach - Premium Spinach for export" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Spinach</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star-half-alt text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(350+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Fresh spinach leaves, nutrient-rich.</p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-     
- 
-            <a href="carrot.html" class="group relative bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden reveal-scale animation-delay-300">
-                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden m-2 sm:m-3 rounded-xl sm:rounded-2xl">
-                    <img src="images/carrots.jpg" 
-                         alt="Premium Carrots - Fresh Carrots for international export" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
-                    <div class="flex items-center justify-between mb-1 sm:mb-2">
-                        <h3 class="font-marcellus text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Carrots</h3>
-                    </div>
-                    <!-- Rating with stars -->
-                    <div class="flex items-center gap-1 mb-2 sm:mb-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                            <i class="fas fa-star text-xs"></i>
-                        </div>
-                        <span class="text-xs text-gray-500">(400+ export shipments)</span>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-4 sm:mb-6 text-xs sm:text-sm">Sweet crunchy carrots, rich in beta-carotene.</p>
-                    
-                    <!-- Decorative line -->
-                    <div class="w-8 sm:w-10 md:w-12 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full group-hover:w-12 sm:group-hover:w-16 md:group-hover:w-20 transition-all duration-300"></div>
-                </div>
-            </a>
-        </div>
-        
-        <!-- View All Products Button -->
-        <div class="text-center mt-10 sm:mt-12 md:mt-16">
-            <a href="contact.html" class="group relative inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full text-sm sm:text-base text-white font-semibold overflow-hidden shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                <span class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                <span class="relative flex items-center gap-2">
-                   Contact Us
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
-                </span>
-            </a>
-        </div>
-    </div>
-</section>
-
-
+        <div id="veg-slider" class="product-slider"></div>
+    </section>
 
     <!-- Vegetable Recipe Section -->
-    <section class="py-10 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-green-300 to-green-600">
+    <section class="py-10 px-0 overflow-hidden bg-gradient-to-br from-green-300 to-green-600">
         <div class="max-w-7xl mx-auto">
             <div id="veg-recipe-slider"
                 class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/20 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
@@ -1253,12 +966,17 @@
         </div>
     </section>
 
-    
- 
+    <!-- Form Section with Sticky Background (same as before) -->
     <section class="relative py-10 px-4 sm:px-6 lg:px-8 overflow-hidden form-section-sticky"
         style="background-image: url('images/contact.jpg'); background-position: center;">
 
-     
+        <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-white/20"></div>
+
+        <div
+            class="absolute top-0 left-0 w-64 sm:w-80 h-64 sm:h-80 bg-green-50/80 rounded-full filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none animate-float">
+        </div>
+        <div class="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-50/80 rounded-full filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2 z-5 pointer-events-none animate-float"
+            style="animation-delay: 1s;"></div>
 
         <div class="max-w-7xl mx-auto relative z-10">
             <!-- Section Header -->
@@ -1270,7 +988,7 @@
                         Touch</span>
                 </div>
                 <h2
-                    class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-100 mb-4 px-4">
+                    class="font-marcellus text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 px-4">
                     Request Your Quote</h2>
                 <div
                     class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full mt-6 sm:mt-8">
@@ -1421,7 +1139,7 @@
             </div>
         </div>
     </section>
-
+    <!-- Footer Section -->
     <footer
         class="relative bg-gradient-to-br from-green-700 to-emerald-800 text-white pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 overflow-hidden">
         <!-- Decorative Background Elements -->
@@ -1434,7 +1152,7 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Main Footer Content -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8 mb-12 sm:mb-16">
                 <!-- Company Info -->
                 <div class="space-y-3 sm:space-y-4 text-left">
                     <a href="index.html"
@@ -1509,7 +1227,7 @@
 
                 <!-- Products -->
                 <div class="text-left">
-                    <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Products</h4>
+                    <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Fruits</h4>
                     <div class="flex gap-5">
                         <ul class="space-y-2 sm:space-y-3">
                             <li>
@@ -1526,9 +1244,37 @@
                                     Oranges
                                 </a>
                             </li>
-                      
-                         
-                  
+                            <li>
+                                <a href="apples.html"
+                                    class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                                    <i class="fas fa-chevron-right text-xs text-green-300"></i>
+                                    Apples
+                                </a>
+                            </li>
+                            <li>
+                                <a href="banana.html"
+                                    class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                                    <i class="fas fa-chevron-right text-xs text-green-300"></i>
+                                    Bananas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="guava.html"
+                                    class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                                    <i class="fas fa-chevron-right text-xs text-green-300"></i>
+                                    Guavas
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="text-left">
+                    <h4 class="font-marcellus text-lg sm:text-xl font-bold text-white mb-4 sm:mb-5">Vegetables</h4>
+                    <div class="flex gap-5">
+
+                        <ul class="space-y-2 sm:space-y-3">
                             <li>
                                 <a href="potatos.html"
                                     class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
@@ -1543,13 +1289,25 @@
                                     Onions
                                 </a>
                             </li>
-                        
-                          
                             <li>
-                                <a href="products.html"
+                                <a href="chilli.html"
                                     class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
                                     <i class="fas fa-chevron-right text-xs text-green-300"></i>
-                                    Others
+                                    Chillies
+                                </a>
+                            </li>
+                            <li>
+                                <a href="spinach.html"
+                                    class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                                    <i class="fas fa-chevron-right text-xs text-green-300"></i>
+                                    Spinach
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tomatoes.html"
+                                    class="text-emerald-100 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm">
+                                    <i class="fas fa-chevron-right text-xs text-green-300"></i>
+                                    Tomatoes
                                 </a>
                             </li>
                         </ul>
@@ -1591,9 +1349,631 @@
         </div>
     </footer>
 
-  
     <script src="script.js"></script>
-  
+    <script>
+        // ===== OPTIMIZED JAVASCRIPT WITH ENHANCED ANIMATIONS =====
+
+        // Cache DOM elements for better performance
+        const DOM = {
+            navbar: document.getElementById('navbar'),
+            menuToggle: document.getElementById('menuToggle'),
+            mobileMenu: document.getElementById('mobileMenu'),
+            searchToggle: document.getElementById('searchToggle'),
+            searchContainer: document.getElementById('searchContainer'),
+            searchInput: document.getElementById('searchInput'),
+            searchSubmit: document.getElementById('searchSubmit'),
+            fruitSlider: document.getElementById('fruit-slider'),
+            vegSlider: document.getElementById('veg-slider')
+        };
+
+        // ===== ANIMATION FRAME OPTIMIZATION =====
+        const raf = window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            (cb => setTimeout(cb, 16));
+
+        // ===== PRODUCT DATA =====
+        const fruits = [
+            { id: 1, name: "Fresh Mangoes", category: "Premium Fruits", description: "Sweet and juicy mangoes, perfect for desserts or fresh eating.", image: "images/mango.jpg", page: "mango.html" },
+            { id: 2, name: "Fresh Oranges", category: "Citrus Fruits", description: "Juicy and seedless oranges, rich in vitamin C.", image: "images/oranges.jpg", page: "oranges.html" },
+            { id: 3, name: "Fresh Bananas", category: "Fruits", description: "Sweet ripened bananas, rich in potassium.", image: "images/banana.jpg", page: "banana.html" },
+            { id: 4, name: "Fresh Guavas", category: "Fruits", description: "Crimson sweet guavas, hydrating and delicious.", image: "images/guava.jpg", page: "guava.html" },
+            { id: 5, name: "Fresh Apples", category: "Premium Fruits", description: "Crisp, fresh apples picked at peak ripeness.", image: "images/apple.jpg", page: "apples.html" },
+            { id: 6, name: "Fresh Apricots", category: "Table Fruits", description: "Premium quality apricots, organically grown.", image: "images/apricot.jpg", page: "apricot.html" }
+        ];
+
+        const vegetables = [
+            { id: 1, name: "Fresh Onions", category: "Root Vegetables", description: "Grade A onions, freshly harvested. Perfect for cooking.", image: "images/onion.jpg", page: "onions.html" },
+            { id: 2, name: "Fresh Potatoes", category: "Root Vegetables", description: "Freshly harvested potatoes, uniform size.", image: "images/potato.jpg", page: "potatos.html" },
+            { id: 3, name: "Fresh Tomatoes", category: "Fruiting Vegetables", description: "Vine-ripened tomatoes, rich in flavor.", image: "images/tomatar.jpg", page: "tomatoes.html" },
+            { id: 4, name: "Fresh Chillies", category: "Spices", description: "Premium hot chillies, organic.", image: "images/chilli.jpg", page: "chilli.html" },
+            { id: 5, name: "Fresh Spinach", category: "Leafy Greens", description: "Fresh spinach leaves, nutrient-rich.", image: "images/spinach.jpg", page: "spinach.html" },
+            { id: 6, name: "Fresh Carrots", category: "Root Vegetables", description: "Sweet crunchy carrots, rich in beta-carotene.", image: "images/carrots.jpg", page: "carrot.html" }
+        ];
+
+        // ===== RECIPE DATA =====
+        const recipes = [
+            {
+                type: "Frozen Desserts", typeIcon: "fa-ice-cream", name: "Fruit Ice Cream",
+                description: "Creamy, all-natural ice cream made with ripe seasonal fruits.",
+                fruitUsage: "We blend fresh, ripe fruits into a smooth puree, then mix with cream and natural sweeteners before churning to perfection.",
+                image: "images/fruiticecream.jpg", technique: "Cold Preparation",
+                suitableItems: ["Mangoes", "Strawberries", "Bananas", "Peaches", "Berries"],
+                methods: ["Blending", "Churning", "Freezing", "Pureeing"]
+            },
+            {
+                type: "Fresh Salads", typeIcon: "fa-bowl-food", name: "Fruit Salads",
+                description: "Vibrant fruit salads featuring seasonal fruits tossed in light citrus dressings.",
+                fruitUsage: "We carefully dice fresh fruits into bite-sized pieces, then gently toss with a light dressing.",
+                image: "images/fruitsalad.jpg", technique: "Fresh Cut",
+                suitableItems: ["Melons", "Berries", "Citrus", "Grapes", "Kiwi"],
+                methods: ["Dicing", "Tossing", "Drizzling", "Chilling"]
+            },
+            {
+                type: "Fresh Juices", typeIcon: "fa-glass-water", name: "Cold-Pressed Juices",
+                description: "Nutrient-rich cold-pressed juices made from fresh fruits and vegetables.",
+                fruitUsage: "We cold-press fresh fruits to extract maximum nutrients and flavor without heat.",
+                image: "images/fruitshake.jpg", technique: "Cold Press",
+                suitableItems: ["Oranges", "Apples", "Pineapple", "Carrots", "Ginger"],
+                methods: ["Pressing", "Straining", "Mixing", "Chilling"]
+            }
+        ];
+
+        const vegRecipes = [
+            {
+                type: "Fresh Salads", typeIcon: "fa-bowl-food", name: "Garden Salad",
+                description: "Crisp, refreshing salads featuring fresh seasonal vegetables.",
+                vegUsage: "We carefully wash and cut fresh vegetables into bite-sized pieces, then toss with signature dressings.",
+                image: "images/vegsalad.jpg", technique: "Fresh Cut",
+                suitableItems: ["Lettuce", "Cucumbers", "Tomatoes", "Bell Peppers", "Radishes"],
+                methods: ["Washing", "Cutting", "Tossing", "Drizzling"]
+            },
+            {
+                type: "Roasted Vegetables", typeIcon: "fa-fire", name: "Roasted Medley",
+                description: "Caramelized roasted vegetables with herbs, bringing out natural sweetness.",
+                vegUsage: "We toss vegetables in olive oil and herbs, then roast at high heat until golden.",
+                image: "images/vegfry.jpg", technique: "High Heat Roasting",
+                suitableItems: ["Broccoli", "Cauliflower", "Carrots", "Brussels Sprouts", "Sweet Potatoes"],
+                methods: ["Tossing", "Seasoning", "Roasting", "Flipping"]
+            },
+            {
+                type: "Grilled Vegetables", typeIcon: "fa-burger", name: "Grilled Vegetables",
+                description: "Smoky, charred grilled vegetables perfect as a side dish.",
+                vegUsage: "We slice vegetables evenly, brush with olive oil and herbs, then grill until tender.",
+                image: "images/spicy.jpg", technique: "Grilling",
+                suitableItems: ["Zucchini", "Eggplant", "Bell Peppers", "Asparagus", "Corn"],
+                methods: ["Slicing", "Brushing", "Grilling", "Flipping"]
+            }
+        ];
+
+        // ===== PRODUCT SLIDER WITH ENHANCED ANIMATIONS =====
+        function createProductSlider(containerId, items) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            let activeIndex = 0;
+            let autoSlideInterval;
+            let isHovering = false;
+
+            function render() {
+                let slidesHtml = '';
+
+                items.forEach((item, index) => {
+                    slidesHtml += `
+                <div class="product-slide ${index === 0 ? 'active' : ''}" data-index="${index}" data-page="${item.page}" style="background-image: url('${item.image}');">
+                    <div class="slide-rotate-name">${item.name}</div>
+                    <div class="slide-compact">
+                        <div class="slide-compact-left">
+                            <span class="slide-compact-category">${item.category}</span>
+                            <span class="slide-compact-name">${item.name}</span>
+                        </div>
+                        <span class="slide-compact-number">${String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div class="slide-content">
+                        <span class="slide-category">${item.category}</span>
+                        <h3 class="slide-name">${item.name}</h3>
+                        <p class="slide-description">${item.description}</p>
+                        <button class="slide-button" data-page="${item.page}">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+                });
+
+                container.innerHTML = slidesHtml;
+
+                document.querySelectorAll(`#${containerId} .product-slide`).forEach(slide => {
+                    slide.addEventListener('click', handleSlideClick);
+                });
+
+                document.querySelectorAll(`#${containerId} .slide-button`).forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const page = e.currentTarget.dataset.page;
+                        if (page) window.location.href = page;
+                    });
+                });
+
+                document.querySelectorAll(`#${containerId} .product-slide`).forEach(slide => {
+                    slide.addEventListener('mouseenter', () => {
+                        isHovering = true;
+                        stopAutoSlide();
+                    });
+                    slide.addEventListener('mouseleave', () => {
+                        isHovering = false;
+                        startAutoSlide();
+                    });
+                });
+
+                updateVisibility();
+            }
+
+            function handleSlideClick(e) {
+                const slide = e.currentTarget;
+                const index = parseInt(slide.dataset.index);
+                const page = slide.dataset.page;
+
+                if (index === activeIndex) {
+                    if (page) window.location.href = page;
+                } else {
+                    activeIndex = index;
+
+                    document.querySelectorAll(`#${containerId} .product-slide`).forEach((s, i) => {
+                        if (i === activeIndex) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+
+                    updateVisibility();
+
+                    stopAutoSlide();
+                    if (!isHovering) {
+                        startAutoSlide();
+                    }
+                }
+            }
+
+            function updateVisibility() {
+                const isMobile = window.innerWidth < 768;
+                const slides = document.querySelectorAll(`#${containerId} .product-slide`);
+
+                slides.forEach((slide, index) => {
+                    const rotateName = slide.querySelector('.slide-rotate-name');
+                    const compact = slide.querySelector('.slide-compact');
+                    const content = slide.querySelector('.slide-content');
+
+                    if (isMobile) {
+                        rotateName.style.display = 'none';
+                        if (index === activeIndex) {
+                            compact.style.display = 'none';
+                            content.style.display = 'flex';
+                        } else {
+                            compact.style.display = 'flex';
+                            content.style.display = 'none';
+                        }
+                    } else {
+                        if (index === activeIndex) {
+                            rotateName.style.display = 'none';
+                            compact.style.display = 'none';
+                            content.style.display = 'flex';
+                        } else {
+                            rotateName.style.display = 'flex';
+                            compact.style.display = 'none';
+                            content.style.display = 'none';
+                        }
+                    }
+                });
+            }
+
+            function startAutoSlide() {
+                if (autoSlideInterval) stopAutoSlide();
+                if (isHovering) return;
+
+                autoSlideInterval = setInterval(() => {
+                    activeIndex = (activeIndex + 1) % items.length;
+
+                    document.querySelectorAll(`#${containerId} .product-slide`).forEach((s, i) => {
+                        if (i === activeIndex) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+
+                    updateVisibility();
+                }, 3000);
+            }
+
+            function stopAutoSlide() {
+                if (autoSlideInterval) {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = null;
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                updateVisibility();
+            });
+
+            render();
+            startAutoSlide();
+
+            container.addEventListener('mouseenter', stopAutoSlide);
+            container.addEventListener('mouseleave', () => {
+                if (!isHovering) startAutoSlide();
+            });
+        }
+
+        // Initialize product sliders
+        createProductSlider('fruit-slider', fruits);
+        createProductSlider('veg-slider', vegetables);
+
+        // ===== RECIPE SLIDER WITH ENHANCED ANIMATIONS =====
+        function createRecipeSlider(config) {
+            let currentIndex = 0;
+            let autoSlideInterval;
+            let isTransitioning = false;
+
+            const elements = {
+                typeIcon: document.getElementById(config.typeIconId),
+                recipeType: document.getElementById(config.recipeTypeId),
+                recipeName: document.getElementById(config.recipeNameId),
+                recipeDesc: document.getElementById(config.recipeDescId),
+                usage: document.getElementById(config.usageId),
+                image: document.getElementById(config.imageId),
+                nextImage: document.getElementById(config.imageNextId),
+                techniqueBadge: document.getElementById(config.techniqueBadgeId),
+                techniqueContainer: document.getElementById(config.techniqueContainerId),
+                tagsContainer: document.getElementById(config.tagsContainerId),
+                methodsContainer: document.getElementById(config.methodsContainerId),
+                indicatorsContainer: document.getElementById(config.indicatorsContainerId),
+                contentContainer: document.getElementById(config.contentId)
+            };
+
+            function updateContent(index) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                const recipe = config.data[index];
+                const currentImage = elements.image;
+                const nextImage = elements.nextImage;
+
+                nextImage.src = recipe.image;
+
+                currentImage.classList.remove('active');
+                currentImage.classList.add('animating-out');
+                nextImage.classList.add('active');
+
+                if (elements.contentContainer) {
+                    elements.contentContainer.classList.remove('active');
+                }
+
+                if (elements.techniqueContainer) {
+                    elements.techniqueContainer.classList.remove('active');
+                }
+
+                setTimeout(() => {
+                    if (elements.typeIcon) {
+                        elements.typeIcon.className = `fas ${recipe.typeIcon} text-white text-sm`;
+                    }
+
+                    if (elements.recipeType) elements.recipeType.textContent = recipe.type;
+                    if (elements.recipeName) elements.recipeName.textContent = recipe.name;
+                    if (elements.recipeDesc) elements.recipeDesc.textContent = recipe.description;
+
+                    const usageText = recipe.fruitUsage || recipe.vegUsage;
+                    if (elements.usage && usageText) {
+                        elements.usage.textContent = `"${usageText}"`;
+                    }
+
+                    if (elements.techniqueBadge) {
+                        elements.techniqueBadge.textContent = recipe.technique;
+                    }
+
+                    if (elements.tagsContainer) {
+                        elements.tagsContainer.innerHTML = recipe.suitableItems.map(item =>
+                            `<span class="px-3 py-1 ${config.tagBgClass} text-white text-xs rounded-full transition-all duration-300 hover:scale-110">${item}</span>`
+                        ).join('');
+                    }
+
+                    if (elements.methodsContainer) {
+                        elements.methodsContainer.innerHTML = recipe.methods.map(method => `
+                    <div class="flex items-center gap-2 transition-all duration-300 hover:translate-x-2">
+                        <div class="w-6 h-6 ${config.methodBgClass} rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <span class="text-gray-700 text-sm">${method}</span>
+                    </div>
+                `).join('');
+                    }
+
+                    if (elements.indicatorsContainer) {
+                        elements.indicatorsContainer.innerHTML = config.data.map((_, i) =>
+                            `<div class="${i === index ? config.indicatorActiveClass : 'w-4 bg-gray-300'} h-1 rounded-full transition-all duration-300 cursor-pointer hover:scale-110" onclick="${config.goToFunction}(${i})"></div>`
+                        ).join('');
+                    }
+
+                    setTimeout(() => {
+                        const tempSrc = currentImage.src;
+                        currentImage.src = nextImage.src;
+                        nextImage.src = tempSrc;
+
+                        currentImage.classList.remove('animating-out');
+                        currentImage.classList.add('active');
+                        nextImage.classList.remove('active');
+
+                        if (elements.contentContainer) {
+                            elements.contentContainer.classList.add('active');
+                        }
+
+                        if (elements.techniqueContainer) {
+                            elements.techniqueContainer.classList.add('active');
+                        }
+
+                        isTransitioning = false;
+                    }, 100);
+
+                }, 400);
+            }
+
+            function startAutoSlide() {
+                if (autoSlideInterval) clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(() => {
+                    if (!isTransitioning) {
+                        currentIndex = (currentIndex + 1) % config.data.length;
+                        updateContent(currentIndex);
+                    }
+                }, 3000);
+            }
+
+            function stopAutoSlide() {
+                if (autoSlideInterval) {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = null;
+                }
+            }
+
+            window[config.nextFunction] = () => {
+                if (!isTransitioning) {
+                    stopAutoSlide();
+                    currentIndex = (currentIndex + 1) % config.data.length;
+                    updateContent(currentIndex);
+                    startAutoSlide();
+                }
+            };
+
+            window[config.prevFunction] = () => {
+                if (!isTransitioning) {
+                    stopAutoSlide();
+                    currentIndex = (currentIndex - 1 + config.data.length) % config.data.length;
+                    updateContent(currentIndex);
+                    startAutoSlide();
+                }
+            };
+
+            window[config.goToFunction] = (index) => {
+                if (!isTransitioning && index !== currentIndex) {
+                    stopAutoSlide();
+                    currentIndex = index;
+                    updateContent(currentIndex);
+                    startAutoSlide();
+                }
+            };
+
+            setTimeout(() => {
+                if (elements.contentContainer) {
+                    elements.contentContainer.classList.add('active');
+                }
+                if (elements.techniqueContainer) {
+                    elements.techniqueContainer.classList.add('active');
+                }
+            }, 100);
+
+            startAutoSlide();
+
+            const slider = document.getElementById(config.sliderId);
+            if (slider) {
+                slider.addEventListener('mouseenter', stopAutoSlide);
+                slider.addEventListener('mouseleave', startAutoSlide);
+            }
+        }
+
+        // Initialize recipe sliders
+        createRecipeSlider({
+            sliderId: 'recipe-slider',
+            data: recipes,
+            typeIconId: 'recipe-icon',
+            recipeTypeId: 'recipe-type',
+            recipeNameId: 'recipe-name',
+            recipeDescId: 'recipe-description',
+            usageId: 'fruit-usage',
+            imageId: 'recipe-image',
+            imageNextId: 'recipe-image-next',
+            techniqueBadgeId: 'technique-badge',
+            techniqueContainerId: 'technique-badge-container',
+            tagsContainerId: 'fruit-tags-container',
+            methodsContainerId: 'methods-container',
+            indicatorsContainerId: 'recipe-indicators',
+            contentId: 'recipe-content',
+            tagBgClass: 'bg-green-500',
+            methodBgClass: 'bg-green-500',
+            indicatorActiveClass: 'w-8 bg-green-500',
+            nextFunction: 'nextRecipe',
+            prevFunction: 'prevRecipe',
+            goToFunction: 'goToRecipe'
+        });
+
+        createRecipeSlider({
+            sliderId: 'veg-recipe-slider',
+            data: vegRecipes,
+            typeIconId: 'veg-recipe-icon',
+            recipeTypeId: 'veg-recipe-type',
+            recipeNameId: 'veg-recipe-name',
+            recipeDescId: 'veg-recipe-description',
+            usageId: 'veg-usage',
+            imageId: 'veg-recipe-image',
+            imageNextId: 'veg-recipe-image-next',
+            techniqueBadgeId: 'veg-technique-badge',
+            techniqueContainerId: 'veg-technique-badge-container',
+            tagsContainerId: 'veg-tags-container',
+            methodsContainerId: 'veg-methods-container',
+            indicatorsContainerId: 'veg-recipe-indicators',
+            contentId: 'veg-content',
+            tagBgClass: 'bg-green-600',
+            methodBgClass: 'bg-green-600',
+            indicatorActiveClass: 'w-8 bg-green-600',
+            nextFunction: 'nextVegRecipe',
+            prevFunction: 'prevVegRecipe',
+            goToFunction: 'goToVegRecipe'
+        });
+
+        // ===== SCROLL REVEAL ANIMATIONS =====
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-left, .reveal-scale');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+
+                    // Add counter animation if present
+                    if (entry.target.querySelector('.counter-value')) {
+                        animateCounters(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Counter animation
+        function animateCounters(container) {
+            const counters = container.querySelectorAll('.counter-value');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target')) || 0;
+                let current = 0;
+                const step = target / 30; // 30 steps
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        raf(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // ===== GSAP ANIMATIONS (if available) =====
+        if (typeof gsap !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero section animation
+            gsap.from('.hero-underline', {
+                scaleX: 0,
+                duration: 1,
+                ease: 'power3.out',
+                delay: 0.5
+            });
+
+            // Section headers animation
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header, {
+                    scrollTrigger: {
+                        trigger: header,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                });
+            });
+
+            // Floating animation for decorative elements
+            gsap.utils.toArray('.fa-leaf, .fa-apple-alt, .fa-utensils').forEach(icon => {
+                gsap.to(icon, {
+                    y: -5,
+                    duration: 2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'power1.inOut'
+                });
+            });
+        }
+
+        // ===== FORM VALIDATION AND SUBMISSION =====
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Simple validation
+                const inputs = form.querySelectorAll('input[required], select[required]');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        input.classList.add('border-red-500');
+                        isValid = false;
+
+                        // Remove error after 3 seconds
+                        setTimeout(() => {
+                            input.classList.remove('border-red-500');
+                        }, 3000);
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+
+                if (isValid) {
+                    // Show success message
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<span class="flex items-center gap-2"><i class="fas fa-check"></i> Sent!</span>';
+
+                    // Simulate form submission
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        form.reset();
+                        alert('Thank you for your inquiry! We will contact you soon.');
+                    }, 1500);
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            });
+        }
+
+        // ===== IMAGE LOADING ANIMATIONS =====
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function () {
+                this.style.opacity = '1';
+            });
+
+            if (img.complete) {
+                img.style.opacity = '1';
+            } else {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+            }
+        });
+
+        // ===== CLEAN UP ON PAGE UNLOAD =====
+        window.addEventListener('beforeunload', () => {
+            if (DOM.mobileMenu && !DOM.mobileMenu.classList.contains('hidden')) {
+                DOM.mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
 </body>
 
 </html>

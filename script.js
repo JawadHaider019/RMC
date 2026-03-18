@@ -1,6 +1,6 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    // Cache DOM elements - optimize with single object
+    // ===== CACHE DOM ELEMENTS - SINGLE SOURCE OF TRUTH =====
     const DOM = {
         navbar: document.getElementById('navbar'),
         navContainer: document.getElementById('navContainer'),
@@ -15,42 +15,76 @@ document.addEventListener('DOMContentLoaded', function() {
         sliderContainer: document.getElementById('sliderContainer'),
         sliderWrapper: document.getElementById('sliderWrapper'),
         sliderTrack: document.getElementById('sliderTrack'),
+        fruitSlider: document.getElementById('fruit-slider'),
         navLinks: document.querySelectorAll('nav a[href]')
     };
 
-    // Performance optimizations - use requestAnimationFrame for smooth animations
+    // ===== PERFORMANCE OPTIMIZATIONS =====
     const raf = window.requestAnimationFrame || 
                 window.webkitRequestAnimationFrame || 
                 (cb => setTimeout(cb, 16));
-    
-    const caf = window.cancelAnimationFrame || 
-                window.webkitCancelAnimationFrame || 
-                clearTimeout;
 
-    // Debounce function for performance
-    const debounce = (func, wait) => {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    };
+    // ===== DATA =====
+    const fruits = [
+        { id: 1, name: "Fresh Mangoes", category: "Premium Fruits", description: "Sweet and juicy mangoes, perfect for desserts or fresh eating.", image: "images/mango.jpg", page: "mango.html" },
+        { id: 2, name: "Fresh Oranges", category: "Citrus Fruits", description: "Juicy and seedless oranges, rich in vitamin C.", image: "images/oranges.jpg", page: "oranges.html" },
+        { id: 3, name: "Fresh Onions", category: "Root Vegetables", description: "Grade A onions, freshly harvested. Perfect for cooking.", image: "images/onion.jpg", page: "onions.html" },
+        { id: 4, name: "Fresh Potatoes", category: "Root Vegetables", description: "Freshly harvested potatoes, uniform size.", image: "images/potato.jpg", page: "potatos.html" },
+    ];
 
-    // Throttle function for scroll events
-    const throttle = (func, limit) => {
-        let inThrottle;
-        return function(...args) {
-            if (!inThrottle) {
-                func.apply(this, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    };
+    const recipes = [
+        {
+            type: "Frozen Desserts", typeIcon: "fa-ice-cream", name: "Fruit Ice Cream",
+            description: "Creamy, all-natural ice cream made with ripe seasonal fruits.",
+            fruitUsage: "We blend fresh, ripe fruits into a smooth puree, then mix with cream and natural sweeteners before churning to perfection.",
+            image: "images/fruiticecream.jpg", technique: "Cold Preparation",
+            suitableItems: ["Mangoes", "Strawberries", "Bananas", "Peaches", "Berries"],
+            methods: ["Blending", "Churning", "Freezing", "Pureeing"]
+        },
+        {
+            type: "Fresh Salads", typeIcon: "fa-bowl-food", name: "Fruit Salads",
+            description: "Vibrant fruit salads featuring seasonal fruits tossed in light citrus dressings.",
+            fruitUsage: "We carefully dice fresh fruits into bite-sized pieces, then gently toss with a light dressing.",
+            image: "images/fruitsalad.jpg", technique: "Fresh Cut",
+            suitableItems: ["Melons", "Berries", "Citrus", "Grapes", "Kiwi"],
+            methods: ["Dicing", "Tossing", "Drizzling", "Chilling"]
+        },
+        {
+            type: "Fresh Juices", typeIcon: "fa-glass-water", name: "Cold-Pressed Juices",
+            description: "Nutrient-rich cold-pressed juices made from fresh fruits and vegetables.",
+            fruitUsage: "We cold-press fresh fruits to extract maximum nutrients and flavor without heat.",
+            image: "images/fruitshake.jpg", technique: "Cold Press",
+            suitableItems: ["Oranges", "Apples", "Pineapple", "Carrots", "Ginger"],
+            methods: ["Pressing", "Straining", "Mixing", "Chilling"]
+        }
+    ];
+
+    const vegRecipes = [
+        {
+            type: "Fresh Salads", typeIcon: "fa-bowl-food", name: "Garden Salad",
+            description: "Crisp, refreshing salads featuring fresh seasonal vegetables.",
+            vegUsage: "We carefully wash and cut fresh vegetables into bite-sized pieces, then toss with signature dressings.",
+            image: "images/vegsalad.jpg", technique: "Fresh Cut",
+            suitableItems: ["Lettuce", "Cucumbers", "Tomatoes", "Bell Peppers", "Radishes"],
+            methods: ["Washing", "Cutting", "Tossing", "Drizzling"]
+        },
+        {
+            type: "Roasted Vegetables", typeIcon: "fa-fire", name: "Roasted Medley",
+            description: "Caramelized roasted vegetables with herbs, bringing out natural sweetness.",
+            vegUsage: "We toss vegetables in olive oil and herbs, then roast at high heat until golden.",
+            image: "images/vegfry.jpg", technique: "High Heat Roasting",
+            suitableItems: ["Broccoli", "Cauliflower", "Carrots", "Brussels Sprouts", "Sweet Potatoes"],
+            methods: ["Tossing", "Seasoning", "Roasting", "Flipping"]
+        },
+        {
+            type: "Grilled Vegetables", typeIcon: "fa-burger", name: "Grilled Vegetables",
+            description: "Smoky, charred grilled vegetables perfect as a side dish.",
+            vegUsage: "We slice vegetables evenly, brush with olive oil and herbs, then grill until tender.",
+            image: "images/spicy.jpg", technique: "Grilling",
+            suitableItems: ["Zucchini", "Eggplant", "Bell Peppers", "Asparagus", "Corn"],
+            methods: ["Slicing", "Brushing", "Grilling", "Flipping"]
+        }
+    ];
 
     // ===== MOBILE MENU TOGGLE =====
     if (DOM.menuToggle && DOM.mobileMenu) {
@@ -64,16 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (icon) {
                 icon.className = isHidden ? 'fas fa-times text-xl' : 'fas fa-bars text-xl';
             }
-            
-            // Animate menu items when opening
-            if (isHidden) {
-                const menuItems = DOM.mobileMenu.querySelectorAll('a');
-                menuItems.forEach((item, index) => {
-                    item.style.animation = 'none';
-                    item.offsetHeight; // Trigger reflow
-                    item.style.animation = `slideIn 0.3s ease forwards ${index * 0.1}s`;
-                });
-            }
         };
 
         DOM.menuToggle.addEventListener('click', (e) => {
@@ -81,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleMenu();
         });
 
-        // Close on click outside
         document.addEventListener('click', (e) => {
             if (!DOM.mobileMenu.contains(e.target) && !DOM.menuToggle.contains(e.target)) {
                 if (!DOM.mobileMenu.classList.contains('hidden')) {
@@ -89,17 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-
-        // Close on link click
-        DOM.mobileMenu.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                toggleMenu(false);
-            }
-        });
     }
 
-    // ===== NAVBAR SCROLL EFFECT WITH RAF =====
-    let lastScrollY = window.scrollY;
+    // ===== NAVBAR SCROLL EFFECT =====
     let ticking = false;
 
     const updateNavbar = () => {
@@ -107,11 +122,31 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (DOM.navbar) {
             if (currentScrollY > 50) {
-                DOM.navbar.classList.add('scrolled', 'bg-white/95', 'backdrop-blur-md', 'shadow-lg');
+                DOM.navbar.classList.add('bg-white', 'shadow-lg');
                 DOM.navbar.classList.remove('bg-transparent');
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-gray-100');
+                });
+                
+                document.querySelectorAll('#searchToggle, #menuToggle').forEach(btn => {
+                    btn.classList.remove('text-white');
+                    btn.classList.add('text-gray-800');
+                });
             } else {
-                DOM.navbar.classList.remove('scrolled', 'bg-white/95', 'backdrop-blur-md', 'shadow-lg');
+                DOM.navbar.classList.remove('bg-white', 'shadow-lg');
                 DOM.navbar.classList.add('bg-transparent');
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.add('text-white');
+                    link.classList.remove('text-gray-100');
+                });
+                
+                document.querySelectorAll('#searchToggle, #menuToggle').forEach(btn => {
+                    btn.classList.add('text-white');
+                    btn.classList.remove('text-gray-100');
+                });
             }
         }
         
@@ -119,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.addEventListener('scroll', () => {
-        lastScrollY = window.scrollY;
         if (!ticking) {
             raf(updateNavbar);
             ticking = true;
@@ -137,15 +171,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 : linkPage === currentPath;
         };
 
-        // Process all navigation links
         document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
             const href = link.getAttribute('href');
             
-            // Remove existing classes
             link.classList.remove('active', 'text-green-600', 'font-semibold', 'bg-green-50', 
                                  'border-l-4', 'border-green-600');
             
-            // Remove indicator
             const indicator = link.querySelector('.active-indicator');
             if (indicator) indicator.remove();
 
@@ -154,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (link.classList.contains('nav-link')) {
                     link.classList.add('text-green-400', 'font-semibold');
-                    // Add indicator
                     const span = document.createElement('span');
                     span.className = 'absolute bottom-0 left-0 w-full h-0.5 bg-green-400 active-indicator';
                     link.appendChild(span);
@@ -171,75 +201,582 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== SEARCH BAR FUNCTIONALITY =====
     if (DOM.searchToggle && DOM.searchContainer) {
-        let isSearchOpen = false;
-
-        const toggleSearch = (show) => {
-            isSearchOpen = show !== undefined ? show : !isSearchOpen;
-            
-            if (isSearchOpen) {
-                DOM.searchContainer.classList.remove('hidden');
-                // Trigger reflow for animation
-                void DOM.searchContainer.offsetWidth;
-                DOM.searchContainer.classList.add('show');
-                setTimeout(() => DOM.searchInput?.focus(), 300);
-            } else {
-                DOM.searchContainer.classList.remove('show');
-                setTimeout(() => DOM.searchContainer.classList.add('hidden'), 500);
-            }
-        };
-
-        const performSearch = (query) => {
-            if (!query.trim()) return;
-            
-            console.log('Searching for:', query);
-            // Implement your search logic here
-            alert(`Searching for: ${query}`);
-            toggleSearch(false);
-        };
-
         DOM.searchToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            toggleSearch();
-        });
-
-        // Close on click outside
-        document.addEventListener('click', (e) => {
-            if (isSearchOpen && 
-                !DOM.searchContainer.contains(e.target) && 
-                !DOM.searchToggle.contains(e.target)) {
-                toggleSearch(false);
+            DOM.searchContainer.classList.toggle('hidden');
+            if (!DOM.searchContainer.classList.contains('hidden')) {
+                setTimeout(() => {
+                    DOM.searchContainer.classList.remove('opacity-0', '-translate-y-4');
+                    if (DOM.searchInput) DOM.searchInput.focus();
+                }, 10);
+            } else {
+                DOM.searchContainer.classList.add('opacity-0', '-translate-y-4');
             }
         });
 
-        // Search handlers
-        if (DOM.searchSubmit) {
+        if (DOM.searchSubmit && DOM.searchInput) {
             DOM.searchSubmit.addEventListener('click', () => {
-                performSearch(DOM.searchInput?.value || '');
+                const query = DOM.searchInput.value;
+                if (query.trim()) alert(`Searching for: ${query}`);
             });
-        }
 
-        if (DOM.searchInput) {
             DOM.searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') performSearch(DOM.searchInput.value);
+                if (e.key === 'Enter' && DOM.searchInput.value.trim()) {
+                    alert(`Searching for: ${DOM.searchInput.value}`);
+                }
+            });
+        }
+    }
+
+    // ===== PRODUCT SLIDER =====
+    function createProductSlider(containerId, items) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        let activeIndex = 0;
+        let autoSlideInterval;
+        let isHovering = false;
+
+        function render() {
+            let slidesHtml = '';
+
+            items.forEach((item, index) => {
+                slidesHtml += `
+                    <div class="product-slide ${index === 0 ? 'active' : ''}" data-index="${index}" data-page="${item.page}" style="background-image: url('${item.image}');">
+                        <div class="slide-rotate-name">${item.name}</div>
+                        <div class="slide-compact">
+                            <div class="slide-compact-left">
+                                <span class="slide-compact-category">${item.category}</span>
+                                <span class="slide-compact-name">${item.name}</span>
+                            </div>
+                            <span class="slide-compact-number">${String(index + 1).padStart(2, '0')}</span>
+                        </div>
+                        <div class="slide-content">
+                            <span class="slide-category">${item.category}</span>
+                            <h3 class="slide-name">${item.name}</h3>
+                            <p class="slide-description">${item.description}</p>
+                            <button class="slide-button" data-page="${item.page}">
+                                <span>View Details</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = slidesHtml;
+
+            document.querySelectorAll(`#${containerId} .product-slide`).forEach(slide => {
+                slide.addEventListener('click', handleSlideClick);
+            });
+
+            document.querySelectorAll(`#${containerId} .slide-button`).forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const page = e.currentTarget.dataset.page;
+                    if (page) window.location.href = page;
+                });
+            });
+
+            document.querySelectorAll(`#${containerId} .product-slide`).forEach(slide => {
+                slide.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    stopAutoSlide();
+                });
+                slide.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    startAutoSlide();
+                });
+            });
+
+            updateVisibility();
+        }
+
+        function handleSlideClick(e) {
+            const slide = e.currentTarget;
+            const index = parseInt(slide.dataset.index);
+            const page = slide.dataset.page;
+
+            if (index === activeIndex) {
+                if (page) window.location.href = page;
+            } else {
+                activeIndex = index;
+
+                document.querySelectorAll(`#${containerId} .product-slide`).forEach((s, i) => {
+                    if (i === activeIndex) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+
+                updateVisibility();
+            }
+        }
+
+        function updateVisibility() {
+            const isMobile = window.innerWidth < 768;
+            const slides = document.querySelectorAll(`#${containerId} .product-slide`);
+
+            slides.forEach((slide, index) => {
+                const rotateName = slide.querySelector('.slide-rotate-name');
+                const compact = slide.querySelector('.slide-compact');
+                const content = slide.querySelector('.slide-content');
+
+                if (isMobile) {
+                    if (rotateName) rotateName.style.display = 'none';
+                    if (index === activeIndex) {
+                        if (compact) compact.style.display = 'none';
+                        if (content) content.style.display = 'flex';
+                    } else {
+                        if (compact) compact.style.display = 'flex';
+                        if (content) content.style.display = 'none';
+                    }
+                } else {
+                    if (index === activeIndex) {
+                        if (rotateName) rotateName.style.display = 'none';
+                        if (compact) compact.style.display = 'none';
+                        if (content) content.style.display = 'flex';
+                    } else {
+                        if (rotateName) rotateName.style.display = 'flex';
+                        if (compact) compact.style.display = 'none';
+                        if (content) content.style.display = 'none';
+                    }
+                }
             });
         }
 
-        // Quick search buttons
-        document.querySelectorAll('.quick-search').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const query = btn.textContent;
-                if (DOM.searchInput) DOM.searchInput.value = query;
-                performSearch(query);
-            });
+        function startAutoSlide() {
+            if (autoSlideInterval) stopAutoSlide();
+            if (isHovering) return;
+
+            autoSlideInterval = setInterval(() => {
+                activeIndex = (activeIndex + 1) % items.length;
+
+                document.querySelectorAll(`#${containerId} .product-slide`).forEach((s, i) => {
+                    if (i === activeIndex) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+
+                updateVisibility();
+            }, 3000);
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            updateVisibility();
         });
 
-        // Close on escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isSearchOpen) toggleSearch(false);
+        render();
+        startAutoSlide();
+
+        if (container) {
+            container.addEventListener('mouseenter', stopAutoSlide);
+            container.addEventListener('mouseleave', () => {
+                if (!isHovering) startAutoSlide();
+            });
+        }
+    }
+
+    // Initialize product slider
+    if (DOM.fruitSlider) {
+        createProductSlider('fruit-slider', fruits);
+    }
+
+    // ===== RECIPE SLIDER =====
+    function createRecipeSlider(config) {
+        let currentIndex = 0;
+        let autoSlideInterval;
+        let isTransitioning = false;
+
+        const elements = {
+            typeIcon: document.getElementById(config.typeIconId),
+            recipeType: document.getElementById(config.recipeTypeId),
+            recipeName: document.getElementById(config.recipeNameId),
+            recipeDesc: document.getElementById(config.recipeDescId),
+            usage: document.getElementById(config.usageId),
+            image: document.getElementById(config.imageId),
+            nextImage: document.getElementById(config.imageNextId),
+            techniqueBadge: document.getElementById(config.techniqueBadgeId),
+            techniqueContainer: document.getElementById(config.techniqueContainerId),
+            tagsContainer: document.getElementById(config.tagsContainerId),
+            methodsContainer: document.getElementById(config.methodsContainerId),
+            indicatorsContainer: document.getElementById(config.indicatorsContainerId),
+            contentContainer: document.getElementById(config.contentId)
+        };
+
+        if (!elements.image || !elements.nextImage) return;
+
+        function updateContent(index) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            const recipe = config.data[index];
+            
+            if (recipe && elements.nextImage) {
+                elements.nextImage.src = recipe.image;
+            }
+
+            if (elements.image && elements.nextImage) {
+                elements.image.classList.remove('active');
+                elements.image.classList.add('animating-out');
+                elements.nextImage.classList.add('active');
+            }
+
+            if (elements.contentContainer) {
+                elements.contentContainer.classList.remove('active');
+            }
+
+            if (elements.techniqueContainer) {
+                elements.techniqueContainer.classList.remove('active');
+            }
+
+            setTimeout(() => {
+                if (elements.typeIcon && recipe) {
+                    elements.typeIcon.className = `fas ${recipe.typeIcon} text-white text-sm`;
+                }
+
+                if (elements.recipeType && recipe) elements.recipeType.textContent = recipe.type;
+                if (elements.recipeName && recipe) elements.recipeName.textContent = recipe.name;
+                if (elements.recipeDesc && recipe) elements.recipeDesc.textContent = recipe.description;
+
+                const usageText = recipe ? (recipe.fruitUsage || recipe.vegUsage) : '';
+                if (elements.usage && usageText) {
+                    elements.usage.textContent = `"${usageText}"`;
+                }
+
+                if (elements.techniqueBadge && recipe) {
+                    elements.techniqueBadge.textContent = recipe.technique;
+                }
+
+                if (elements.tagsContainer && recipe && recipe.suitableItems) {
+                    elements.tagsContainer.innerHTML = recipe.suitableItems.map(item =>
+                        `<span class="px-3 py-1 ${config.tagBgClass} text-white text-xs rounded-full transition-all duration-300 hover:scale-110">${item}</span>`
+                    ).join('');
+                }
+
+                if (elements.methodsContainer && recipe && recipe.methods) {
+                    elements.methodsContainer.innerHTML = recipe.methods.map(method => `
+                        <div class="flex items-center gap-2 transition-all duration-300 hover:translate-x-2">
+                            <div class="w-6 h-6 ${config.methodBgClass} rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="text-gray-700 text-sm">${method}</span>
+                        </div>
+                    `).join('');
+                }
+
+                if (elements.indicatorsContainer && config.data) {
+                    elements.indicatorsContainer.innerHTML = config.data.map((_, i) =>
+                        `<div class="${i === index ? config.indicatorActiveClass : 'w-4 bg-gray-300'} h-1 rounded-full transition-all duration-300 cursor-pointer hover:scale-110" onclick="${config.goToFunction}(${i})"></div>`
+                    ).join('');
+                }
+
+                setTimeout(() => {
+                    if (elements.image && elements.nextImage) {
+                        const tempSrc = elements.image.src;
+                        elements.image.src = elements.nextImage.src;
+                        elements.nextImage.src = tempSrc;
+
+                        elements.image.classList.remove('animating-out');
+                        elements.image.classList.add('active');
+                        elements.nextImage.classList.remove('active');
+                    }
+
+                    if (elements.contentContainer) {
+                        elements.contentContainer.classList.add('active');
+                    }
+
+                    if (elements.techniqueContainer) {
+                        elements.techniqueContainer.classList.add('active');
+                    }
+
+                    isTransitioning = false;
+                }, 100);
+
+            }, 400);
+        }
+
+        function startAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            if (config.data && config.data.length > 1) {
+                autoSlideInterval = setInterval(() => {
+                    if (!isTransitioning) {
+                        currentIndex = (currentIndex + 1) % config.data.length;
+                        updateContent(currentIndex);
+                    }
+                }, 3000);
+            }
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
+        }
+
+        window[config.nextFunction] = () => {
+            if (!isTransitioning && config.data && config.data.length) {
+                stopAutoSlide();
+                currentIndex = (currentIndex + 1) % config.data.length;
+                updateContent(currentIndex);
+                startAutoSlide();
+            }
+        };
+
+        window[config.prevFunction] = () => {
+            if (!isTransitioning && config.data && config.data.length) {
+                stopAutoSlide();
+                currentIndex = (currentIndex - 1 + config.data.length) % config.data.length;
+                updateContent(currentIndex);
+                startAutoSlide();
+            }
+        };
+
+        window[config.goToFunction] = (index) => {
+            if (!isTransitioning && index !== currentIndex && config.data && config.data.length) {
+                stopAutoSlide();
+                currentIndex = index;
+                updateContent(currentIndex);
+                startAutoSlide();
+            }
+        };
+
+        if (config.data && config.data.length > 0) {
+            setTimeout(() => {
+                updateContent(0);
+                
+                if (elements.contentContainer) {
+                    elements.contentContainer.classList.add('active');
+                }
+                if (elements.techniqueContainer) {
+                    elements.techniqueContainer.classList.add('active');
+                }
+            }, 100);
+        }
+
+        startAutoSlide();
+
+        const slider = document.getElementById(config.sliderId);
+        if (slider) {
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            slider.addEventListener('mouseleave', startAutoSlide);
+        }
+    }
+
+    // Initialize recipe sliders
+    if (document.getElementById('recipe-slider')) {
+        createRecipeSlider({
+            sliderId: 'recipe-slider',
+            data: recipes,
+            typeIconId: 'recipe-icon',
+            recipeTypeId: 'recipe-type',
+            recipeNameId: 'recipe-name',
+            recipeDescId: 'recipe-description',
+            usageId: 'fruit-usage',
+            imageId: 'recipe-image',
+            imageNextId: 'recipe-image-next',
+            techniqueBadgeId: 'technique-badge',
+            techniqueContainerId: 'technique-badge-container',
+            tagsContainerId: 'fruit-tags-container',
+            methodsContainerId: 'methods-container',
+            indicatorsContainerId: 'recipe-indicators',
+            contentId: 'recipe-content',
+            tagBgClass: 'bg-green-500',
+            methodBgClass: 'bg-green-500',
+            indicatorActiveClass: 'w-8 bg-green-500',
+            nextFunction: 'nextRecipe',
+            prevFunction: 'prevRecipe',
+            goToFunction: 'goToRecipe'
         });
     }
 
-    // ===== INTERSECTION OBSERVER FOR SCROLL ANIMATIONS =====
+    if (document.getElementById('veg-recipe-slider')) {
+        createRecipeSlider({
+            sliderId: 'veg-recipe-slider',
+            data: vegRecipes,
+            typeIconId: 'veg-recipe-icon',
+            recipeTypeId: 'veg-recipe-type',
+            recipeNameId: 'veg-recipe-name',
+            recipeDescId: 'veg-recipe-description',
+            usageId: 'veg-usage',
+            imageId: 'veg-recipe-image',
+            imageNextId: 'veg-recipe-image-next',
+            techniqueBadgeId: 'veg-technique-badge',
+            techniqueContainerId: 'veg-technique-badge-container',
+            tagsContainerId: 'veg-tags-container',
+            methodsContainerId: 'veg-methods-container',
+            indicatorsContainerId: 'veg-recipe-indicators',
+            contentId: 'veg-content',
+            tagBgClass: 'bg-green-600',
+            methodBgClass: 'bg-green-600',
+            indicatorActiveClass: 'w-8 bg-green-600',
+            nextFunction: 'nextVegRecipe',
+            prevFunction: 'prevVegRecipe',
+            goToFunction: 'goToVegRecipe'
+        });
+    }
+
+    // ===== HERO SLIDER =====
+    const initHeroSlider = () => {
+        const slides = document.querySelectorAll('.slide');
+        const contents = document.querySelectorAll('.slide-content');
+        const dots = document.querySelectorAll('.slider-dot');
+        const progressBar = document.querySelector('.progress-bar');
+        
+        if (!slides.length) return;
+
+        let currentSlide = 0;
+        const slideCount = slides.length;
+        let slideInterval;
+        let isPaused = false;
+        let progressInterval;
+        let progress = 0;
+
+        const resetAnimations = (slideIndex) => {
+            const content = contents[slideIndex];
+            const animatedElements = content.querySelectorAll('[class*="animate-"]');
+            
+            animatedElements.forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight;
+                el.style.animation = null;
+            });
+        };
+
+        const animateContent = (slideIndex) => {
+            const content = contents[slideIndex];
+            const elements = content.querySelectorAll('.inline-flex, h1, p, button');
+            
+            elements.forEach((el, index) => {
+                const delay = index * 0.2;
+                el.style.animation = `slideInUp 0.8s ease forwards ${delay}s`;
+            });
+        };
+
+        const updateProgress = () => {
+            if (progressBar && !isPaused) {
+                progress += 1;
+                if (progress > 100) progress = 0;
+                progressBar.style.width = `${progress}%`;
+            }
+        };
+
+        const goToSlide = (index) => {
+            if (index === currentSlide) return;
+            
+            slides[currentSlide]?.classList.remove('active');
+            contents[currentSlide]?.classList.add('hidden');
+            
+            resetAnimations(index);
+            
+            currentSlide = index;
+            
+            slides[currentSlide]?.classList.add('active');
+            contents[currentSlide]?.classList.remove('hidden');
+            
+            animateContent(currentSlide);
+            
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active', 'bg-white');
+                dot.classList.add('bg-white/50');
+                if (i === currentSlide) {
+                    dot.classList.add('active', 'bg-green-500');
+                    dot.classList.remove('bg-white/50');
+                }
+            });
+            
+            progress = 0;
+            if (progressBar) progressBar.style.width = '0%';
+        };
+
+        const nextSlide = () => {
+            if (!isPaused) {
+                const next = (currentSlide + 1) % slideCount;
+                goToSlide(next);
+            }
+        };
+
+        const prevSlide = () => {
+            if (!isPaused) {
+                const prev = (currentSlide - 1 + slideCount) % slideCount;
+                goToSlide(prev);
+            }
+        };
+
+        const startAutoSlide = () => {
+            if (slideInterval) clearInterval(slideInterval);
+            if (progressInterval) clearInterval(progressInterval);
+            
+            slideInterval = setInterval(nextSlide, 5000);
+            progressInterval = setInterval(updateProgress, 50);
+        };
+
+        const stopAutoSlide = () => {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        };
+
+        if (DOM.heroSection) {
+            DOM.heroSection.addEventListener('mouseenter', () => {
+                isPaused = true;
+                stopAutoSlide();
+            });
+
+            DOM.heroSection.addEventListener('mouseleave', () => {
+                isPaused = false;
+                startAutoSlide();
+            });
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                goToSlide(i);
+                isPaused = true;
+                stopAutoSlide();
+                setTimeout(() => {
+                    isPaused = false;
+                    startAutoSlide();
+                }, 3000);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextSlide();
+            }
+        });
+
+        setTimeout(() => {
+            animateContent(0);
+        }, 100);
+
+        startAutoSlide();
+    };
+
+    initHeroSlider();
+
+    // ===== SCROLL REVEAL ANIMATIONS =====
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .fade-in');
         
@@ -248,12 +785,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active', 'animated');
                     
-                    // Animate counters if present
                     if (entry.target.querySelector('.counter-value')) {
                         animateCounters(entry.target);
                     }
                     
-                    // Unobserve after animation
                     observer.unobserve(entry.target);
                 }
             });
@@ -265,7 +800,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.forEach(el => observer.observe(el));
     };
 
-    // Counter animation
     const animateCounters = (container) => {
         const counters = container.querySelectorAll('.counter-value:not(.animated)');
         
@@ -306,606 +840,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== HERO SLIDER WITH OPTIMIZED ANIMATIONS =====
-// ===== ENHANCED HERO SLIDER WITH SMOOTH ANIMATIONS =====
-const initHeroSlider = () => {
-    const slides = document.querySelectorAll('.slide');
-    const contents = document.querySelectorAll('.slide-content');
-    const dots = document.querySelectorAll('.slider-dot');
-    const progressBar = document.querySelector('.progress-bar');
-    
-    if (!slides.length) return;
+    // ===== FORM VALIDATION =====
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-    let currentSlide = 0;
-    const slideCount = slides.length;
-    let slideInterval;
-    let isPaused = false;
-    let progressInterval;
-    let progress = 0;
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
 
-    // Reset animations for a slide
-    const resetAnimations = (slideIndex) => {
-        const content = contents[slideIndex];
-        const animatedElements = content.querySelectorAll('[class*="animate-"]');
-        
-        animatedElements.forEach(el => {
-            el.style.animation = 'none';
-            el.offsetHeight; // Trigger reflow
-            el.style.animation = null;
-        });
-    };
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('border-red-500');
+                    isValid = false;
 
-    // Animate slide content with staggered delays
-    const animateContent = (slideIndex) => {
-        const content = contents[slideIndex];
-        const elements = content.querySelectorAll('.inline-flex, h1, p, button');
-        
-        elements.forEach((el, index) => {
-            const delay = index * 0.2;
-            el.style.animation = `slideInUp 0.8s ease forwards ${delay}s`;
-        });
-    };
+                    setTimeout(() => {
+                        input.classList.remove('border-red-500');
+                    }, 3000);
+                } else {
+                    input.classList.remove('border-red-500');
+                }
+            });
 
-    // Update progress bar
-    const updateProgress = () => {
-        if (progressBar && !isPaused) {
-            progress += 1;
-            if (progress > 100) progress = 0;
-            progressBar.style.width = `${progress}%`;
-        }
-    };
-
-    // Go to specific slide
-    const goToSlide = (index) => {
-        if (index === currentSlide) return;
-        
-        // Remove active classes from current slide
-        slides[currentSlide]?.classList.remove('active');
-        contents[currentSlide]?.classList.add('hidden');
-        
-        // Reset animations for new slide
-        resetAnimations(index);
-        
-        currentSlide = index;
-        
-        // Add active classes to new slide
-        slides[currentSlide]?.classList.add('active');
-        contents[currentSlide]?.classList.remove('hidden');
-        
-        // Animate new content
-        animateContent(currentSlide);
-        
-        // Update dots
-        dots.forEach((dot, i) => {
-            dot.classList.remove('active', 'bg-white');
-            dot.classList.add('bg-white/50');
-            if (i === currentSlide) {
-                dot.classList.add('active', 'bg-green-500');
-                dot.classList.remove('bg-white/50');
+            const checkbox = document.getElementById('privacy');
+            if (checkbox && !checkbox.checked) {
+                checkbox.classList.add('border-red-500');
+                isValid = false;
+                
+                setTimeout(() => {
+                    checkbox.classList.remove('border-red-500');
+                }, 3000);
             }
-        });
-        
-        // Reset progress
-        progress = 0;
-        if (progressBar) progressBar.style.width = '0%';
-    };
 
-    // Next slide
-    const nextSlide = () => {
-        if (!isPaused) {
-            const next = (currentSlide + 1) % slideCount;
-            goToSlide(next);
-        }
-    };
+            if (isValid) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="flex items-center gap-2"><i class="fas fa-check"></i> Sent!</span>';
+                submitBtn.disabled = true;
 
-    // Previous slide
-    const prevSlide = () => {
-        if (!isPaused) {
-            const prev = (currentSlide - 1 + slideCount) % slideCount;
-            goToSlide(prev);
-        }
-    };
-
-    // Start auto-slide
-    const startAutoSlide = () => {
-        if (slideInterval) clearInterval(slideInterval);
-        if (progressInterval) clearInterval(progressInterval);
-        
-        slideInterval = setInterval(nextSlide, 5000);
-        progressInterval = setInterval(updateProgress, 50); // Update progress every 50ms
-    };
-
-    // Stop auto-slide
-    const stopAutoSlide = () => {
-        if (slideInterval) {
-            clearInterval(slideInterval);
-            slideInterval = null;
-        }
-        if (progressInterval) {
-            clearInterval(progressInterval);
-            progressInterval = null;
-        }
-    };
-
-    // Pause on hover
-    const heroSection = document.getElementById('heroSection');
-    if (heroSection) {
-        heroSection.addEventListener('mouseenter', () => {
-            isPaused = true;
-            stopAutoSlide();
-        });
-
-        heroSection.addEventListener('mouseleave', () => {
-            isPaused = false;
-            startAutoSlide();
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    alert('Thank you for your inquiry! We will contact you soon.');
+                }, 1500);
+            } else {
+                alert('Please fill in all required fields and accept the privacy policy.');
+            }
         });
     }
 
-    // Dot click handlers
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            goToSlide(i);
-            isPaused = true;
-            stopAutoSlide();
-            setTimeout(() => {
-                isPaused = false;
-                startAutoSlide();
-            }, 3000); // Resume after 5 seconds
+    // ===== IMAGE LOADING =====
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('load', function () {
+            this.style.opacity = '1';
         });
-    });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            nextSlide();
-        }
-    });
-
-    // Touch swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    heroSection?.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    heroSection?.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    const handleSwipe = () => {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-            nextSlide(); // Swipe left
-        } else if (touchEndX > touchStartX + swipeThreshold) {
-            prevSlide(); // Swipe right
-        }
-    };
-
-    // Animate first slide on load
-    setTimeout(() => {
-        animateContent(0);
-    }, 100);
-
-    startAutoSlide();
-};
-
-// Initialize hero slider
-initHeroSlider();
-// ===== DRAGGABLE SLIDER WITH CLICKABLE LINKS =====
-
-const initInfiniteSlider = () => {
-    if (!DOM.sliderContainer || !DOM.sliderWrapper || !DOM.sliderTrack) return;
-
-    let isDragging = false;
-    let startX = 0;
-    let startTransform = 0;
-    let currentTransform = 0;
-    let dragDistance = 0;
-    let clickedLink = null;
-    let animationFrame = null;
-    let autoSlideInterval = null;
-    
-    // Clone items for infinite loop
-    const sliderTrack = DOM.sliderTrack;
-    const originalItems = Array.from(document.querySelectorAll('.slider-item'));
-    
-    // Double the items for seamless loop
-    originalItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        sliderTrack.appendChild(clone);
-    });
-
-    // Calculate dimensions
-    const getTrackWidth = () => {
-        return sliderTrack.scrollWidth / 2; // Half because we doubled
-    };
-
-    const getContainerWidth = () => {
-        return DOM.sliderContainer.offsetWidth;
-    };
-
-    const getMaxTransform = () => {
-        return Math.max(0, getTrackWidth() - getContainerWidth());
-    };
-
-    const getTransformX = () => {
-        const style = window.getComputedStyle(sliderTrack);
-        const transform = style.transform;
-        if (transform === 'none') return 0;
-        
-        const matrix = transform.match(/matrix.*\((.+)\)/);
-        if (matrix) {
-            const values = matrix[1].split(', ');
-            return parseFloat(values[4]) || 0;
-        }
-        return 0;
-    };
-
-    const setTransformX = (x, animate = false) => {
-        const maxTransform = getMaxTransform();
-        
-        // Constrain x between -maxTransform and 0
-        x = Math.min(0, Math.max(x, -maxTransform));
-        
-        // Infinite loop logic - smooth reset when reaching the end
-        if (x <= -maxTransform) {
-            // Seamless jump back to start
-            x = 0;
-            sliderTrack.style.transition = 'none';
-            sliderTrack.style.transform = `translateX(${x}px)`;
-            currentTransform = x;
-            // Force reflow
-            sliderTrack.offsetHeight;
+        if (img.complete) {
+            img.style.opacity = '1';
         } else {
-            sliderTrack.style.transform = `translateX(${x}px)`;
-            currentTransform = x;
-        }
-        
-        if (!animate) {
-            sliderTrack.style.transition = 'none';
-        } else {
-            sliderTrack.style.transition = 'transform 0.3s ease';
-        }
-    };
-
-    // Auto slide function
-    const startAutoSlide = () => {
-        if (autoSlideInterval) clearInterval(autoSlideInterval);
-        
-        autoSlideInterval = setInterval(() => {
-            if (!isDragging && !DOM.sliderContainer.matches(':hover')) {
-                const step = 1; // Pixels per interval
-                const newTransform = currentTransform - step;
-                setTransformX(newTransform);
-            }
-        }, 20); // Smooth 50fps animation
-    };
-
-    // Stop auto slide
-    const stopAutoSlide = () => {
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = null;
-        }
-    };
-
-    // Create navigation buttons - ALWAYS VISIBLE
-    const createNavButtons = () => {
-        // Left button
-        const leftBtn = document.createElement('button');
-        leftBtn.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl focus:outline-none';
-        leftBtn.setAttribute('aria-label', 'Previous slide');
-        leftBtn.innerHTML = '<i class="fas fa-chevron-left text-lg"></i>';
-        
-        // Right button
-        const rightBtn = document.createElement('button');
-        rightBtn.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl focus:outline-none';
-        rightBtn.setAttribute('aria-label', 'Next slide');
-        rightBtn.innerHTML = '<i class="fas fa-chevron-right text-lg"></i>';
-        
-        // Add buttons to container
-        DOM.sliderContainer.appendChild(leftBtn);
-        DOM.sliderContainer.appendChild(rightBtn);
-        
-        // Button click handlers
-        leftBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Stop auto slide temporarily
-            stopAutoSlide();
-            
-            // Calculate step
-            const itemWidth = originalItems[0]?.offsetWidth || 150;
-            const gap = parseInt(window.getComputedStyle(sliderTrack).gap) || 16;
-            const step = (itemWidth + gap) * 3; // Move by 3 items
-            
-            // Move right
-            const newTransform = Math.min(0, currentTransform + step);
-            setTransformX(newTransform, true);
-            
-            // Resume auto slide after 3 seconds
-            setTimeout(() => {
-                if (!isDragging && !DOM.sliderContainer.matches(':hover')) {
-                    startAutoSlide();
-                }
-            }, 3000);
-        });
-        
-        rightBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Stop auto slide temporarily
-            stopAutoSlide();
-            
-            // Calculate step
-            const itemWidth = originalItems[0]?.offsetWidth || 150;
-            const gap = parseInt(window.getComputedStyle(sliderTrack).gap) || 16;
-            const step = (itemWidth + gap) * 3; // Move by 3 items
-            
-            // Move left
-            const newTransform = currentTransform - step;
-            setTransformX(newTransform, true);
-            
-            // Resume auto slide after 3 seconds
-            setTimeout(() => {
-                if (!isDragging && !DOM.sliderContainer.matches(':hover')) {
-                    startAutoSlide();
-                }
-            }, 3000);
-        });
-        
-        return { leftBtn, rightBtn };
-    };
-
-    // Create buttons
-    const { leftBtn, rightBtn } = createNavButtons();
-
-    // Mouse down - start dragging
-    DOM.sliderWrapper.addEventListener('mousedown', (e) => {
-        // Only left click and not on buttons
-        if (e.button !== 0 || e.target.closest('button')) return;
-        
-        console.log('Drag started');
-        
-        isDragging = true;
-        startX = e.pageX;
-        startTransform = getTransformX();
-        dragDistance = 0;
-        clickedLink = e.target.closest('a');
-        
-        // Pause auto slide while dragging
-        stopAutoSlide();
-        
-        DOM.sliderContainer.classList.add('dragging');
-        DOM.sliderContainer.style.cursor = 'grabbing';
-        sliderTrack.style.transition = 'none';
-        
-        e.preventDefault();
-    });
-
-    // Mouse move - handle dragging
-    window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        
-        e.preventDefault();
-        
-        const currentX = e.pageX;
-        const deltaX = currentX - startX;
-        dragDistance = Math.abs(deltaX);
-        
-        setTransformX(startTransform + deltaX);
-    });
-
-    // Mouse up - handle end of drag
-    window.addEventListener('mouseup', (e) => {
-        if (!isDragging) return;
-        
-        console.log('Drag ended', dragDistance);
-        
-        isDragging = false;
-        DOM.sliderContainer.classList.remove('dragging');
-        DOM.sliderContainer.style.cursor = 'grab';
-        
-        // If this was a click (not a drag) and we have a clicked link
-        if (dragDistance < 5 && clickedLink && clickedLink.href) {
-            console.log('Navigating to:', clickedLink.href);
-            window.location.href = clickedLink.href;
-        }
-        
-        // Resume auto slide
-        startAutoSlide();
-        
-        clickedLink = null;
-    });
-
-    // Mouse leave - cancel drag
-    DOM.sliderWrapper.addEventListener('mouseleave', () => {
-        if (isDragging) {
-            isDragging = false;
-            DOM.sliderContainer.classList.remove('dragging');
-            DOM.sliderContainer.style.cursor = 'grab';
-            startAutoSlide(); // Resume auto slide
-            clickedLink = null;
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
         }
     });
 
-    // Hover events - pause auto slide on hover but KEEP BUTTONS VISIBLE
-    DOM.sliderContainer.addEventListener('mouseenter', () => {
-        DOM.sliderContainer.style.cursor = 'grab';
-        stopAutoSlide(); // Pause when hovering
-        
-        // Buttons remain visible - no opacity change
-    });
-
-    DOM.sliderContainer.addEventListener('mouseleave', () => {
-        DOM.sliderContainer.style.cursor = 'default';
-        
-        if (!isDragging) {
-            startAutoSlide(); // Resume when not hovering
-        }
-    });
-
-    // Touch events for mobile
-    DOM.sliderWrapper.addEventListener('touchstart', (e) => {
-        // Don't start drag if touching buttons
-        if (e.target.closest('button')) return;
-        
-        isDragging = true;
-        startX = e.touches[0].pageX;
-        startTransform = getTransformX();
-        dragDistance = 0;
-        
-        // Pause auto slide
-        stopAutoSlide();
-        
-        // Check what was touched
-        const touch = e.touches[0];
-        const element = document.elementFromPoint(touch.clientX, touch.clientY);
-        clickedLink = element?.closest('a');
-        
-        DOM.sliderContainer.classList.add('dragging');
-        sliderTrack.style.transition = 'none';
-        
-        e.preventDefault();
-    }, { passive: false });
-
-    DOM.sliderWrapper.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        
-        const currentX = e.touches[0].pageX;
-        const deltaX = currentX - startX;
-        dragDistance = Math.abs(deltaX);
-        
-        setTransformX(startTransform + deltaX);
-    }, { passive: false });
-
-    DOM.sliderWrapper.addEventListener('touchend', (e) => {
-        if (!isDragging) return;
-        
-        isDragging = false;
-        DOM.sliderContainer.classList.remove('dragging');
-        
-        // If this was a tap (not a drag) and we have a clicked link
-        if (dragDistance < 5 && clickedLink) {
-            e.preventDefault();
-            window.location.href = clickedLink.href;
-        }
-        
-        // Resume auto slide
-        startAutoSlide();
-        
-        clickedLink = null;
-    });
-
-    // Prevent default drag on images
-    document.querySelectorAll('.slider-item img').forEach(img => {
-        img.addEventListener('dragstart', (e) => e.preventDefault());
-    });
-
-    // Start auto slide
-    startAutoSlide();
-
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-        if (autoSlideInterval) clearInterval(autoSlideInterval);
-    });
-
-    console.log('Infinite slider initialized with always-visible navigation buttons');
-};
-    // ===== GSAP ANIMATIONS (if available) =====
-    const initGSAP = () => {
-        if (typeof gsap === 'undefined') return;
-
-        // Hero section animations
-        const heroBadge = document.querySelector('#heroSection .inline-flex');
-        const heroTitle = document.querySelector('#heroSection h1');
-        const heroDesc = document.querySelector('#heroSection p');
-        const heroBtn = document.querySelector('#heroSection button');
-
-        if (heroBadge && heroTitle && heroDesc && heroBtn) {
-            const tl = gsap.timeline();
-            
-            tl.from(heroBadge, {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                ease: 'power3.out'
-            })
-            .from(heroTitle, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                ease: 'power3.out'
-            }, '-=0.4')
-            .from(heroDesc, {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.6')
-            .from(heroBtn, {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                ease: 'power3.out'
-            }, '-=0.4');
-        }
-
-        // Scroll-triggered animations
-        gsap.utils.toArray('.value-icon').forEach((icon, i) => {
-            gsap.from(icon, {
-                scrollTrigger: {
-                    trigger: icon,
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                },
-                scale: 0,
-                rotation: 360,
-                duration: 0.8,
-                delay: i * 0.1,
-                ease: 'back.out(1.7)'
-            });
-        });
-
-        gsap.utils.toArray('.product-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                opacity: 0,
-                y: 50,
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: 'power2.out'
-            });
-        });
-
-        // Floating animation for map pins
-        gsap.utils.toArray('.fa-map-pin').forEach((pin, i) => {
-            gsap.to(pin, {
-                y: -5,
-                duration: 1.5,
-                delay: i * 0.2,
-                repeat: -1,
-                yoyo: true,
-                ease: 'power1.inOut'
-            });
-        });
-    };
-
-    // ===== ADD CSS ANIMATIONS DYNAMICALLY =====
+    // ===== INIT ALL ANIMATIONS =====
     const addAnimationStyles = () => {
         const style = document.createElement('style');
         style.textContent = `
@@ -973,72 +972,41 @@ const initInfiniteSlider = () => {
             .fade-in.active {
                 animation: fadeIn 1s ease forwards;
             }
-            
-            .dragging {
-                cursor: grabbing !important;
-            }
-            
-            .dragging * {
-                user-select: none;
-                pointer-events: none;
-            }
-            
-            .nav-link::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background: linear-gradient(90deg, #10b981, #34d399);
-                transform: scaleX(0);
-                transition: transform 0.3s ease;
-            }
-            
-            .nav-link:hover::after {
-                transform: scaleX(1);
-            }
-            
-            .slide {
-                transition: opacity 0.5s ease;
-            }
-            
-            .slider-dot {
-                transition: all 0.3s ease;
-            }
-            
-            .slider-dot:hover {
-                transform: scale(1.2);
-            }
         `;
         document.head.appendChild(style);
     };
 
-    // Initialize all animations
-    const init = () => {
-        addAnimationStyles();
-        animateOnScroll();
-        initHeroSlider();
-        initInfiniteSlider();
-        initGSAP();
-        
-        // Check for existing counters
-        if (document.querySelector('.grid-cols-2.md\\:grid-cols-3')) {
-            animateCounters(document.body);
-        }
-    };
+    addAnimationStyles();
+    animateOnScroll();
 
-    init();
+    // ===== GSAP ANIMATIONS =====
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Clean up on page unload
-    window.addEventListener('beforeunload', () => {
-        if (DOM.mobileMenu) {
-            DOM.mobileMenu.classList.add('hidden');
-        }
-    });
+        gsap.from('.hero-underline', {
+            scaleX: 0,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.5
+        });
+
+        gsap.utils.toArray('.section-header').forEach(header => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: header,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
+    }
 });
 
-// Utility function for image changes
+// ===== UTILITY FUNCTIONS =====
 window.changeImage = (src) => {
     const mainImage = document.getElementById('mainProductImage');
     if (mainImage) {
@@ -1059,32 +1027,25 @@ const initMapTabs = () => {
     
     if (!tradeTab || !produceTab) return;
     
-    // Function to switch tabs
     const switchTab = (activeTab) => {
-        // Remove active classes from all tabs
         tradeTab.classList.remove('bg-white', 'text-gray-900', 'shadow-md');
         produceTab.classList.remove('bg-white', 'text-gray-900', 'shadow-md');
         
-        // Add default classes
         tradeTab.classList.add('text-gray-500', 'hover:text-gray-900');
         produceTab.classList.add('text-gray-500', 'hover:text-gray-900');
         
         if (activeTab === 'trade') {
-            // Activate trade tab
             tradeTab.classList.remove('text-gray-500', 'hover:text-gray-900');
             tradeTab.classList.add('bg-white', 'text-gray-900', 'shadow-md');
             
-            // Show trade content
             tradeList.classList.remove('hidden');
             produceList.classList.add('hidden');
             tradeLocations.classList.remove('hidden');
             produceLocations.classList.add('hidden');
         } else {
-            // Activate produce tab
             produceTab.classList.remove('text-gray-500', 'hover:text-gray-900');
             produceTab.classList.add('bg-white', 'text-gray-900', 'shadow-md');
             
-            // Show produce content
             tradeList.classList.add('hidden');
             produceList.classList.remove('hidden');
             tradeLocations.classList.add('hidden');
@@ -1092,13 +1053,62 @@ const initMapTabs = () => {
         }
     };
     
-    // Add click handlers
     tradeTab.addEventListener('click', () => switchTab('trade'));
     produceTab.addEventListener('click', () => switchTab('produce'));
     
-    // Initialize with trade tab active
     switchTab('trade');
 };
 
-// Add this line in your init() function:
-initMapTabs();
+// Initialize map tabs if elements exist
+if (document.getElementById('tradeTab')) {
+    initMapTabs();
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ===== RUNNING NUMBERS ANIMATION =====
+    const animateNumber = (element, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const currentValue = Math.floor(progress * (end - start) + start);
+            element.textContent = currentValue;
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                element.textContent = end;
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    // Observer for stats section
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.counter-value');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target') || '0');
+                    const speed = parseInt(counter.getAttribute('data-speed') || '2000');
+                    const startValue = parseInt(counter.textContent || '0');
+                    
+                    if (startValue !== target) {
+                        animateNumber(counter, 0, target, speed);
+                    }
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const statsContainer = document.querySelector('.grid-cols-1.md\\:grid-cols-3');
+    if (statsContainer) {
+        statsObserver.observe(statsContainer);
+    }
+
+    // Initialize counters with zero
+    document.querySelectorAll('.counter-value').forEach(counter => {
+        counter.textContent = '0';
+    });
+});
